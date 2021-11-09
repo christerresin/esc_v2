@@ -10,7 +10,7 @@ const renderChallenges = function (arr) {
 
     
 
-    if (arr === undefined) {
+    if (arr === undefined || arr.length < 1) {
         let noChallenges = document.createElement('h3');
         noChallenges.classList.add('challenge-title');
         noChallenges.innerHTML = "No matching challenges";
