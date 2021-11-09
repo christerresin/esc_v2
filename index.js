@@ -7,6 +7,9 @@ const renderRatingStars = function (num) {
 }
 
 const renderChallenges = function (arr) {
+
+    for(let i = 0; i < arr.length; i++) {
+
     // Create elements for challenge card
     let challengesItem = document.createElement('li');
     challengesItem.classList.add('challenges-item')
@@ -46,7 +49,6 @@ const renderChallenges = function (arr) {
     challengeCta.innerHTML = "Book the room"
 
     // Render/append on site
-    
     challengesList.appendChild(challengesItem);
     challengesItem.appendChild(challengesPicture);
     challengesItem.appendChild(challengeTitle);
@@ -56,7 +58,11 @@ const renderChallenges = function (arr) {
     challengesItem.appendChild(challengeDescription);
     challengesItem.appendChild(challengeCta);
 
+    }
+
 }
 
-renderChallenges()
+let myArr = [1, 2, 3];
+
+renderChallenges(myArr)
 
