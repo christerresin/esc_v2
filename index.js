@@ -8,6 +8,17 @@ const renderRatingStars = function (num) {
 
 const renderChallenges = function (arr) {
 
+    
+
+    if (arr === undefined) {
+        let noChallenges = document.createElement('h3');
+        noChallenges.classList.add('challenge-title');
+        noChallenges.innerHTML = "No matching challenges";
+
+        challengesList.appendChild(noChallenges);
+        console.log(arr)
+    } else {
+
     for(let i = 0; i < arr.length; i++) {
 
     // Create elements for challenge card
@@ -59,7 +70,7 @@ const renderChallenges = function (arr) {
     challengesItem.appendChild(challengeCta);
 
     }
-
+    }
 }
 
 let myArr = [1, 2, 3];
