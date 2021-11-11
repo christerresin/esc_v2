@@ -28,7 +28,7 @@ const renderChallenges = function (arr) {
 
             let challengesPicture = new Image();
             challengesPicture.classList.add('challenge-picture');
-            challengesPicture.src=obj.imgUrl;
+            challengesPicture.src=obj.image;
 
             let challengeTitle = document.createElement('h3');
             challengeTitle.classList.add('challenge-title');
@@ -168,7 +168,7 @@ let mockupJson = {
 let filters = {
     byOnline: true,
     byOnsite: false,
-    byTag: false,
+    byLabel: false,
     byRating: false,
     byChar: false
 }
@@ -205,10 +205,10 @@ let filterArray = function (array) {
         })
     }
 
-     else if (filters.byTag) {
+     else if (filters.byLabel) {
         filteredArray = filteredArray.filter(obj => {
-            for(let i = 0; i < tags.length; i++) {
-                return obj.tags.includes(tags[i])
+            for(let i = 0; i < labels.length; i++) {
+                return obj.labels.includes(tags[i])
 
             }
         })
@@ -219,15 +219,13 @@ let filterArray = function (array) {
 }
 
 
-renderChallenges(filterArray(mockupJson.challenges))
-
 let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges'
 
 let challengesData = async function () {
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    
+    renderChallenges(filterArray(data.challenges))
 }
 
 challengesData()
