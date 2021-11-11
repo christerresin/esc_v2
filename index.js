@@ -221,3 +221,13 @@ let filterArray = function (array) {
 
 renderChallenges(filterArray(mockupJson.challenges))
 
+let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges'
+
+let challengesData = async function () {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+
+    
+}
+
+challengesData()
