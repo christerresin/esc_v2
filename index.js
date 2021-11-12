@@ -82,9 +82,9 @@ let mockupJson = {
             minParticipants: 2,
             maxParticipants: 6,
             rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
+            image: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
             type: 'online',
-            tags: ["Coding", "Linux"]
+            labels: ["Coding", "Linux"]
         },
         {
             title: "Title of room",
@@ -92,9 +92,9 @@ let mockupJson = {
             minParticipants: 2,
             maxParticipants: 4,
             rating: 4,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
+            image: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
             type: 'online',
-            tags: ["Coding", "Cryptography"]
+            labels: ["Coding", "Cryptography"]
         },
         {
             title: "Title of ROOM",
@@ -102,9 +102,9 @@ let mockupJson = {
             minParticipants: 2,
             maxParticipants: 4,
             rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
+            image: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
             type: 'on-site',
-            tags: ["Coding", "Linux", "Web"]
+            labels: ["Coding", "Linux", "Web"]
         },
         {
             title: "Title of challenge",
@@ -112,9 +112,9 @@ let mockupJson = {
             minParticipants: 2,
             maxParticipants: 6,
             rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
+            image: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
             type: 'online',
-            tags: ["Coding", "Linux"]
+            labels: ["Coding", "Linux"]
         },
         {
             title: "Title of room",
@@ -122,9 +122,9 @@ let mockupJson = {
             minParticipants: 2,
             maxParticipants: 4,
             rating: 4,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
+            image: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
             type: 'online',
-            tags: ["Coding", "Cryptography"]
+            labels: ["Coding", "Cryptography"]
         },
         {
             title: "Title of ROOM",
@@ -132,9 +132,9 @@ let mockupJson = {
             minParticipants: 2,
             maxParticipants: 4,
             rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
+            image: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
             type: 'on-site',
-            tags: ["Coding", "Linux", "Web"]
+            labels: ["Coding", "Linux", "Web"]
         }
     ]
 }
