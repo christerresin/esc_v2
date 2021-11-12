@@ -3,9 +3,7 @@
     padding: 0;
     font-family: Roboto, sans-serif;
   }
-  /*html{
-    width:1280px;
-  }*/
+
   li {
     list-style-type: none;
   }
@@ -377,7 +375,22 @@
     width: fit-content;
   }
 
-  .our-challenges h2 {
+  .filter-board {
+    padding: 1rem;
+    padding-top: 2rem;
+}
+
+.filter-menu {
+  /*box-sizing: border-box;
+  width: 60vw;
+  margin: 0 auto; */
+  border: solid #8acfe5;
+  border-radius: 5px;
+  color: #011827;
+  padding: 0 1rem 1rem 1rem;
+}
+
+.our-challenges h2 {
     font-size: 1.7rem;
     font-weight: normal;
     text-align: center;
@@ -387,45 +400,43 @@
     padding-bottom: 1rem;
   }
 
-  .filter-menu {
-      /*box-sizing: border-box;
-      width: 60vw;
-      margin: 0 auto; */
-      border: solid #8acfe5;
-      border-radius: 5px;
-      color: #011827;
-  }
-
-  .x-button-style {
-    font-size: 2rem;
+  .x-button-style p {
+    font-size: 1.7rem;
     float: right;
-    margin: -2.2rem auto;
-    padding-right: 0.5rem;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: -2.7rem auto;
+    background-color: white;
+    padding-top: 0.1rem;
   }
 
   .filter-box-title {
-    margin: 0.5rem;
+    margin: 0.5rem 1rem 1rem 1rem;
     width: fit-content;
-  }
-  .filter-board {
-      padding: 1rem;
-      padding-top: 2rem;
   }
 
   .choose-filter-box {
     display: flex;
     flex-direction: row;
-    
-    padding-left: 1rem;
-    padding-right: 1rem;
+    justify-content: space-between;
   }
 
   .filter-by-type {
-    border: solid black;
     margin: 1rem;
     padding: 1rem;
     order: -1;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: fit-content;
+  }
+
+  .filter-by-type ul {
+    margin-top: 1rem;
+  }
+
+  .filter-by-type ul li {
+    list-style-type: none;
+    padding-bottom: 0.5rem;
   }
 
   .filter-by-tag {
@@ -443,8 +454,22 @@
   }
 
   .filter-search-text {
-    border: solid black;
-    text-align: center;
-    margin: 1rem;
+    text-align: left;
     padding: 1rem;
+    box-sizing: border-box;
+    width: 400px;
+    margin: 0 auto;
+  }
+
+  .filter-search-text input {
+    width: 300px;
+    margin-top: 0.5rem;
+    padding: 0.6rem;
+    font-size: 1.2rem;
+    border: solid gray 2px;
+    border-radius: 5px;
+  }
+
+  .filter-search-text input::placeholder {
+    color:lightgray
   }

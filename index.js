@@ -205,10 +205,11 @@ filterButton.addEventListener('click',() =>
         filterBoxTitle.innerHTML = "Filter challenges";
 
         const xButton = document.createElement('a');
-        const xButtonText = document.createTextNode("X");
         xButton.classList.add("x-button-style");
+        const btnSpan = document.createElement('p');
+        btnSpan.innerHTML = "&#10005;";
+        xButton.appendChild(btnSpan);
         filterMenu.appendChild(xButton);
-        xButton.appendChild(xButtonText);
 
         const filtersToChoose = document.createElement('div');
         filtersToChoose.classList.add('choose-filter-box');
@@ -222,21 +223,30 @@ filterButton.addEventListener('click',() =>
         filterTypeTitle.innerHTML = "By Type";
         filterType.appendChild(filterTypeTitle);
 
+        const filterTypeList = document.createElement('ul');
+        filterType.appendChild(filterTypeList);
+
+        const filterListPoint1 = document.createElement('li');
+        filterTypeList.appendChild(filterListPoint1);
+
         const filterTypeCheck1 = document.createElement('input');
         filterTypeCheck1.type = "checkbox";
-        filterType.appendChild(filterTypeCheck1);
+        filterListPoint1.appendChild(filterTypeCheck1);
 
         const filterTypeText1 = document.createElement('label');
-        filterTypeText1.innerHTML = "&nbsp Include online challenges <br>";
-        filterType.appendChild(filterTypeText1);
+        filterTypeText1.innerHTML = "&nbspInclude online challenges";
+        filterListPoint1.appendChild(filterTypeText1);
+
+        const filterListPoint2 = document.createElement('li');
+        filterTypeList.appendChild(filterListPoint2);
 
         const filterTypeCheck2 = document.createElement('input');
         filterTypeCheck2.type = "checkbox";
-        filterType.appendChild(filterTypeCheck2);
+        filterListPoint2.appendChild(filterTypeCheck2);
 
         const filterTypeText2 = document.createElement('label');
-        filterTypeText2.innerHTML = "&nbsp Include on-site challenges";
-        filterType.appendChild(filterTypeText2);
+        filterTypeText2.innerHTML = "&nbspInclude on-site challenges";
+        filterListPoint2.appendChild(filterTypeText2);
         
         const filterRating = document.createElement('div');
         filterRating.classList.add("filter-by-rating");
@@ -250,8 +260,16 @@ filterButton.addEventListener('click',() =>
 
         const filterSearchText = document.createElement('div');
         filterSearchText.classList.add("filter-search-text");
-        filterSearchText.innerHTML = "Or type to search for keyword";
         filterMenu.appendChild(filterSearchText);
+
+        const filterSearchTextTitle = document.createElement('h4');
+        filterSearchTextTitle.innerHTML = "Or type to search for keyword";
+        filterSearchText.appendChild(filterSearchTextTitle);
+
+        const searchText = document.createElement('input');
+        searchText.type = "text";
+        searchText.placeholder = "Start typing to filter";
+        filterSearchText.appendChild(searchText);
 
         
         filterButton.style.display = 'none'; 
