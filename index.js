@@ -21,14 +21,18 @@ const renderChallenges = function (arr) {
 
     } else {
 
-        arr.map(obj => {
+        arr.map((obj) => {
             // Create elements for challenge card
             let challengesItem = document.createElement('li');
             challengesItem.classList.add('challenges-item');
 
-            let challengesPicture = new Image();
+            // let challengesPicture = new Image(); // vad innebär Image och hur skjuta in bild med createElement istället?
+            // challengesPicture.classList.add('challenge-picture');
+            // challengesPicture.src=obj.image;
+
+            let challengesPicture = document.createElement("img");
             challengesPicture.classList.add('challenge-picture');
-            challengesPicture.src=obj.image;
+            challengesPicture.src = obj.image;
 
             let challengeTitle = document.createElement('h3');
             challengeTitle.classList.add('challenge-title');
@@ -52,6 +56,8 @@ const renderChallenges = function (arr) {
             challengeSize.classList.add('challenge-size');
             challengeSize.innerHTML = `${obj.minParticipants}-${obj.maxParticipants} participants`;
 
+            //$ mean + (template String) 
+
             let challengeDescription = document.createElement('p');
             challengeDescription.classList.add('challenge-description');
             challengeDescription.innerHTML = obj.description
@@ -73,6 +79,31 @@ const renderChallenges = function (arr) {
         });
     };
 };
+
+const testObj = {
+    title: "Title of challenge",
+    description: "Reprehenderit voluptate ullamco pariatur. Deserunt sit irure consequat consequat elit aliquip eiusmod aliquip et ipsum ipsum.",
+    minParticipants: 2,
+    maxParticipants: 6,
+    rating: 3,
+    image: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
+    type: 'online',
+    labels: ["Coding", "Linux"]
+};
+
+// --- ANDERS TEST
+
+let challengesItem = document.createElement('li');
+challengesItem.classList.add('challenges-item');
+document.querySelector('.challenges-list').appendChild(challengesItem);
+
+let challengesPicture = document.createElement('img');
+challengesPicture.classList.add('challenge-picture');
+challengesPicture.src=testObj.image;
+challengesItem.appendChild(challengesPicture);
+
+// ---
+
 
 let mockupJson = {
     challenges: [
@@ -138,6 +169,8 @@ let mockupJson = {
         }
     ]
 }
+
+
 
 
 // renderChallenges(mockupJson.challenges);
@@ -219,13 +252,14 @@ let filterArray = function (array) {
 }
 
 
+
 let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges'
 
 let challengesData = async function () {
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    renderChallenges(filterArray(data.challenges))
+    // renderChallenges(filterArray(data.challenges))
 }
 
-challengesData()
+challengesData() 
