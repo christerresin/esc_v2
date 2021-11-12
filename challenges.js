@@ -8,9 +8,7 @@ const renderRatingStars = function (num) {
 }
 
 const renderChallenges = function (arr) {
-
-    
-
+ 
     if (arr === undefined || arr.length < 1) {
         let noChallenges = document.createElement('h3');
         // create new className in CSS and change code to add created className
@@ -131,8 +129,7 @@ let filterArray = function (array) {
     if (filters.byRating) {
         newArray = newArray.filter(obj => {
             if(obj.rating >= minRatingFilter && obj.rating <= maxRatingFilter) {
-                console.log(obj)
-                return obj
+                return obj;
             }
         });
     }
