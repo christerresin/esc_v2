@@ -22,15 +22,15 @@ const renderChallenges = function (arr) {
     } else {
 
         // Creates array of labels to be rendered as filter options
-        let labelsArray = []
+        let labelsArray = [];
 
         arr.map(obj => {
             obj.labels.forEach(label => {
                 if(!labelsArray.includes(label)) {
-                    labelsArray.push(label)
+                    labelsArray.push(label);
                 }
-            })
-        })
+            });
+        });
 
         // Loops over all filtered objs in arr to render elements on page
         filterArray(arr).map(obj => {
@@ -95,7 +95,7 @@ let filters = {
     byChar: false
 };
 
-let labelsActive = ['bash']
+let labelsActive = ['bash'];
 
 let filterArray = function (array) {
 
@@ -107,7 +107,7 @@ let filterArray = function (array) {
             return obj.type === 'online';
         })
         // Using spread to "create"/concat a new array with all values
-        newArray = [...newArray, ...filteredArray]
+        newArray = [...newArray, ...filteredArray];
     }
 
     else if (filters.byOnsite) {
@@ -115,7 +115,7 @@ let filterArray = function (array) {
             return obj.type === 'onsite';
         })
         // Using spread to "create"/concat a new array with all values
-        newArray = [...newArray, ...filteredArray]
+        newArray = [...newArray, ...filteredArray];
     }
 
     if (filters.byLabel) {
@@ -130,7 +130,7 @@ let filterArray = function (array) {
     return newArray;
 };
 
-let labelsData = []
+let labelsData = [];
 
 
 let challengesData = async () => {
@@ -140,10 +140,10 @@ let challengesData = async () => {
         const response = await fetch(apiUrl);
         const data = await response.json();
     
-        renderChallenges(data.challenges)
+        renderChallenges(data.challenges);
 
     } catch (error){
-        console.log(error)
+        console.log(error);
     }
 
 };
