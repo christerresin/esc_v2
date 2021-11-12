@@ -21,7 +21,19 @@ const renderChallenges = function (arr) {
 
     } else {
 
+        // Creates array of labels to be rendered as filter options
+        let labelsArray = []
+
         arr.map(obj => {
+            obj.labels.forEach(label => {
+                if(!labelsArray.includes(label)) {
+                    labelsArray.push(label)
+                }
+            })
+        })
+
+        // Loops over all filtered objs in arr to render elements on page
+        filterArray(arr).map(obj => {
             // Create elements for challenge card
             let challengesItem = document.createElement('li');
             challengesItem.classList.add('challenges-item');
@@ -76,8 +88,8 @@ const renderChallenges = function (arr) {
 
 
 let filters = {
-    byOnline: true,
-    byOnsite: false,
+    byOnline: false,
+    byOnsite: true,
     byLabel: true,
     byRating: false,
     byChar: false
@@ -109,7 +121,6 @@ let filterArray = function (array) {
     if (filters.byLabel) {
         newArray = newArray.filter(obj => {
             for(let i = 0; i < labelsActive.length; i++) {
-                console.log(labelsActive[i])
                 return obj.labels.includes(labelsActive[i]);
             }
         })
@@ -119,14 +130,22 @@ let filterArray = function (array) {
     return newArray;
 };
 
+let labelsData = []
 
-let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
 
-let challengesData = async function () {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
+let challengesData = async () => {
+    let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
 
-    renderChallenges(filterArray(data.challenges));
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+    
+        renderChallenges(data.challenges)
+
+    } catch (error){
+        console.log(error)
+    }
+
 };
 
 challengesData();
