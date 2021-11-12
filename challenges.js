@@ -84,7 +84,7 @@ const renderChallenges = function (arr) {
     };
 };
 
-
+// Filters obj
 let filters = {
     byOnline: true,
     byOnsite: true,
@@ -93,6 +93,7 @@ let filters = {
     byChar: false
 };
 
+// Filter variables
 let labelsFilters = ['bash'];
 let minRatingFilter = 2;
 let maxRatingFilter = 5;
@@ -137,8 +138,6 @@ let filterArray = function (array) {
     console.log(newArray);
     return newArray;
 };
-
-let labelsData = [];
 
 
 let challengesData = async () => {
