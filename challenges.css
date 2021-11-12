@@ -359,3 +359,50 @@
     }
   }
   
+  .story-cta {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 2rem;
+    padding: 1rem 3rem;
+    border-radius: 0.3rem;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    border: 2px solid #8acfe5;
+    color: #8acfe5;
+    box-sizing: border-box;
+    width:fit-content;
+  }
+
+  .h2-filter-sida {
+    font-size: 1.7rem;
+    font-weight: normal;
+    text-align: center;
+    margin: 0 0 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    padding-bottom: 1rem;
+  }
+
+  .filter-menu {
+      border: solid black;
+      color: black;
+  }
+
+  .x-button-style {
+    font-size: 2rem;
+    float:right;
+    margin: 1rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+
+  .filter-board {
+      padding: 3rem;
+      padding-top: 2rem;
+  }
+
+  .filter-list-style {
+      text-align:center;
+        margin: 2rem;
+  }

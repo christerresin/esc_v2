@@ -229,3 +229,81 @@ let challengesData = async function () {
 }
 
 challengesData()
+
+
+const filterButton = document.querySelector('.story-cta');
+
+filterButton.addEventListener('click',() => 
+    {
+        const filterBoard = document.querySelector('.filter-board');
+        const filterMenu  = document.createElement('div');
+        filterMenu.classList.add("filter-menu");
+
+        const xButton = document.createElement('a');
+        const xButtonText = document.createTextNode("X");
+        xButton.classList.add("x-button-style");
+
+        const filterList = document.createElement('ul');
+        filterList.classList.add("filter-list-style");
+
+        const menuItem1 = document.createElement('li');
+        const menuItem2 = document.createElement('li');
+        const menuItem3 = document.createElement('li');
+        
+
+        const menuChoice1 = document.createElement('a');
+        const menuChoice2 = document.createElement('a');
+        const menuChoice3 = document.createElement('a');
+        
+
+        const aText1 = document.createTextNode("one filter");
+        const aText2 = document.createTextNode("Second filder");
+        const aText3 = document.createTextNode("third");
+        
+
+        menuChoice1.href = "#";
+        menuChoice2.href = "#";
+        menuChoice3.href = "#";
+        
+
+        menuChoice1.style.textDecoration = 'none';
+        menuChoice2.style.textDecoration = 'none';
+        menuChoice3.style.textDecoration = 'none';
+
+        menuChoice1.style.color = 'black';
+        menuChoice2.style.color = 'black';
+        menuChoice3.style.color = 'black';
+        
+
+        filterBoard.appendChild(filterMenu);
+       
+        filterMenu.appendChild(xButton);
+        xButton.appendChild(xButtonText);
+
+        filterMenu.appendChild(filterList);
+
+        filterList.appendChild(menuItem1);
+        filterList.appendChild(menuItem2);
+        filterList.appendChild(menuItem3);
+
+
+        menuItem1.appendChild(menuChoice1);
+        menuItem2.appendChild(menuChoice2);
+        menuItem3.appendChild(menuChoice3);
+        
+
+        menuChoice1.appendChild(aText1);
+        menuChoice2.appendChild(aText2);
+        menuChoice3.appendChild(aText3);
+
+
+        filterButton.style.display = 'none'; 
+        
+        xButton.addEventListener('click',() => 
+            {
+                filterButton.style.display = 'block';
+                filterBoard.removeChild(filterMenu);
+            }
+        );
+    }
+);
