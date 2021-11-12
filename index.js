@@ -166,7 +166,7 @@ let mockupJson = {
 // filterByText(array);
 
 let filters = {
-    byOnline: true,
+    byOnline: false,
     byOnsite: false,
     byLabel: false,
     byRating: false,
