@@ -90,13 +90,14 @@ let filters = {
     byOnsite: true,
     byLabel: false,
     byRating: true,
-    byChar: false
+    byText: true
 };
 
 // Filter variables
 let labelsFilters = ['bash'];
 let minRatingFilter = 2;
 let maxRatingFilter = 5;
+let textFilter = 'bin';
 
 let filterArray = function (array) {
 
@@ -133,6 +134,12 @@ let filterArray = function (array) {
                 return obj;
             }
         });
+    }
+
+    if (filters.byText) {
+        newArray = newArray.filter(obj => {
+            return obj.description.includes(textFilter) || obj.title.includes(textFilter);
+        })
     }
 
     console.log(newArray);
