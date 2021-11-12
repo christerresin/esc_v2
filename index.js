@@ -26,7 +26,7 @@ const renderChallenges = function (arr) {
             let challengesItem = document.createElement('li');
             challengesItem.classList.add('challenges-item');
 
-            let challengesPicture = new Image();
+            let challengesPicture = document.createElement('img')
             challengesPicture.classList.add('challenge-picture');
             challengesPicture.src=obj.image;
 
@@ -76,44 +76,57 @@ const renderChallenges = function (arr) {
 
 
 let filters = {
-    byOnline: false,
+    byOnline: true,
     byOnsite: false,
     byLabel: false,
     byRating: false,
     byChar: false
-}
+};
 
 let filterArray = function (array) {
 
-    let filteredArray = array
+    let newArray = [];
+    let filteredArray = [];
     
     if (filters.byOnline) {
-        filteredArray = filteredArray.filter(obj => {
-            return obj.type === 'online'
+        filteredArray = array.filter(obj => {
+            return obj.type === 'online';
         })
+        // Using spread to "create"/concat a new array with all values
+        newArray = [...newArray, ...filteredArray]
     }
 
-     else if (filters.byLabel) {
-        filteredArray = filteredArray.filter(obj => {
+    else if (filters.byOnsite) {
+        filteredArray = array.filter(obj => {
+            return obj.type === 'onsite';
+        })
+        // Using spread to "create"/concat a new array with all values
+        newArray = [...newArray, ...filteredArray]
+    }
+
+    else if (filters.byLabel) {
+        filteredArray = array.filter(obj => {
             for(let i = 0; i < labels.length; i++) {
-                return obj.labels.includes(tags[i])
+                return obj.labels.includes(tags[i]);
 
             }
         })
+        // Using spread to "create"/concat a new array with all values
+        newArray = [...newArray, ...filteredArray]
     }
 
-    console.log(filteredArray)
-    return filteredArray
-}
+    console.log(newArray);
+    return newArray;
+};
 
 
-let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges'
+let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
 
 let challengesData = async function () {
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    renderChallenges(filterArray(data.challenges))
-}
+    renderChallenges(filterArray(data.challenges));
+};
 
-challengesData()
+challengesData();
