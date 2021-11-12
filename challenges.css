@@ -385,7 +385,6 @@
   width: 60vw;
   margin: 0 auto; */
   border: solid #8acfe5;
-  border-radius: 5px;
   color: #011827;
   padding: 0 1rem 1rem 1rem;
 }
@@ -440,10 +439,23 @@
   }
 
   .filter-by-tag {
-    border: solid black;
     margin: 1rem;
     padding: 1rem;
     order: 2;
+    box-sizing: border-box;
+    width: 300px;
+  }
+
+  .filter-by-tag h4 {
+    margin-bottom: 1rem;
+  }
+
+  .filter-by-tag-item {
+    margin-top: 1.8rem;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+    border: solid lightslategray;
+    color: lightslategray;
+    border-radius: 1rem;
   }
 
   .filter-by-rating {

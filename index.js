@@ -255,8 +255,47 @@ filterButton.addEventListener('click',() =>
 
         const filterTag = document.createElement('div');
         filterTag.classList.add("filter-by-tag");
-        filterTag.innerHTML = "By Tag";
         filtersToChoose.appendChild(filterTag);
+
+        const filterTagTitle = document.createElement('h4');
+        filterTagTitle.innerHTML = "By Tag";
+        filterTag.appendChild(filterTagTitle);
+
+
+        //let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges'
+
+        //let challengesData = async function () {
+        //const response = await fetch(apiUrl);
+        //const data = await response.json();
+        //}
+
+        //challengesData();
+
+        
+
+        //for (let i = 0; i < data.challenges.length; i++) {
+        //    for (let j = 0; j <data.challenges.labels.length; j++) {
+        const filterTagItem = document.createElement('label');
+        filterTagItem.classList.add("filter-by-tag-item");
+        filterTagItem.innerHTML = "Web"//data.challenges.labels[i];
+        filterTag.appendChild(filterTagItem);
+
+        filterTagItem.addEventListener('click', () => 
+            {
+                if (filterTagItem.style.backgroundColor == "white") {
+                        filterTagItem.style.backgroundColor = "lightslategray";
+                        filterTagItem.style.color = "white";
+                }
+                else {
+                    filterTagItem.style.backgroundColor = "white";
+                    filterTagItem.style.color = "lightslategray";
+                }
+            }    
+        );
+
+        //    )
+        //    } 
+        //}
 
         const filterSearchText = document.createElement('div');
         filterSearchText.classList.add("filter-search-text");
