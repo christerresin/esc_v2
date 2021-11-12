@@ -74,30 +74,6 @@ const renderChallenges = function (arr) {
     };
 };
 
-let mockupJson = {
-    challenges: [
-        {
-            title: "Title of challenge",
-            description: "Reprehenderit voluptate ullamco pariatur. Deserunt sit irure consequat consequat elit aliquip eiusmod aliquip et ipsum ipsum.",
-            minParticipants: 2,
-            maxParticipants: 6,
-            rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
-            type: 'online',
-            tags: ["Coding", "Linux"]
-        },
-        {
-            title: "Title of room",
-            description: "Reprehenderit voluptate ullamco pariatur. Deserunt sit irure consequat consequat elit aliquip eiusmod aliquip et ipsum ipsum.",
-            minParticipants: 2,
-            maxParticipants: 4,
-            rating: 4,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
-            type: 'online',
-            tags: ["Coding", "Cryptography"]
-        } ]
-}
-
 // renderChallenges(mockupJson.challenges);
 
 // Varje filter motsvaras av en index-plats. Och en funktion kollar om ett "index" / "filter" är på / 1 / true eller av / 0 / false. -- klumpigare än EventListener?
@@ -215,7 +191,7 @@ filterButton.addEventListener('click',() =>
         filtersToChoose.classList.add('choose-filter-box');
         filterMenu.appendChild(filtersToChoose);
 
-        const filterType= document.createElement('div');
+        const filterType = document.createElement('div');
         filterType.classList.add("filter-by-type");
         filtersToChoose.appendChild(filterType);
 
@@ -250,8 +226,36 @@ filterButton.addEventListener('click',() =>
         
         const filterRating = document.createElement('div');
         filterRating.classList.add("filter-by-rating");
-        filterRating.innerHTML = "By Rating";
         filtersToChoose.appendChild(filterRating);
+        
+
+        const filterRatingTitle = document.createElement('h4');
+        filterRatingTitle.innerHTML = "By Rating";
+        filterRating.appendChild(filterRatingTitle);
+
+        const filterRatingList = document.createElement('ul');
+        filterRating.appendChild(filterRatingList);
+
+        for (let i = 0; i < 5; i++) {
+            const filterRatingStar = document.createElement('li');
+            filterRatingStar.classList.add('filter-rating-star');
+            filterRatingStar.classList.add('off');
+            filterRatingList.appendChild(filterRatingStar);
+        }
+
+        const filterStarLabel = document.createElement('li');
+        filterStarLabel.innerHTML = "&nbspto&nbsp";
+        filterStarLabel.style.textAlign = "center";
+        filterStarLabel.style.padding = "0.5rem";
+        filterRatingList.appendChild(filterStarLabel);
+
+
+        for (let i = 0; i < 5; i++) {
+            const filterRatingStar = document.createElement('li');
+            filterRatingStar.classList.add('filter-rating-star');
+            filterRatingStar.classList.add('on');
+            filterRatingList.appendChild(filterRatingStar);
+        }
 
         const filterTag = document.createElement('div');
         filterTag.classList.add("filter-by-tag");
@@ -261,41 +265,44 @@ filterButton.addEventListener('click',() =>
         filterTagTitle.innerHTML = "By Tag";
         filterTag.appendChild(filterTagTitle);
 
-
-        //let apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges'
-
-        //let challengesData = async function () {
-        //const response = await fetch(apiUrl);
-        //const data = await response.json();
-        //}
-
-        //challengesData();
-
-        
+        const filterTagLabels = document.createElement('div');
+        filterTagLabels.classList.add("filter-by-tag-item");
+        filterTag.appendChild(filterTagLabels);
 
         //for (let i = 0; i < data.challenges.length; i++) {
-        //    for (let j = 0; j <data.challenges.labels.length; j++) {
-        const filterTagItem = document.createElement('label');
-        filterTagItem.classList.add("filter-by-tag-item");
-        filterTagItem.innerHTML = "Web"//data.challenges.labels[i];
-        filterTag.appendChild(filterTagItem);
+
+        //    for (let j = 0; j < data.challenges.labels.length; j++) {
+
+            const filterTagItem = document.createElement('label');
+            filterTagItem.innerHTML = "Web"//data.challenges.labels[j];
+            filterTagLabels.appendChild(filterTagItem);
 
         filterTagItem.addEventListener('click', () => 
-            {
+            {   
                 if (filterTagItem.style.backgroundColor == "white") {
                         filterTagItem.style.backgroundColor = "lightslategray";
                         filterTagItem.style.color = "white";
+                        filterTagItem.style.borderColor = "lightslategray";
+                        
                 }
                 else {
                     filterTagItem.style.backgroundColor = "white";
-                    filterTagItem.style.color = "lightslategray";
+                    filterTagItem.style.color = "gray";
+                    filterTagItem.style.borderColor = "lightgray";
                 }
             }    
         );
 
-        //    )
-        //    } 
+            
+          // } 
         //}
+
+        let challengesData = async function () {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+        }
+
+        challengesData();
 
         const filterSearchText = document.createElement('div');
         filterSearchText.classList.add("filter-search-text");
