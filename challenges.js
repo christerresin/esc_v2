@@ -88,14 +88,16 @@ const renderChallenges = function (arr) {
 
 
 let filters = {
-    byOnline: false,
+    byOnline: true,
     byOnsite: true,
-    byLabel: true,
-    byRating: false,
+    byLabel: false,
+    byRating: true,
     byChar: false
 };
 
-let labelsActive = ['bash'];
+let labelsFilters = ['bash'];
+let minRatingFilter = 2;
+let maxRatingFilter = 5;
 
 let filterArray = function (array) {
 
@@ -110,7 +112,7 @@ let filterArray = function (array) {
         newArray = [...newArray, ...filteredArray];
     }
 
-    else if (filters.byOnsite) {
+    if (filters.byOnsite) {
         filteredArray = array.filter(obj => {
             return obj.type === 'onsite';
         })
@@ -120,10 +122,19 @@ let filterArray = function (array) {
 
     if (filters.byLabel) {
         newArray = newArray.filter(obj => {
-            for(let i = 0; i < labelsActive.length; i++) {
-                return obj.labels.includes(labelsActive[i]);
+            for(let i = 0; i < labelsFilters.length; i++) {
+                return obj.labels.includes(labelsFilters[i]);
             }
         })
+    }
+
+    if (filters.byRating) {
+        newArray = newArray.filter(obj => {
+            if(obj.rating >= minRatingFilter && obj.rating <= maxRatingFilter) {
+                console.log(obj)
+                return obj
+            }
+        });
     }
 
     console.log(newArray);
