@@ -95,50 +95,8 @@ let mockupJson = {
             imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
             type: 'online',
             tags: ["Coding", "Cryptography"]
-        },
-        {
-            title: "Title of ROOM",
-            description: "Reprehenderit voluptate ullamco pariatur. Deserunt sit irure consequat consequat elit aliquip eiusmod aliquip et ipsum ipsum.",
-            minParticipants: 2,
-            maxParticipants: 4,
-            rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
-            type: 'on-site',
-            tags: ["Coding", "Linux", "Web"]
-        },
-        {
-            title: "Title of challenge",
-            description: "Reprehenderit voluptate ullamco pariatur. Deserunt sit irure consequat consequat elit aliquip eiusmod aliquip et ipsum ipsum.",
-            minParticipants: 2,
-            maxParticipants: 6,
-            rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
-            type: 'online',
-            tags: ["Coding", "Linux"]
-        },
-        {
-            title: "Title of room",
-            description: "Reprehenderit voluptate ullamco pariatur. Deserunt sit irure consequat consequat elit aliquip eiusmod aliquip et ipsum ipsum.",
-            minParticipants: 2,
-            maxParticipants: 4,
-            rating: 4,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
-            type: 'online',
-            tags: ["Coding", "Cryptography"]
-        },
-        {
-            title: "Title of ROOM",
-            description: "Reprehenderit voluptate ullamco pariatur. Deserunt sit irure consequat consequat elit aliquip eiusmod aliquip et ipsum ipsum.",
-            minParticipants: 2,
-            maxParticipants: 4,
-            rating: 3,
-            imgUrl: "https://raw.githubusercontent.com/richardolsson/lernia-sjj-assignments/main/02-esc-website/images/hero.png",
-            type: 'on-site',
-            tags: ["Coding", "Linux", "Web"]
-        }
-    ]
+        } ]
 }
-
 
 // renderChallenges(mockupJson.challenges);
 
@@ -231,72 +189,71 @@ let challengesData = async function () {
 challengesData()
 
 
-const filterButton = document.querySelector('.story-cta');
+const filterButton = document.querySelector('.filter-cta');
 
 filterButton.addEventListener('click',() => 
     {
         const filterBoard = document.querySelector('.filter-board');
+        
         const filterMenu  = document.createElement('div');
         filterMenu.classList.add("filter-menu");
+        filterBoard.appendChild(filterMenu);
+        
+        const filterBoxTitle = document.createElement('h3');
+        filterBoxTitle.classList.add("filter-box-title");
+        filterMenu.appendChild(filterBoxTitle);
+        filterBoxTitle.innerHTML = "Filter challenges";
 
         const xButton = document.createElement('a');
         const xButtonText = document.createTextNode("X");
         xButton.classList.add("x-button-style");
-
-        const filterList = document.createElement('ul');
-        filterList.classList.add("filter-list-style");
-
-        const menuItem1 = document.createElement('li');
-        const menuItem2 = document.createElement('li');
-        const menuItem3 = document.createElement('li');
-        
-
-        const menuChoice1 = document.createElement('a');
-        const menuChoice2 = document.createElement('a');
-        const menuChoice3 = document.createElement('a');
-        
-
-        const aText1 = document.createTextNode("one filter");
-        const aText2 = document.createTextNode("Second filder");
-        const aText3 = document.createTextNode("third");
-        
-
-        menuChoice1.href = "#";
-        menuChoice2.href = "#";
-        menuChoice3.href = "#";
-        
-
-        menuChoice1.style.textDecoration = 'none';
-        menuChoice2.style.textDecoration = 'none';
-        menuChoice3.style.textDecoration = 'none';
-
-        menuChoice1.style.color = 'black';
-        menuChoice2.style.color = 'black';
-        menuChoice3.style.color = 'black';
-        
-
-        filterBoard.appendChild(filterMenu);
-       
         filterMenu.appendChild(xButton);
         xButton.appendChild(xButtonText);
 
-        filterMenu.appendChild(filterList);
+        const filtersToChoose = document.createElement('div');
+        filtersToChoose.classList.add('choose-filter-box');
+        filterMenu.appendChild(filtersToChoose);
 
-        filterList.appendChild(menuItem1);
-        filterList.appendChild(menuItem2);
-        filterList.appendChild(menuItem3);
+        const filterType= document.createElement('div');
+        filterType.classList.add("filter-by-type");
+        filtersToChoose.appendChild(filterType);
 
+        const filterTypeTitle = document.createElement('h4');
+        filterTypeTitle.innerHTML = "By Type";
+        filterType.appendChild(filterTypeTitle);
 
-        menuItem1.appendChild(menuChoice1);
-        menuItem2.appendChild(menuChoice2);
-        menuItem3.appendChild(menuChoice3);
+        const filterTypeCheck1 = document.createElement('input');
+        filterTypeCheck1.type = "checkbox";
+        filterType.appendChild(filterTypeCheck1);
+
+        const filterTypeText1 = document.createElement('label');
+        filterTypeText1.innerHTML = "&nbsp Include online challenges <br>";
+        filterType.appendChild(filterTypeText1);
+
+        const filterTypeCheck2 = document.createElement('input');
+        filterTypeCheck2.type = "checkbox";
+        filterType.appendChild(filterTypeCheck2);
+
+        const filterTypeText2 = document.createElement('label');
+        filterTypeText2.innerHTML = "&nbsp Include on-site challenges";
+        filterType.appendChild(filterTypeText2);
         
+        const filterRating = document.createElement('div');
+        filterRating.classList.add("filter-by-rating");
+        filterRating.innerHTML = "By Rating";
+        filtersToChoose.appendChild(filterRating);
 
-        menuChoice1.appendChild(aText1);
-        menuChoice2.appendChild(aText2);
-        menuChoice3.appendChild(aText3);
+        const filterTag = document.createElement('div');
+        filterTag.classList.add("filter-by-tag");
+        filterTag.innerHTML = "By Tag";
+        filtersToChoose.appendChild(filterTag);
 
+        const filterSearchText = document.createElement('div');
+        filterSearchText.classList.add("filter-search-text");
+        filterSearchText.innerHTML = "Or type to search for keyword";
+        filterMenu.appendChild(filterSearchText);
 
+        
         filterButton.style.display = 'none'; 
         
         xButton.addEventListener('click',() => 
@@ -307,3 +264,61 @@ filterButton.addEventListener('click',() =>
         );
     }
 );
+
+
+
+//----
+
+// .booking {
+//     display: grid;
+//     grid-template: "type rating tags" 1fr
+//                    "search search search" 1fr
+//                    / 1fr 1fr 1fr;
+//   }
+  
+//   @media(max-width: 800px) {
+//     .booking {
+//       grid-template: "a"
+//                      "b"
+//                      "c"
+//                      "d" ;
+//       overflow:auto;
+//     }
+//   }
+  
+//   .booking__img1 {
+//     grid-area: a;
+//   }
+  
+//   .booking__btn {
+//     font: bold 24px Roboto;
+//     color: #ffffff;
+//     background-color: #e3170a;
+//     border-radius: 4px;
+//     padding: 19px 53px;
+//     }
+  
+//   .booking__textBtnWrapper1 {
+//     grid-area: b;
+//     margin: 0;
+//     padding: 60px 96px;
+//   }
+  
+//   .booking__img2 {
+//     grid-area: c;
+//   }
+  
+//   .booking__textBtnWrapper2 {
+//     grid-area: d;
+//     padding: 60px 96px;
+//   }
+  
+//   .booking__description {
+//     font-size: 24px;
+//   }
+  
+//   .booking__imgs {
+//   width:100%;
+//   height:100%;
+//   }
+  
