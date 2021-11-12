@@ -78,10 +78,12 @@ const renderChallenges = function (arr) {
 let filters = {
     byOnline: true,
     byOnsite: false,
-    byLabel: false,
+    byLabel: true,
     byRating: false,
     byChar: false
 };
+
+let labelsActive = ['bash']
 
 let filterArray = function (array) {
 
@@ -104,15 +106,13 @@ let filterArray = function (array) {
         newArray = [...newArray, ...filteredArray]
     }
 
-    else if (filters.byLabel) {
-        filteredArray = array.filter(obj => {
-            for(let i = 0; i < labels.length; i++) {
-                return obj.labels.includes(tags[i]);
-
+    if (filters.byLabel) {
+        newArray = newArray.filter(obj => {
+            for(let i = 0; i < labelsActive.length; i++) {
+                console.log(labelsActive[i])
+                return obj.labels.includes(labelsActive[i]);
             }
         })
-        // Using spread to "create"/concat a new array with all values
-        newArray = [...newArray, ...filteredArray]
     }
 
     console.log(newArray);
