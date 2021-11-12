@@ -97,7 +97,7 @@ let filters = {
 let labelsFilters = ['bash'];
 let minRatingFilter = 2;
 let maxRatingFilter = 5;
-let textFilter = 'bin';
+let textFilter = 'try';
 
 let filterArray = function (array) {
 
@@ -138,7 +138,7 @@ let filterArray = function (array) {
 
     if (filters.byText) {
         newArray = newArray.filter(obj => {
-            return obj.description.includes(textFilter) || obj.title.includes(textFilter);
+            return obj.description.toUpperCase().includes(textFilter.toUpperCase()) || obj.title.toUpperCase().includes(textFilter.toUpperCase());
         })
     }
 
