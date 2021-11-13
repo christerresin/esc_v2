@@ -1,12 +1,7 @@
+// DOM Selectors
 const challengesList = document.querySelector('.challenges-list');
 
-// Use case!
-const renderRatingStars = function (num) {
-    let challengeRatingStar = document.createElement('li');
-    challengeRatingStar.classList.add('challenge-rating-star on');
-
-}
-
+// Render function
 const renderChallenges = function (arr) {
  
     // Check that input is array with values
@@ -52,12 +47,20 @@ const renderChallenges = function (arr) {
             challengeRating.classList.add('challenge-rating');
 
             // Create elements for rating stars
-            for (let i = 0; i < 5; i++) {
+            for(let i = 0; i <= Math.floor(obj.rating); i++) {
                 let challengeRatingStar = document.createElement('li');
                 challengeRatingStar.classList.add('challenge-rating-star');
                 challengeRatingStar.classList.add('on');
                 challengeRating.appendChild(challengeRatingStar);
-            }
+        
+            };
+
+            for(let i = Math.floor(obj.rating); i < 5; i++) {
+                let challengeRatingStar = document.createElement('li');
+                challengeRatingStar.classList.add('challenge-rating-star');
+                challengeRatingStar.classList.add('off');
+                challengeRating.appendChild(challengeRatingStar);
+            };
 
             let challengeSize = document.createElement('small');
             challengeSize.classList.add('challenge-size');
