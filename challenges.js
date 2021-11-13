@@ -47,7 +47,7 @@ const renderChallenges = function (arr) {
             challengeRating.classList.add('challenge-rating');
 
             // Create elements for rating stars
-            for(let i = 0; i <= Math.floor(obj.rating); i++) {
+            for(let i = 0; i < Math.floor(obj.rating); i++) {
                 let challengeRatingStar = document.createElement('li');
                 challengeRatingStar.classList.add('challenge-rating-star');
                 challengeRatingStar.classList.add('on');
