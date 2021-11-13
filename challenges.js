@@ -89,7 +89,7 @@ let filters = {
     byOnline: true,
     byOnsite: true,
     byLabel: false,
-    byRating: true,
+    byRating: false,
     byText: true
 };
 
@@ -138,8 +138,9 @@ let filterArray = function (array) {
 
     if (filters.byText) {
         newArray = newArray.filter(obj => {
+            // returns obj with title or description that includes the value from textFilter
             return obj.description.toUpperCase().includes(textFilter.toUpperCase()) || obj.title.toUpperCase().includes(textFilter.toUpperCase());
-        })
+        });
     }
 
     console.log(newArray);
