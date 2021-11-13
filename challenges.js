@@ -9,6 +9,7 @@ const renderRatingStars = function (num) {
 
 const renderChallenges = function (arr) {
  
+    // Check that input is array with values
     if (arr === undefined || arr.length < 1) {
         let noChallenges = document.createElement('h3');
         // create new className in CSS and change code to add created className
