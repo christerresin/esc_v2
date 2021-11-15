@@ -18,7 +18,7 @@ const renderChallenges = function (arr) {
         // Creates array of labels to be rendered as filter options
         let labelsArray = [];
 
-        arr.map(obj => {
+        arr.forEach(obj => {
             obj.labels.forEach(label => {
                 if(!labelsArray.includes(label)) {
                     labelsArray.push(label);
