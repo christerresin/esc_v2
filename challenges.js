@@ -92,13 +92,14 @@ const renderChallenges = function (arr) {
                 challengesItem.appendChild(challengeDescription);
                 challengesItem.appendChild(challengeCta);
 
+                // Returns the created li element from render() method
                 return challengesItem;
             }
         }
 
         // Loops over all filtered objs in arr to render elements on page
-        filterArray(arr).map(obj => {
-            const challengeInstance = new Challenge(obj);
+        filterArray(arr).forEach(challengeData => {
+            const challengeInstance = new Challenge(challengeData);
             const challengesItem = challengeInstance.render();      
 
             // Render/append on site
