@@ -18,6 +18,19 @@ const renderChallenges = function (arr) {
         // Creates array of labels to be rendered as filter options
         let labelsArray = [];
 
+        // Filters obj
+        let filters = {
+            byOnline: true,
+            byOnsite: true,
+            byLabel: false,
+            byRating: true,
+            byText: false,
+            labelsFilters: ['bash'],
+            minRatingFilter: 0,
+            maxRatingFilter: 5,
+            textFilter: ''
+        };
+
         arr.forEach(obj => {
             obj.labels.forEach(label => {
                 if(!labelsArray.includes(label)) {
@@ -27,7 +40,7 @@ const renderChallenges = function (arr) {
         });
 
         // Loops over all filtered objs in arr to render elements on page
-        filterArray(arr).forEach(obj => {
+        filterArray(arr, filters).forEach(obj => {
             // Create elements for challenge card
             let challengesItem = document.createElement('li');
             challengesItem.classList.add('challenges-item');
@@ -87,27 +100,13 @@ const renderChallenges = function (arr) {
     };
 };
 
-// Filters obj
-let filters = {
-    byOnline: true,
-    byOnsite: true,
-    byLabel: false,
-    byRating: true,
-    byText: false
-};
 
-// Filter variables
-let labelsFilters = ['bash'];
-let minRatingFilter = 0;
-let maxRatingFilter = 5;
-let textFilter = 'linux';
-
-let filterArray = function (array) {
+let filterArray = function (array, filtersObj) {
 
     let newArray = [];
     let filteredArray = [];
     
-    if (filters.byOnline) {
+    if (filtersObj.byOnline) {
         filteredArray = array.filter(obj => {
             return obj.type === 'online';
         })
@@ -115,7 +114,7 @@ let filterArray = function (array) {
         newArray = [...newArray, ...filteredArray];
     }
 
-    if (filters.byOnsite) {
+    if (filtersObj.byOnsite) {
         filteredArray = array.filter(obj => {
             return obj.type === 'onsite';
         })
@@ -123,26 +122,26 @@ let filterArray = function (array) {
         newArray = [...newArray, ...filteredArray];
     }
 
-    if (filters.byLabel) {
+    if (filtersObj.byLabel) {
         newArray = newArray.filter(obj => {
-            for(let i = 0; i < labelsFilters.length; i++) {
-                return obj.labels.includes(labelsFilters[i]);
+            for(let i = 0; i < filtersObj.labelsFilters.length; i++) {
+                return obj.labels.includes(filtersObj.labelsFilters[i]);
             }
         })
     }
 
-    if (filters.byRating) {
+    if (filtersObj.byRating) {
         newArray = newArray.filter(obj => {
-            if(obj.rating >= minRatingFilter && obj.rating <= maxRatingFilter) {
+            if(obj.rating >= filtersObj.minRatingFilter && obj.rating <= filtersObj.maxRatingFilter) {
                 return obj;
             }
         });
     }
 
-    if (filters.byText) {
+    if (filtersObj.byText) {
         newArray = newArray.filter(obj => {
             // returns obj with title or description that includes the value from textFilter
-            return obj.description.toUpperCase().includes(textFilter.toUpperCase()) || obj.title.toUpperCase().includes(textFilter.toUpperCase());
+            return obj.description.toUpperCase().includes(filtersObj.textFilter.toUpperCase()) || obj.title.toUpperCase().includes(filtersObj.textFilter.toUpperCase());
         });
     }
 
