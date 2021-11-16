@@ -2,8 +2,8 @@
 const challengesList = document.querySelector('.challenges-list');
 
 // Render function
-const renderChallenges = function (arr) {
- 
+const renderChallenges = function(arr) {
+
     // Check that input is array with values
     if (arr === undefined || arr.length < 1) {
         let noChallenges = document.createElement('h3');
@@ -20,7 +20,7 @@ const renderChallenges = function (arr) {
 
         arr.forEach(obj => {
             obj.labels.forEach(label => {
-                if(!labelsArray.includes(label)) {
+                if (!labelsArray.includes(label)) {
                     labelsArray.push(label);
                 }
             });
@@ -34,7 +34,7 @@ const renderChallenges = function (arr) {
 
             let challengesPicture = document.createElement('img')
             challengesPicture.classList.add('challenge-picture');
-            challengesPicture.src=obj.image;
+            challengesPicture.src = obj.image;
 
             let challengeTitle = document.createElement('h3');
             challengeTitle.classList.add('challenge-title');
@@ -47,14 +47,14 @@ const renderChallenges = function (arr) {
             challengeRating.classList.add('challenge-rating');
 
             // Create elements for rating stars
-            for(let i = 0; i < Math.floor(obj.rating); i++) {
+            for (let i = 0; i < Math.floor(obj.rating); i++) {
                 let challengeRatingStar = document.createElement('li');
                 challengeRatingStar.classList.add('challenge-rating-star');
                 challengeRatingStar.classList.add('on');
                 challengeRating.appendChild(challengeRatingStar);
             };
 
-            for(let i = Math.floor(obj.rating); i < 5; i++) {
+            for (let i = Math.floor(obj.rating); i < 5; i++) {
                 let challengeRatingStar = document.createElement('li');
                 challengeRatingStar.classList.add('challenge-rating-star');
                 challengeRatingStar.classList.add('off');
@@ -82,7 +82,7 @@ const renderChallenges = function (arr) {
             challengeMeta.appendChild(challengeSize);
             challengesItem.appendChild(challengeDescription);
             challengesItem.appendChild(challengeCta);
-                        
+
         });
     };
 };
@@ -102,30 +102,30 @@ let minRatingFilter = 0;
 let maxRatingFilter = 5;
 let textFilter = 'linux';
 
-let filterArray = function (array) {
+let filterArray = function(array) {
 
     let newArray = [];
     let filteredArray = [];
-    
+
     if (filters.byOnline) {
         filteredArray = array.filter(obj => {
-            return obj.type === 'online';
-        })
-        // Using spread to "create"/concat a new array with all values
+                return obj.type === 'online';
+            })
+            // Using spread to "create"/concat a new array with all values
         newArray = [...newArray, ...filteredArray];
     }
 
     if (filters.byOnsite) {
         filteredArray = array.filter(obj => {
-            return obj.type === 'onsite';
-        })
-        // Using spread to "create"/concat a new array with all values
+                return obj.type === 'onsite';
+            })
+            // Using spread to "create"/concat a new array with all values
         newArray = [...newArray, ...filteredArray];
     }
 
     if (filters.byLabel) {
         newArray = newArray.filter(obj => {
-            for(let i = 0; i < labelsFilters.length; i++) {
+            for (let i = 0; i < labelsFilters.length; i++) {
                 return obj.labels.includes(labelsFilters[i]);
             }
         })
@@ -133,7 +133,7 @@ let filterArray = function (array) {
 
     if (filters.byRating) {
         newArray = newArray.filter(obj => {
-            if(obj.rating >= minRatingFilter && obj.rating <= maxRatingFilter) {
+            if (obj.rating >= minRatingFilter && obj.rating <= maxRatingFilter) {
                 return obj;
             }
         });
@@ -151,16 +151,16 @@ let filterArray = function (array) {
 };
 
 
-let challengesData = async () => {
+let challengesData = async() => {
     const apiUrl = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
 
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
-    
+
         renderChallenges(data.challenges);
 
-    } catch (error){
+    } catch (error) {
         console.log(error);
     }
 
