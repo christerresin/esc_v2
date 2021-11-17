@@ -1,17 +1,18 @@
-class Challenge {
+export class Challenge {
     constructor(data) {
-        this.image = data.image;
         this.title = data.title;
         this.rating = data.rating;
+        this.image = data.image;
+        this.description = data.description;
         this.minParticipants = data.minParticipants;
         this.maxParticipants = data.maxParticipants;
-        this.description = data.description;
     }
+
     render() {
         // Create elements for challenge card
         let challengesItem = document.createElement('li');
         challengesItem.classList.add('challenges-item');
-
+        
         let challengesPicture = document.createElement('img')
         challengesPicture.classList.add('challenge-picture');
         challengesPicture.src=this.image;
@@ -54,7 +55,7 @@ class Challenge {
         challengeCta.classList.add('challenge-cta');
         challengeCta.innerHTML = "Book the room";
 
-        // Append elements to li element
+        // Render/append on site
         challengesItem.appendChild(challengesPicture);
         challengesItem.appendChild(challengeTitle);
         challengesItem.appendChild(challengeMeta)
@@ -63,9 +64,6 @@ class Challenge {
         challengesItem.appendChild(challengeDescription);
         challengesItem.appendChild(challengeCta);
 
-        // Returns the created li element from render() method
         return challengesItem;
     }
 }
-
-export { Challenge };

@@ -1,5 +1,11 @@
-import { challengesData } from './modules/dataretriever'
-import { renderChallenges } from './modules/render'
-import { filterArray } from './modules/filter'
+import { DataRetriever } from './modules/DataRetriever'
+import { ChallengeGrid } from './modules/ChallengeGrid'
 
-challengesData(renderChallenges);
+
+const container = document.querySelector('.challenges-list');
+const retriever = new DataRetriever();
+
+
+const grid = new ChallengeGrid(retriever, container);
+
+grid.run()
