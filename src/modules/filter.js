@@ -61,4 +61,4 @@ let filterArray = function (array) {
     return newArray;
 };
 
-export {filterArray};
+export default {filterArray};

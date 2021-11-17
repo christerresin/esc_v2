@@ -23,7 +23,7 @@ const renderChallenges = function (arr) {
         });
 
         // Loops over all filtered objs in arr to render elements on page
-        filterArray(arr).forEach(obj => {
+        arr.forEach(obj => {
             // Create elements for challenge card
             let challengesItem = document.createElement('li');
             challengesItem.classList.add('challenges-item');

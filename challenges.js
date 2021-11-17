@@ -1,9 +1,12 @@
-// DOM Selectors
-const challengesList = document.querySelector('.challenges-list');
-
 // Render function
 const renderChallenges = function (arr) {
- 
+
+    // DOM Selectors
+    const challengesList = document.querySelector('.challenges-list');
+    const filterTextBar = document.querySelector('.filterTextBar');
+
+
+    
     // Check that input is array with values
     if (arr === undefined || arr.length < 1) {
         let noChallenges = document.createElement('h3');
@@ -17,6 +20,7 @@ const renderChallenges = function (arr) {
 
         // Creates array of labels to be rendered as filter options
         let labelsArray = [];
+        let textFilter = ''
 
         // Filters obj
         let filters = {
@@ -24,12 +28,21 @@ const renderChallenges = function (arr) {
             byOnsite: true,
             byLabel: false,
             byRating: true,
-            byText: false,
+            byText: true,
             labelsFilters: ['bash'],
             minRatingFilter: 0,
             maxRatingFilter: 5,
             textFilter: ''
         };
+
+        //EventListeners
+        const filterTextBar = document.querySelector('.filterTextBar');
+        filterTextBar.addEventListener('keydown', () => {
+        textFilter = filterTextBar.value;
+        console.log(textFilter)
+        filterArray(arr, filters, textFilter);
+        })
+
 
         arr.forEach(obj => {
             obj.labels.forEach(label => {
@@ -40,7 +53,7 @@ const renderChallenges = function (arr) {
         });
 
         // Loops over all filtered objs in arr to render elements on page
-        filterArray(arr, filters).forEach(obj => {
+        filterArray(arr, filters, textFilter).forEach(obj => {
             // Create elements for challenge card
             let challengesItem = document.createElement('li');
             challengesItem.classList.add('challenges-item');
@@ -101,7 +114,7 @@ const renderChallenges = function (arr) {
 };
 
 
-let filterArray = function (array, filtersObj) {
+let filterArray = function (array, filtersObj, str) {
 
     let newArray = [];
     let filteredArray = [];
@@ -141,11 +154,13 @@ let filterArray = function (array, filtersObj) {
     if (filtersObj.byText) {
         newArray = newArray.filter(obj => {
             // returns obj with title or description that includes the value from textFilter
-            return obj.description.toUpperCase().includes(filtersObj.textFilter.toUpperCase()) || obj.title.toUpperCase().includes(filtersObj.textFilter.toUpperCase());
+            return obj.description.toUpperCase().includes(str.toUpperCase()) || obj.title.toUpperCase().includes(str.toUpperCase());
         });
     }
 
+    // BESTEST unit test in JS, console.log!
     console.log(newArray);
+    console.log('here' + str)
     return newArray;
 };
 
