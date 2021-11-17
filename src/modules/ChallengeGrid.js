@@ -28,6 +28,21 @@ export class ChallengeGrid {
             obj.labels.forEach(label => {
                 if(!this.labelsArray.includes(label)) {
                     this.labelsArray.push(label);
+                    const labelButton = document.createElement('span');
+                    labelButton.style.height = '50px';
+                    labelButton.style.marginRight = '10px'
+                    labelButton.innerText = label;
+                    const labelsEl = document.querySelector('.labels');
+                    labelsEl.appendChild(labelButton);
+                    labelButton.addEventListener('click', (event) => {
+                        const value = event.target.innerText;
+                        const index = this.filters.labelsFilters.indexOf(value);
+                        this.filters.byLabel = true;
+                        this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
+                        // !! REMOVE ME LATER - test to display labels to filter
+                        console.log(this.filters.labelsFilters)
+                        this.rerender()
+                    })
                 }
             });
         });
@@ -54,6 +69,7 @@ export class ChallengeGrid {
         })
         
     }
+
     rerender() {
         this.container.innerHTML = '';
 
