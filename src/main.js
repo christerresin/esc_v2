@@ -138,7 +138,6 @@ class ChallengeGrid {
         filterTextBar.addEventListener('keyup', () => {
             this.filters.byText = true;
             this.filters.textFilter = filterTextBar.value;
-            console.log(this.filters.textFilter)
             this.rerender()
         })
         
