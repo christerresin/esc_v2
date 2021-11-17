@@ -458,6 +458,11 @@
     color: lightslategray;
     border-radius: 1rem;
   }
+  .filter-by-tag label .selected {
+    background-color: lightslategray;
+    border-color: lightslategray;
+    color: white;
+  }
 
   .filter-by-rating {
     margin: 1rem;
