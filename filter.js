@@ -11,4 +11,4 @@ class LabelsGathering {
         });
     });
     return labArr;
-};
+}
