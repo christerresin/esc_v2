@@ -384,9 +384,9 @@
   /*box-sizing: border-box;
   width: 60vw;
   margin: 0 auto; */
-  border: solid #8acfe5;
+  border: solid lightgray;
   color: #011827;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 0.5rem 1rem 1rem;
 }
 
 .our-challenges h2 {
