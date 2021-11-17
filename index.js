@@ -165,6 +165,7 @@ filterButton.addEventListener('click', () =>
 
         const searchText = document.createElement('input');
         searchText.type = "text";
+        searchText.classList.add('filter-search-input');
         searchText.placeholder = "Start typing to filter";
         filterSearchText.appendChild(searchText);
         
