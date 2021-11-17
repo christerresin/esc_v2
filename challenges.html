@@ -4,6 +4,8 @@
 <head>
     <link rel="stylesheet" type="text/css" href="challenges.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="oop.js"></script>
+
 </head>
 
 
@@ -63,6 +65,11 @@
             </div>
         </div>
     </footer>
+    <script>
+        const container = document.querySelector('ul');
+        const retriever = new DataRetriever();
+        const grid = new ChallengeGrid(retriever, container);
+    </script>
 </body>
 <script src="challenges.js"></script>
 
