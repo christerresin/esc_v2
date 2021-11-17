@@ -80,6 +80,7 @@ filterButton.addEventListener('click', () =>
 
         const filterTypeCheck1 = document.createElement('input');
         filterTypeCheck1.type = "checkbox";
+        filterTypeCheck1.checked = true
         filterListPoint1.appendChild(filterTypeCheck1);
 
         const filterTypeText1 = document.createElement('label');
@@ -91,6 +92,7 @@ filterButton.addEventListener('click', () =>
 
         const filterTypeCheck2 = document.createElement('input');
         filterTypeCheck2.type = "checkbox";
+        filterTypeCheck2.checked = true
         filterListPoint2.appendChild(filterTypeCheck2);
 
         const filterTypeText2 = document.createElement('label');
@@ -250,32 +252,27 @@ filterButton.addEventListener('click', () =>
         
         
         
-        filterListPoint1.addEventListener('click', () => {
-            if (!filters.byOnline) {
-                filters.byOnline = true;
-                filterArray(arr);
+        filterListPoint1.addEventListener('change', () => {
+            if (!this.filters.byOnline) {
+                this.filters.byOnline = true;
+                this.rerender()
             }
             else {
-                filters.byOnline = false;
+                this.filters.byOnline = false;
+                this.rerender()
             }
         });
 
-        filterListPoint2.addEventListener('click', () => {
-            if (!filters.byOnsite) {
-                filters.byOnsite = true;
+        filterListPoint2.addEventListener('change', () => {
+            if (!this.filters.byOnsite) {
+                this.filters.byOnsite = true;
+                this.rerender()
             }
             else {
-                filters.byOnsite = false;
+                this.filters.byOnsite = false;
+                this.rerender()
             }
         });
-
-        let filters = {
-            byOnline: false,
-            byOnsite: false,
-            byLabel: false,
-            byRating: false,
-            byText: false
-        }
 
         
         filterButton.style.display = 'none'; 
