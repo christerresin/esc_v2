@@ -22,31 +22,7 @@ export class ChallengeGrid {
 
     async run() {
         this.challenges = await this.retriever.load();
-
-        // Creates array of all labels in all challenges
-        this.challenges.forEach(obj => {
-            obj.labels.forEach(label => {
-                if(!this.labelsArray.includes(label)) {
-                    this.labelsArray.push(label);
-                    const labelButton = document.createElement('span');
-                    labelButton.style.height = '50px';
-                    labelButton.style.marginRight = '10px'
-                    labelButton.innerText = label;
-                    const labelsEl = document.querySelector('.labels');
-                    labelsEl.appendChild(labelButton);
-                    labelButton.addEventListener('click', (event) => {
-                        const value = event.target.innerText;
-                        const index = this.filters.labelsFilters.indexOf(value);
-                        this.filters.byLabel = true;
-                        this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
-                        // !! REMOVE ME LATER - test to display labels to filter
-                        console.log(this.filters.labelsFilters)
-                        this.rerender()
-                    })
-                }
-            });
-        });
-        
+       
         this.render();
     }
 
@@ -67,6 +43,30 @@ export class ChallengeGrid {
             this.filters.textFilter = filterTextBar.value;
             this.rerender()
         })
+
+        // Creates array of all labels in all challenges
+        this.challenges.forEach(obj => {
+            obj.labels.forEach(label => {
+                if(!this.labelsArray.includes(label)) {
+                    this.labelsArray.push(label);
+                    const labelButton = document.createElement('span');
+                    labelButton.style.height = '50px';
+                    labelButton.style.marginRight = '10px'
+                    labelButton.innerText = label;
+                    const labelsEl = document.querySelector('.labels');
+                    labelsEl.appendChild(labelButton);
+                    labelButton.addEventListener('click', (event) => {
+                        const value = event.target.innerText;
+                        const index = this.filters.labelsFilters.indexOf(value);
+                        this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
+                        this.filters.labelsFilters > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
+
+                        // !! REMOVE ME LATER - test to display labels to filter
+                        this.rerender()
+                    })
+                }
+            });
+        });
         
     }
 
