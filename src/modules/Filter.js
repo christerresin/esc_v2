@@ -24,9 +24,7 @@ export class Filter {
     
         if (this.filters.byLabel) {
             newArray = newArray.filter(obj => {
-                for(let i = 0; i < this.filters.labelsFilters.length; i++) {
-                    return obj.labels.includes(this.filters.labelsFilters[i]);
-                }
+                return this.filters.labelsFilters.every(label => obj.labels.includes(label));
             })
         }
     
