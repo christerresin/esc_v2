@@ -197,9 +197,6 @@ filterButton.addEventListener('click', () =>
                         const index = this.filters.labelsFilters.indexOf(value);
                         this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
                         this.filters.labelsFilters.length > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
-
-
-                        console.log(event.target.style.backgroundColor)
                         
                         this.rerender()
                     })
@@ -207,28 +204,6 @@ filterButton.addEventListener('click', () =>
             });
         });
 
-        // const filterTagItem = document.createElement('label');
-        // filterTagItem.innerHTML =  "Web";
-        // filterTagLabels.appendChild(filterTagItem);
-
-
-        // filterTagItem.addEventListener('click', () => 
-        //     {   
-        //         if (filterTagItem.style.backgroundColor == "white") {
-        //                 filterTagItem.style.backgroundColor = "lightslategray";
-        //                 filterTagItem.style.color = "white";
-        //                 filterTagItem.style.borderColor = "lightslategray";
-        //                 filters.byLabel = true;
-                        
-        //         }
-        //         else {
-        //             filterTagItem.style.backgroundColor = "white";
-        //             filterTagItem.style.color = "gray";
-        //             filterTagItem.style.borderColor = "lightgray";
-        //             filters.byLabel = false;
-        //         }
-        //     }    
-        // );
 
 
         const filterSearchText = document.createElement('div');
@@ -287,37 +262,11 @@ filterButton.addEventListener('click', () =>
 );
 
 
-        // FILTERBOX
-
-
-
-        // Creates array of all labels in all challenges
-        // this.challenges.forEach(obj => {
-        //     obj.labels.forEach(label => {
-        //         if(!this.labelsArray.includes(label)) {
-        //             this.labelsArray.push(label);
-        //             const labelButton = document.createElement('span');
-        //             labelButton.style.height = '50px';
-        //             labelButton.style.marginRight = '10px'
-        //             labelButton.innerText = label;
-        //             const labelsEl = document.querySelector('.labels');
-        //             labelsEl.appendChild(labelButton);
-        //             labelButton.addEventListener('click', (event) => {
-        //                 const value = event.target.innerText;
-        //                 const index = this.filters.labelsFilters.indexOf(value);
-        //                 this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
-        //                 this.filters.labelsFilters > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
-
-        //                 // !! REMOVE ME LATER - test to display labels to filter
-        //                 this.rerender()
-        //             })
-        //         }
-        //     });
-        // });
     }
 
     rerender() {
         this.container.innerHTML = '';
+        
 
         const filterInstance = new Filter(this.filters);
         const challengeArray = filterInstance.filterArray(this.challengeItems)
