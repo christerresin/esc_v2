@@ -80,6 +80,7 @@ filterButton.addEventListener('click', () =>
 
         const filterTypeCheck1 = document.createElement('input');
         filterTypeCheck1.type = "checkbox";
+        filterTypeCheck1.checked = true
         filterListPoint1.appendChild(filterTypeCheck1);
 
         const filterTypeText1 = document.createElement('label');
@@ -91,6 +92,7 @@ filterButton.addEventListener('click', () =>
 
         const filterTypeCheck2 = document.createElement('input');
         filterTypeCheck2.type = "checkbox";
+        filterTypeCheck2.checked = true
         filterListPoint2.appendChild(filterTypeCheck2);
 
         const filterTypeText2 = document.createElement('label');
@@ -170,28 +172,38 @@ filterButton.addEventListener('click', () =>
         filterTagLabels.classList.add("filter-by-tag-item");
         filterTag.appendChild(filterTagLabels);
 
-        const filterTagItem = document.createElement('label');
-        filterTagItem.innerHTML =  "Web";
-        filterTagLabels.appendChild(filterTagItem);
+        // Creates array of all labels in all challenges
+        this.challenges.forEach(obj => {
+            obj.labels.forEach(label => {
+                if(!this.labelsArray.includes(label)) {
+                    this.labelsArray.push(label);
+                    const filterTagItem = document.createElement('label');
+                    filterTagItem.innerHTML = label;
+                    filterTagItem.style.backgroundColor = 'white';
+                    filterTagLabels.appendChild(filterTagItem);
+                    filterTagItem.addEventListener('click', (event) => {
+                        // Label selected conditional
+                        if (filterTagItem.style.backgroundColor == "white") {
+                            filterTagItem.style.backgroundColor = "lightslategray";
+                            filterTagItem.style.color = "white";
+                            filterTagItem.style.borderColor = "lightslategray";                          
+                        } else {
+                            filterTagItem.style.backgroundColor = "white";
+                            filterTagItem.style.color = "gray";
+                            filterTagItem.style.borderColor = "lightgray";
+                        }
 
-
-        filterTagItem.addEventListener('click', () => 
-            {   
-                if (filterTagItem.style.backgroundColor == "white") {
-                        filterTagItem.style.backgroundColor = "lightslategray";
-                        filterTagItem.style.color = "white";
-                        filterTagItem.style.borderColor = "lightslategray";
-                        filters.byLabel = true;
+                        const value = event.target.innerText;
+                        const index = this.filters.labelsFilters.indexOf(value);
+                        this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
+                        this.filters.labelsFilters.length > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
                         
+                        this.rerender()
+                    })
                 }
-                else {
-                    filterTagItem.style.backgroundColor = "white";
-                    filterTagItem.style.color = "gray";
-                    filterTagItem.style.borderColor = "lightgray";
-                    filters.byLabel = false;
-                }
-            }    
-        );
+            });
+        });
+
 
 
         const filterSearchText = document.createElement('div');
@@ -215,32 +227,27 @@ filterButton.addEventListener('click', () =>
         
         
         
-        filterListPoint1.addEventListener('click', () => {
-            if (!filters.byOnline) {
-                filters.byOnline = true;
-                filterArray(arr);
+        filterListPoint1.addEventListener('change', () => {
+            if (!this.filters.byOnline) {
+                this.filters.byOnline = true;
+                this.rerender()
             }
             else {
-                filters.byOnline = false;
+                this.filters.byOnline = false;
+                this.rerender()
             }
         });
 
-        filterListPoint2.addEventListener('click', () => {
-            if (!filters.byOnsite) {
-                filters.byOnsite = true;
+        filterListPoint2.addEventListener('change', () => {
+            if (!this.filters.byOnsite) {
+                this.filters.byOnsite = true;
+                this.rerender()
             }
             else {
-                filters.byOnsite = false;
+                this.filters.byOnsite = false;
+                this.rerender()
             }
         });
-
-        let filters = {
-            byOnline: false,
-            byOnsite: false,
-            byLabel: false,
-            byRating: false,
-            byText: false
-        }
 
         
         filterButton.style.display = 'none'; 
@@ -255,38 +262,11 @@ filterButton.addEventListener('click', () =>
 );
 
 
-        // FILTERBOX
-
-
-
-        // Creates array of all labels in all challenges
-        this.challenges.forEach(obj => {
-            obj.labels.forEach(label => {
-                if(!this.labelsArray.includes(label)) {
-                    this.labelsArray.push(label);
-                    const labelButton = document.createElement('span');
-                    labelButton.style.height = '50px';
-                    labelButton.style.marginRight = '10px'
-                    labelButton.innerText = label;
-                    const labelsEl = document.querySelector('.labels');
-                    labelsEl.appendChild(labelButton);
-                    labelButton.addEventListener('click', (event) => {
-                        const value = event.target.innerText;
-                        const index = this.filters.labelsFilters.indexOf(value);
-                        this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
-                        this.filters.labelsFilters > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
-
-                        // !! REMOVE ME LATER - test to display labels to filter
-                        this.rerender()
-                    })
-                }
-            });
-        });
-        
     }
 
     rerender() {
         this.container.innerHTML = '';
+        
 
         const filterInstance = new Filter(this.filters);
         const challengeArray = filterInstance.filterArray(this.challengeItems)
