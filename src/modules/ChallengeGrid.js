@@ -109,38 +109,43 @@ const filterRatingList = document.createElement('ul');
 filterRating.appendChild(filterRatingList);
 
 
-const starsArray = [];
-
-for (let i = 0; i < 5; i++) {
-    starsArray[i] = document.createElement('li');
-    starsArray[i].classList.add("filter-rating-star");
-    starsArray[i].classList.add("off");
-    filterRatingList.appendChild(starsArray[i]); 
-    starsArray.push();
-} 
+function createStars(starsArr) {
+    for (let i = 0; i < 5; i++) {
+        starsArr[i] = document.createElement('li');
+        starsArr[i].classList.add("filter-rating-star");
+        starsArr[i].classList.add("off");
+        filterRatingList.appendChild(starsArr[i]); 
+        starsArr.push();  
+    } 
+}
 
 function starRating(starsArray) {
-const starLength = starsArray.length;
+    const starLength = starsArray.length;
 
-starsArray.forEach((star) => {
-    star.addEventListener('click', () =>  {
-        let i = starsArray.indexOf(star);
-        
-        if (star.classList.contains("off")) {
-            for (i; i >= 0; --i) {
-                starsArray[i].classList.add("on");
-                starsArray[i].classList.remove("off");
+    starsArray.forEach((star) => {
+        star.addEventListener('click', () =>  {
+            let i = starsArray.indexOf(star);
+            
+            if (star.classList.contains("off")) {
+                for (i; i >= 0; --i) {
+                    starsArray[i].classList.add("on");
+                    starsArray[i].classList.remove("off");
+                }
             }
-        }
-        else {                   
-            for (i; i < starLength; ++i) {
-                starsArray[i].classList.add("off");
-                starsArray[i].classList.remove("on");
-            } 
-        }
-    }); 
-}); }
+            else {           
+                i+=1;        
+                for (i; i < starLength; ++i) {
+                    starsArray[i].classList.add("off");
+                    starsArray[i].classList.remove("on");
+                } 
+            }
+        }) 
+    })
+}
 
+// MaxRatingStars creation and eventListener
+const starsArray = [];
+createStars(starsArray);
 starRating(starsArray);
 
 // Label "to" between stars
@@ -150,12 +155,10 @@ filterStarLabel.style.textAlign = "center";
 filterStarLabel.style.padding = "0.5rem";
 filterRatingList.appendChild(filterStarLabel);
 
-for (let i = 0; i < 5; i++) {
-    const filterRatingStar = document.createElement('li');
-    filterRatingStar.classList.add('filter-rating-star');
-    filterRatingStar.classList.add('on');
-    filterRatingList.appendChild(filterRatingStar);
-}
+// MaxRatingStars creation
+const starsArray2 = [];
+createStars(starsArray2);
+starRating(starsArray2);
 
 // Tag creation
 const filterTag = document.createElement('div');
