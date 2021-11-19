@@ -126,10 +126,10 @@ starsArray.forEach((star) => {
     star.addEventListener('click', () =>  {
         let i = starsArray.indexOf(star);
         
-        if (star.classList.contains("off")) {
-            for (i; i >= 0; --i) {
-                starsArray[i].classList.add("on");
-                starsArray[i].classList.remove("off");
+        xButton.addEventListener('click',() => 
+            {
+                filterButton.style.display = 'block';
+                filterBoard.style.display = "none";
             }
         }
         else {                   
@@ -184,82 +184,7 @@ filterTagItem.addEventListener('click', () =>
                 filters.byLabel = true;
                 
         }
-        else {
-            filterTagItem.style.backgroundColor = "white";
-            filterTagItem.style.color = "gray";
-            filterTagItem.style.borderColor = "lightgray";
-            filters.byLabel = false;
-        }
-    }    
-);
-
-
-const filterSearchText = document.createElement('div');
-filterSearchText.classList.add("filter-search-text");
-filterMenu.appendChild(filterSearchText);
-
-const filterSearchTextTitle = document.createElement('h4');
-filterSearchTextTitle.innerHTML = "Or type to search for keyword";
-filterSearchText.appendChild(filterSearchTextTitle);
-
-const searchText = document.createElement('input');
-searchText.type = "text";
-searchText.classList.add('filter-search-input');
-searchText.placeholder = "Start typing to filter";
-searchText.addEventListener('keyup', () => {
-    this.filters.byText = true;
-    this.filters.textFilter = searchText.value;
-    this.rerender()
-});
-filterSearchText.appendChild(searchText);
-
-
-
-filterListPoint1.addEventListener('click', () => {
-    if (!filters.byOnline) {
-        filters.byOnline = true;
-        filterArray(arr);
-    }
-    else {
-        filters.byOnline = false;
-    }
-});
-
-filterListPoint2.addEventListener('click', () => {
-    if (!filters.byOnsite) {
-        filters.byOnsite = true;
-    }
-    else {
-        filters.byOnsite = false;
-    }
-});
-
-let filters = {
-    byOnline: false,
-    byOnsite: false,
-    byLabel: false,
-    byRating: false,
-    byText: false
-}
-
-
-
-
-xButton.addEventListener('click',() => 
-    {
-        filterButton.style.display = 'block';
-        filterBoard.style.display = "none";
-    }
-);
-
-
-
-filterButton.addEventListener('click', () => 
-    {
-        filterButton.style.display = 'none'; 
-        filterBoard.style.display = "block";
-    }
-);
+    );
 
 
     }
