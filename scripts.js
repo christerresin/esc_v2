@@ -88,13 +88,17 @@ const render = async () => {
     data.forEach(challenge => {
         if(challenge.rating >= 5) {
             ratingsArray.push(challenge);
-        } else if (challenge.rating < 5 && challenge.rating >= 4.5) {
+        } 
+    })
+    data.forEach(challenge => {
+        if (challenge.rating < 5 && challenge.rating >= 4.5) {
             ratingsArray.push(challenge);
-        } else if (challenge.rating < 4.5 && challenge.rating >= 4) {
+        } 
+    })
+    data.forEach(challenge => {
+        if (challenge.rating < 4.5 && challenge.rating >= 4) {
             ratingsArray.push(challenge);
-        } else if (challenge.rating < 4 && challenge.rating >= 3.5) {
-            ratingsArray.push(challenge);
-        }
+        } 
     })
     ratingsArray.splice(3)
     const container = document.querySelector('.challenges-list');
