@@ -249,8 +249,6 @@ export class ChallengeGrid {
         });
 
         
-        
-        
         xButton.addEventListener('click',() => 
             {
                 filterButton.style.display = 'block';
@@ -263,7 +261,7 @@ export class ChallengeGrid {
             filterButton.style.display = 'none'; 
             filterBoard.style.display = "block";
         }
-);
+    );
 
 
     }
