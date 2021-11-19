@@ -37,7 +37,7 @@ export class ChallengeGrid {
         })
 
         // FILTERBOX
-        // Filtr box - filter function
+
         const filterButton = document.querySelector('.filter-cta');
 
         const filterBoard = document.querySelector('.filter-board');
@@ -267,6 +267,7 @@ export class ChallengeGrid {
     }
 
     rerender() {
+        // Clear the DOM
         this.container.innerHTML = '';
         
 
