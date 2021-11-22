@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Modal Container to be able to manipulate e.g. show/hide the whole modal, as well as overlay to make background darker */
+        .booking-modal-container {
+            display: none;
+            position: fixed;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+/* Show / hide different content classes on click w/ eventListener */
+        .booking-modal-content1 {
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            margin: auto;
+            width: fit-content;
+        }
+/* style.display = "block" */
+        .booking-modal-content-page2 {
+            position: relative;
+            background-color: white;
+            padding: 20px;
+            margin: auto;
+            width: fit-content;
+        }
+
+        .booking-modal-closeBtn {
+            cursor: default;
+            float: right;
+            color: lightgray;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .booking-modal-closeBtn:hover {
+            color: darkgray;
+        }
+
+    </style>
+    <title>Document</title>
+</head>
+
+<body>
+    
+    <!-- <button id="modal-openBtn" class="modal-openBtn">Open modal</button>
+    <div class="modal-container">
+        <div class="modal-content">
+            <span class="modal-closeBtn">&times;</span>
+            <h2>Modal title</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo sed alias sit asperiores dolorem minus
+                eveniet non, omnis harum dolores.</p>
+        </div>
+    </div> -->
+
+    <script>
+        
+        // this code block w/ openButton is to be replaced w/ the booking-buttons
+        let bookingModalOpenButton = document.createElement("button");
+        bookingModalOpenButton.classList.add("booking-modal-openButton");
+        document.body.appendChild(bookingModalOpenButton);
+        bookingModalOpenButton.innerHTML = "Click";
+        // modalOpenButton.id = "openButton"
+        
+        let bookingModalContainer = document.createElement("div");
+        bookingModalContainer.classList.add("booking-modal-container");
+        document.body.appendChild(bookingModalContainer);
+
+        let bookingModalContent1 = document.createElement("div");
+        bookingModalContent1.classList.add("booking-modal-content1");
+        bookingModalContainer.appendChild(bookingModalContent1);
+
+        let bookingModalHeading1 = document.createElement("h1");
+        bookingModalContent1.appendChild(bookingModalHeading1);
+        bookingModalHeading1.innerHTML = 'Book room "Title of room (step 1)"';
+
+        let bookingModalParagraph = document.createElement("p");
+        bookingModalContent1.appendChild(bookingModalParagraph);
+        bookingModalParagraph.innerHTML = "What date would you like to come?";
+
+        //label "Date" + input type = date
+        let bookingModalDateLabel = document.createElement("label");
+        bookingModalContent1.appendChild(bookingModalDateLabel);
+        bookingModalParagraph.innerHTML = "What date would you like to come?";
+
+        // let bookingModalDate = document.createElement("p");
+        // bookingModalContent1.appendChild(bookingModalParagraph);
+        // bookingModalParagraph.innerHTML = "What date would you like to come?";
+
+        // Christers funktion för att lägga till element + class
+        // const myFunc = function (elementName, className) {
+        //     let element = document.createElement(elementName);
+        //     element.classList.add(className);
+        //     return element;
+        // };
+
+        // let modalTest = myFunc("div", 'modalTest');
+        // console.log(modalTest);
+
+        // modalTest;
+
+        // let modalCloseBtn = document.querySelector(".modal-closeBtn")
+        
+        //change "bookingModalOpenButton" with whatever class/es booking button from landing page + challenges page has
+        bookingModalOpenButton.addEventListener("click", () => {
+        bookingModalContainer.style.display = "block"
+        });
+        
+        // modalCloseBtn.addEventListener("click", () => {
+        //     modalContainer.style.display = "none"
+        // });
+        
+        window.addEventListener("click", (event) => {
+            if (event.target == bookingModalContainer) {
+                bookingModalContainer.style.display = "none"
+            }
+        });
+
+    </script>
+</body>
+</html>
