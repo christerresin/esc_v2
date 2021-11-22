@@ -1,3 +1,8 @@
+label,input{
+    display:flex;
+    flex-direction:column;
+  }
+
 /* Modal Container to be able to manipulate e.g. show/hide the whole modal, as well as overlay to make background darker */
 .booking-modal-container {
   display: none;
