@@ -20,6 +20,8 @@
         }
 /* Show / hide different content classes on click w/ eventListener */
         .booking-modal-content1 {
+            display: flex;
+            flex-direction: column;
             position: relative;
             background-color: white;
             padding: 20px;
@@ -88,14 +90,17 @@
         bookingModalContent1.appendChild(bookingModalParagraph);
         bookingModalParagraph.innerHTML = "What date would you like to come?";
 
-        //label "Date" + input type = date
         let bookingModalDateLabel = document.createElement("label");
         bookingModalContent1.appendChild(bookingModalDateLabel);
-        bookingModalParagraph.innerHTML = "What date would you like to come?";
+        bookingModalDateLabel.innerHTML = "Date";
+        
+        let bookingModalDateInput = document.createElement("input");
+        bookingModalDateLabel.appendChild(bookingModalDateInput);
 
-        // let bookingModalDate = document.createElement("p");
-        // bookingModalContent1.appendChild(bookingModalParagraph);
-        // bookingModalParagraph.innerHTML = "What date would you like to come?";
+        let bookingModalSearchTimesButton = document.createElement("button");
+        // Already existing button styling -- what CSS-class then?
+        bookingModalContent1.appendChild(bookingModalSearchTimesButton);
+        bookingModalSearchTimesButton.innerHTML = "Search available times";
 
         // Christers funktion för att lägga till element + class
         // const myFunc = function (elementName, className) {
@@ -120,6 +125,9 @@
         //     modalContainer.style.display = "none"
         // });
         
+        bookingModalSearchTimesButton
+
+        // Close when user clicks on modal container i.e. on overlay / outside modal
         window.addEventListener("click", (event) => {
             if (event.target == bookingModalContainer) {
                 bookingModalContainer.style.display = "none"
