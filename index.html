@@ -18,7 +18,8 @@
             background-color: rgb(0, 0, 0);
             background-color: rgba(0, 0, 0, 0.5);
         }
-/* Show / hide different content classes on click w/ eventListener */
+
+        /* Show / hide different content classes on click w/ eventListener */
         .booking-modal-content1 {
             display: flex;
             flex-direction: column;
@@ -28,8 +29,11 @@
             margin: auto;
             width: fit-content;
         }
-/* style.display = "block" */
-        .booking-modal-content-page2 {
+
+        /* style.display = "block" */
+        .booking-modal-content2 {
+            display: flex;
+            flex-direction: column;
             position: relative;
             background-color: white;
             padding: 20px;
@@ -48,13 +52,12 @@
         .booking-modal-closeBtn:hover {
             color: darkgray;
         }
-
     </style>
     <title>Document</title>
 </head>
 
 <body>
-    
+
     <!-- <button id="modal-openBtn" class="modal-openBtn">Open modal</button>
     <div class="modal-container">
         <div class="modal-content">
@@ -66,14 +69,14 @@
     </div> -->
 
     <script>
-        
+
         // this code block w/ openButton is to be replaced w/ the booking-buttons
         let bookingModalOpenButton = document.createElement("button");
         bookingModalOpenButton.classList.add("booking-modal-openButton");
         document.body.appendChild(bookingModalOpenButton);
         bookingModalOpenButton.innerHTML = "Click";
         // modalOpenButton.id = "openButton"
-        
+
         let bookingModalContainer = document.createElement("div");
         bookingModalContainer.classList.add("booking-modal-container");
         document.body.appendChild(bookingModalContainer);
@@ -93,14 +96,59 @@
         let bookingModalDateLabel = document.createElement("label");
         bookingModalContent1.appendChild(bookingModalDateLabel);
         bookingModalDateLabel.innerHTML = "Date";
-        
+
         let bookingModalDateInput = document.createElement("input");
         bookingModalDateLabel.appendChild(bookingModalDateInput);
 
         let bookingModalSearchTimesButton = document.createElement("button");
-        // Already existing button styling -- what CSS-class then?
+        // I guess we should use an already existing button styling?
         bookingModalContent1.appendChild(bookingModalSearchTimesButton);
         bookingModalSearchTimesButton.innerHTML = "Search available times";
+
+        let bookingModalContent2 = document.createElement("div");
+        bookingModalContent2.classList.add("booking-modal-content2");
+        bookingModalContainer.appendChild(bookingModalContent2);
+
+        // --------DONE------------ 
+        // DONE! addEventListener to click on searchBtn w/ func: display none on bookingmodalcontent1 + display block på bookingmodalcontent2
+        // DONE! createElement: h1 innerHTML: 'Book room "title of room" (step 2)'
+        // --------TODO------------
+        // name, e-mail, what time? (from API), how many participants? (from API) input w/ labels
+        // "Submit booking" button w/ eventListener display none on 2, display block on content3
+        // Page 3: "Thank you!" (h1 own class - BIG font-size)
+        // Link: "Back to challenges" (close / back to list of challenges)
+
+        let bookingModalHeading2 = document.createElement("h1");
+        bookingModalContent2.appendChild(bookingModalHeading2);
+        bookingModalHeading2.innerHTML = 'Book room "Title of room" (step 2)';
+
+        let bookingModalDateLabel2 = document.createElement("label");
+        bookingModalContent2.appendChild(bookingModalDateLabel);
+        bookingModalDateLabel2.innerHTML = "Name";
+
+        let bookingModalDateInput2 = document.createElement("input");
+        bookingModalDateLabel2.appendChild(bookingModalDateInput2);
+
+        let bookingModalDateLabel3 = document.createElement("label");
+        bookingModalContent2.appendChild(bookingModalDateLabel3);
+        bookingModalDateLabel3.innerHTML = "E-mail";
+
+        let bookingModalDateInput3 = document.createElement("input");
+        bookingModalDateLabel3.appendChild(bookingModalDateInput3);
+
+        let bookingModalDateLabel4 = document.createElement("label");
+        bookingModalContent2.appendChild(bookingModalDateLabel4);
+        bookingModalDateLabel4.innerHTML = "What time?";
+
+        let bookingModalDateInput4 = document.createElement("input");
+        bookingModalDateLabel4.appendChild(bookingModalDateInput4);
+
+        let bookingModalDateLabel5 = document.createElement("label");
+        bookingModalContent2.appendChild(bookingModalDateLabel5);
+        bookingModalDateLabel5.innerHTML = "How many participants?";
+
+        let bookingModalDateInput5 = document.createElement("input");
+        bookingModalDateLabel5.appendChild(bookingModalDateInput5);
 
         // Christers funktion för att lägga till element + class
         // const myFunc = function (elementName, className) {
@@ -115,17 +163,22 @@
         // modalTest;
 
         // let modalCloseBtn = document.querySelector(".modal-closeBtn")
-        
+
         //change "bookingModalOpenButton" with whatever class/es booking button from landing page + challenges page has
         bookingModalOpenButton.addEventListener("click", () => {
-        bookingModalContainer.style.display = "block"
+            bookingModalContainer.style.display = "block";
+            bookingModalContent1.style.display = "block";
+            bookingModalContent2.style.display = "none";
         });
-        
+
+        bookingModalSearchTimesButton.addEventListener("click", () => {
+            bookingModalContent1.style.display = "none";
+            bookingModalContent2.style.display = "block";
+        });
+
         // modalCloseBtn.addEventListener("click", () => {
         //     modalContainer.style.display = "none"
         // });
-        
-        bookingModalSearchTimesButton
 
         // Close when user clicks on modal container i.e. on overlay / outside modal
         window.addEventListener("click", (event) => {
@@ -136,4 +189,5 @@
 
     </script>
 </body>
+
 </html>
