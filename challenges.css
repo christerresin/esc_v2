@@ -187,6 +187,7 @@ img {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     width: auto;
+    justify-items: center;
   }
 }
 
