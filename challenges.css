@@ -445,22 +445,18 @@ img {
   order: 2;
   box-sizing: border-box;
   width: 30%;
-}
-
-.filter-by-tag h4 {
-  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .filter-by-tag-item {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 1rem;
-  padding: 1rem;
 }
 
 .filter-by-tag-item label {
-  margin-top: 1.8rem;
+  margin-top: 1rem;
   padding: 0.2rem 0.5rem 0.2rem 0.5rem;
   border: solid lightgray 2px;
   color: lightslategray;
@@ -482,6 +478,7 @@ img {
 .filter-by-rating ul {
   display: flex;
   margin: 0 1rem 0 0;
+  padding-top: 0.5rem;
 }
 .filter-rating-star {
   width: 1rem;
@@ -504,7 +501,7 @@ img {
   text-align: left;
   padding: 1rem;
   box-sizing: border-box;
-  width: 400px;
+  width: 300px;
   margin: 0 auto;
 }
 
