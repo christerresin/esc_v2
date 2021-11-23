@@ -109,39 +109,44 @@ export class ChallengeGrid {
         const filterRatingList = document.createElement('ul');
         filterRating.appendChild(filterRatingList);
 
-
-        const starsArray = [];
-
+        function createStars(starsArr) {
             for (let i = 0; i < 5; i++) {
-                starsArray[i] = document.createElement('li');
-                starsArray[i].classList.add("filter-rating-star");
-                starsArray[i].classList.add("off");
-                filterRatingList.appendChild(starsArray[i]); 
-                starsArray.push();
+                starsArr[i] = document.createElement('li');
+                starsArr[i].classList.add("filter-rating-star");
+                starsArr[i].classList.add("off");
+                filterRatingList.appendChild(starsArr[i]); 
+                starsArr.push();  
             } 
+        }
 
-            function starRating(starsArray) {
-            const starLength = starsArray.length;
-
-            starsArray.forEach((star) => {
+        function starRating(starsArr) {
+            const starLength = starsArr.length;
+            
+            starsArr.forEach((star) => {
                 star.addEventListener('click', () =>  {
-                    let i = starsArray.indexOf(star);
-                    
+                    let i = starsArr.indexOf(star);   
                     if (star.classList.contains("off")) {
                         for (i; i >= 0; --i) {
-                            starsArray[i].classList.add("on");
-                            starsArray[i].classList.remove("off");
+                            starsArr[i].classList.add("on");
+                            starsArr[i].classList.remove("off");
                         }
                     }
-                    else {
+                    else {           
+                        i+=1;        
                         for (i; i < starLength; ++i) {
-                            starsArray[i].classList.add("off");
-                            starsArray[i].classList.remove("on");
+                            starsArr[i].classList.add("off");
+                            starsArr[i].classList.remove("on");
                         } 
-                }
-            }); 
-        }); }
+                    }
+                    console.log(i+1);
+                    return i+1;
+                }) 
+            })
+        }
 
+        // MinRatingStars creation and eventListener
+        const starsArray = [];
+        createStars(starsArray);
         starRating(starsArray);
     
         // Label "to" between stars
@@ -151,12 +156,10 @@ export class ChallengeGrid {
         filterStarLabel.style.padding = "0.5rem";
         filterRatingList.appendChild(filterStarLabel);
 
-        for (let i = 0; i < 5; i++) {
-            const filterRatingStar = document.createElement('li');
-            filterRatingStar.classList.add('filter-rating-star');
-            filterRatingStar.classList.add('on');
-            filterRatingList.appendChild(filterRatingStar);
-        }
+        // MaxRatingStars creation
+        const starsArray2 = [];
+        createStars(starsArray2);
+        starRating(starsArray2);
 
         // Tag creation
         const filterTag = document.createElement('div');
