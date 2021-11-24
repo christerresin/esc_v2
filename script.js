@@ -11,7 +11,7 @@
 //                          * ALL input fields should send data -> API on button-click
 //                          * ONLY first Search Button has to request data (based on date from bookingModalDateInput), then await response, then display page2 after received
 //                          * add to Eventlistener on bookingModalSearchButton: fetch times from API based on date (with async await?)
-//                          * "What time-input" / bookingModalTimeInput (page 2) should show available times fetched from API data
+//                          * "What time-input" / bookingModalTimeSelect (page 2) should show available times fetched from API data
 //                          * "Participants-input" / bookingModalPartiInput (page 2) should show options between min and max participants from API data
 //                          * "Submit booking" should send / submit all page 2 input data to API via HTTP
 
@@ -20,7 +20,13 @@
 // Change labels to explicit: https://css-tricks.com/html-inputs-and-labels-a-love-story/
 // Styling
 
+// Inför 2021-11-25:
+// How to fetch min + maxparticipants from challenge API? Must be fetched on per room basis -- i.e.
+// ANVÄND JSON.STRINGIFY SOM ÄR EN METOD
+
 // this code block w/ openButton is to be replaced w/ booking-buttons on challenges page + landing page
+
+// FOR INPUT TYPE DATE: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
 
 let bookingModalOpenButton = document.createElement("button");
 bookingModalOpenButton.classList.add("booking-modal-openButton");
@@ -87,8 +93,9 @@ let bookingModalTimeLabel = document.createElement("label");
 bookingModalContent2.appendChild(bookingModalTimeLabel);
 bookingModalTimeLabel.innerHTML = "What time?";
 
-let bookingModalTimeInput = document.createElement("input");
-bookingModalTimeLabel.appendChild(bookingModalTimeInput);
+let bookingModalTimeSelect = document.createElement("select");
+bookingModalTimeLabel.appendChild(bookingModalTimeSelect);
+bookingModalTimeSelect.id = 'selectTime';
 
 let bookingModalPartiLabel = document.createElement("label");
 bookingModalContent2.appendChild(bookingModalPartiLabel);
@@ -118,26 +125,19 @@ bookingModalContent3.appendChild(bookingModalLink);
 bookingModalLink.innerHTML = "Back to challenges"
 
 let inputDate = document.getElementById("inputDate");
-// function to get date on page 1
-function getDate() {
-    // Selecting the input element and get its value 
-    
-    // USE CHRISTERS FETCH FUNCTION, BUT HOW TO APPEND DATE TO FETCH URL? 
-    // Displaying the value
-    alert(inputValueDate);
-  }
 
 // function to fetch times from API
-  let timesData = async () => {
-    const apiUrl = `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${inputDate.value}`;
+let timesData = async () => {
+  const apiUrl = `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${inputDate.value}`;
 
-    try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-    
-        // console.log(data);
+  try {
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    console.log(data);
+    console.log(data.slots);
+    addDatesToSelect(data.slots);
 
-        // renderChallenges(data.challenges); -- gör något liknande men en funktion för att skjuta in data.slots -> bookingModalTimeInput
+    // renderChallenges(data.challenges); -- gör något liknande men en funktion för att skjuta in data.slots -> bookingModalTimeSelect
 
     } catch (error){
         console.log(error);
@@ -145,14 +145,35 @@ function getDate() {
 
 };
 
+// Fetch times from API and add to select options
+
+
 //change "bookingModalOpenButton" with whatever class/es booking button from landing page + challenges page has
 bookingModalOpenButton.addEventListener("click", () => {
   bookingModalContainer.style.display = "block";
   bookingModalContent1.style.display = "flex";
-  bookingModalContent2.style.display = "none";gi
+  bookingModalContent2.style.display = "none";
   bookingModalContent3.style.display = "none";
 });
 
+//const addDatesToSelect = (timeArray) => {
+const addDatesToSelect = (timeArray) => {
+  document.getElementById('selectTime').innerHTML = '';
+    timeArray.forEach(item => {
+      const option = document.createElement("option");
+      option.value = item;
+      option.textContent = item;
+      console.log(option.value);
+      document.getElementById('selectTime').appendChild(option);
+    });
+  }
+
+//   for (i = 0; i < timeArray.length; i++) {
+//     const option = document.createElement("option");
+//       option.value = timeArray[i];
+//       option.textContent = timeArray[i];
+//   }
+  
 bookingModalSearchButton.addEventListener("click", () => {
     timesData();
   bookingModalContent1.style.display = "none";
@@ -172,7 +193,7 @@ window.addEventListener("click", (event) => {
 });
 
 // --- CHRISTER´S FUNCTION FOR ADDING ELEMENT + CLASS
-// const myFunc = function (elementName, className) {
+// const myFunc = (elementName, className) => {
 //     let element = document.createElement(elementName);
 //     element.classList.add(className);
 //     return element;
@@ -181,3 +202,13 @@ window.addEventListener("click", (event) => {
 // let modalTest = myFunc("div", 'modalTest');
 // console.log(modalTest);
 // --- CHRISTER´S FUNCTION END
+
+// async function loadData() {
+//     const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
+//     const response = await fetch(url);
+//     const data = await response.json();
+
+//     data.challenges.forEach(challenge => {
+//       console.log(challenge.title, challenge.image);
+//     });
+//   }
