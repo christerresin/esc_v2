@@ -7,12 +7,12 @@
 // DONE! Link: "Back to challenges"
 
 // --------TODO-----------
-// ADD API FUNCTIONALITY:
+// ADD API FUNCTIONALITY TO MODAL:
 //                          * ALL input fields should send data -> API on button-click
 //                          * ONLY first Search Button has to request data (based on date from bookingModalDateInput), then await response, then display page2 after received
 //                          * add to Eventlistener on bookingModalSearchButton: fetch times from API based on date (with async await?)
-//                          * "What time-input" / bookingModalDateInput4 (page 2) should show available times fetched from API data
-//                          * "Participants-input" / bookingModalDateInput5 (page 2) should show options between min and max participants from API data
+//                          * "What time-input" / bookingModalTimeInput (page 2) should show available times fetched from API data
+//                          * "Participants-input" / bookingModalPartiInput (page 2) should show options between min and max participants from API data
 //                          * "Submit booking" should send / submit all page 2 input data to API via HTTP
 
 // Link: "Back to challenges" -- display none on modal container, back to challenges page from landing page?
@@ -21,6 +21,7 @@
 // Styling
 
 // this code block w/ openButton is to be replaced w/ booking-buttons on challenges page + landing page
+
 let bookingModalOpenButton = document.createElement("button");
 bookingModalOpenButton.classList.add("booking-modal-openButton");
 document.body.appendChild(bookingModalOpenButton);
@@ -50,6 +51,8 @@ bookingModalDateLabel.innerHTML = "Date";
 let bookingModalDateInput = document.createElement("input");
 bookingModalDateInput.setAttribute('type', 'date');
 bookingModalDateLabel.appendChild(bookingModalDateInput);
+bookingModalDateInput.setAttribute('placeholder', 'YYYY-mm-dd');
+bookingModalDateInput.id = 'inputDate';
 
 let bookingModalSearchButton = document.createElement("button");
 // Existing CSS-class w/ button styling?
@@ -65,34 +68,34 @@ let bookingModalHeading2 = document.createElement("h1");
 bookingModalContent2.appendChild(bookingModalHeading2);
 bookingModalHeading2.innerHTML = 'Book room "Title of room" (step 2)';
 
-let bookingModalDateLabel2 = document.createElement("label");
-bookingModalContent2.appendChild(bookingModalDateLabel2);
-bookingModalDateLabel2.innerHTML = "Name";
+let bookingModalNameLabel = document.createElement("label");
+bookingModalContent2.appendChild(bookingModalNameLabel);
+bookingModalNameLabel.innerHTML = "Name";
 
-let bookingModalDateInput2 = document.createElement("input");
-bookingModalDateLabel2.appendChild(bookingModalDateInput2);
+let bookingModalNameInput = document.createElement("input");
+bookingModalNameLabel.appendChild(bookingModalNameInput);
 
-let bookingModalDateLabel3 = document.createElement("label");
-bookingModalContent2.appendChild(bookingModalDateLabel3);
-bookingModalDateLabel3.innerHTML = "E-mail";
+let bookingModalEmailLabel = document.createElement("label");
+bookingModalContent2.appendChild(bookingModalEmailLabel);
+bookingModalEmailLabel.innerHTML = "E-mail";
 
-let bookingModalDateInput3 = document.createElement("input");
+let bookingModalEmailInput = document.createElement("input");
 bookingModalDateInput.setAttribute('type', 'email');
-bookingModalDateLabel3.appendChild(bookingModalDateInput3);
+bookingModalEmailLabel.appendChild(bookingModalEmailInput);
 
-let bookingModalDateLabel4 = document.createElement("label");
-bookingModalContent2.appendChild(bookingModalDateLabel4);
-bookingModalDateLabel4.innerHTML = "What time?";
+let bookingModalTimeLabel = document.createElement("label");
+bookingModalContent2.appendChild(bookingModalTimeLabel);
+bookingModalTimeLabel.innerHTML = "What time?";
 
-let bookingModalDateInput4 = document.createElement("input");
-bookingModalDateLabel4.appendChild(bookingModalDateInput4);
+let bookingModalTimeInput = document.createElement("input");
+bookingModalTimeLabel.appendChild(bookingModalTimeInput);
 
-let bookingModalDateLabel5 = document.createElement("label");
-bookingModalContent2.appendChild(bookingModalDateLabel5);
-bookingModalDateLabel5.innerHTML = "How many participants?";
+let bookingModalPartiLabel = document.createElement("label");
+bookingModalContent2.appendChild(bookingModalPartiLabel);
+bookingModalPartiLabel.innerHTML = "How many participants?";
 
-let bookingModalDateInput5 = document.createElement("input");
-bookingModalDateLabel5.appendChild(bookingModalDateInput5);
+let bookingModalPartiInput = document.createElement("input");
+bookingModalPartiLabel.appendChild(bookingModalPartiInput);
 
 let bookingModalSubmitButton = document.createElement("button");
 // I guess we should use an already existing button styling?
@@ -114,15 +117,44 @@ bookingModalLink.setAttribute('href', 'challenges.html');
 bookingModalContent3.appendChild(bookingModalLink);
 bookingModalLink.innerHTML = "Back to challenges"
 
+let inputDate = document.getElementById("inputDate");
+// function to get date on page 1
+function getDate() {
+    // Selecting the input element and get its value 
+    
+    // USE CHRISTERS FETCH FUNCTION, BUT HOW TO APPEND DATE TO FETCH URL? 
+    // Displaying the value
+    alert(inputValueDate);
+  }
+
+// function to fetch times from API
+  let timesData = async () => {
+    const apiUrl = `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${inputDate.value}`;
+
+    try {
+        const response = await fetch(apiUrl);
+        const data = await response.json();
+    
+        // console.log(data);
+
+        // renderChallenges(data.challenges); -- gör något liknande men en funktion för att skjuta in data.slots -> bookingModalTimeInput
+
+    } catch (error){
+        console.log(error);
+    }
+
+};
+
 //change "bookingModalOpenButton" with whatever class/es booking button from landing page + challenges page has
 bookingModalOpenButton.addEventListener("click", () => {
   bookingModalContainer.style.display = "block";
   bookingModalContent1.style.display = "flex";
-  bookingModalContent2.style.display = "none";
+  bookingModalContent2.style.display = "none";gi
   bookingModalContent3.style.display = "none";
 });
 
 bookingModalSearchButton.addEventListener("click", () => {
+    timesData();
   bookingModalContent1.style.display = "none";
   bookingModalContent2.style.display = "flex";
 });
