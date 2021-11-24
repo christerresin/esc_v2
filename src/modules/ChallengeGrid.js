@@ -41,6 +41,12 @@ export class ChallengeGrid {
         // FILTERBOX
 
         const filterButton = document.querySelector('.filter-cta');
+        filterButton.addEventListener('click', () => 
+        {
+            filterButton.style.display = 'none'; 
+            filterBoard.style.display = "block";
+        }
+    );
 
         const filterBoard = document.querySelector('.filter-board');
         filterBoard.style.display = 'none';
@@ -60,6 +66,12 @@ export class ChallengeGrid {
         btnSpan.innerHTML = "&#10005;";
         xButton.appendChild(btnSpan);
         filterMenu.appendChild(xButton);
+        xButton.addEventListener('click',() => 
+            {
+                filterButton.style.display = 'block';
+                filterBoard.style.display = "none";
+            }
+        );
 
         const filtersToChoose = document.createElement('div');
         filtersToChoose.classList.add('choose-filter-box');
@@ -78,6 +90,16 @@ export class ChallengeGrid {
 
         const filterListPoint1 = document.createElement('li');
         filterTypeList.appendChild(filterListPoint1);
+        filterListPoint1.addEventListener('change', () => {
+            if (!this.filters.byOnline) {
+                this.filters.byOnline = true;
+                this.rerender()
+            }
+            else {
+                this.filters.byOnline = false;
+                this.rerender()
+            }
+        });
 
         const filterTypeCheck1 = document.createElement('input');
         filterTypeCheck1.type = "checkbox";
@@ -90,6 +112,16 @@ export class ChallengeGrid {
 
         const filterListPoint2 = document.createElement('li');
         filterTypeList.appendChild(filterListPoint2);
+        filterListPoint2.addEventListener('change', () => {
+            if (!this.filters.byOnsite) {
+                this.filters.byOnsite = true;
+                this.rerender()
+            }
+            else {
+                this.filters.byOnsite = false;
+                this.rerender()
+            }
+        });
 
         const filterTypeCheck2 = document.createElement('input');
         filterTypeCheck2.type = "checkbox";
@@ -281,53 +313,11 @@ export class ChallengeGrid {
             this.rerender()
         });
         filterSearchText.appendChild(searchText);
-        
-        
-        
-        filterListPoint1.addEventListener('change', () => {
-            if (!this.filters.byOnline) {
-                this.filters.byOnline = true;
-                this.rerender()
-            }
-            else {
-                this.filters.byOnline = false;
-                this.rerender()
-            }
-        });
-
-        filterListPoint2.addEventListener('change', () => {
-            if (!this.filters.byOnsite) {
-                this.filters.byOnsite = true;
-                this.rerender()
-            }
-            else {
-                this.filters.byOnsite = false;
-                this.rerender()
-            }
-        });
-
-        
-        xButton.addEventListener('click',() => 
-            {
-                filterButton.style.display = 'block';
-                filterBoard.style.display = "none";
-            }
-        );
-
-        filterButton.addEventListener('click', () => 
-        {
-            filterButton.style.display = 'none'; 
-            filterBoard.style.display = "block";
-        }
-    );
-
-
     }
 
     rerender() {
         // Clear the DOM
         this.container.innerHTML = '';
-        
 
         const filterInstance = new Filter(this.filters);
         const challengeArray = filterInstance.filterArray(this.challengeItems)
