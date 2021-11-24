@@ -13,11 +13,13 @@ export class ChallengeGrid {
             byRating: false,
             byText: false,
             labelsFilters: [],
-            minRatingFilter: 2,
+            minRatingFilter: 0,
             maxRatingFilter: 5,
             textFilter: ''
         };
         this.labelsArray = [];
+        this.minStarsArray = [];
+        this.maxStarsArray = [];
     }
 
     async run() {
@@ -119,35 +121,59 @@ export class ChallengeGrid {
             } 
         }
 
-        let rate = this.filters.byRating;
+        // let rate = this.filters.byRating;
 
-        function starRating(starsArr) {
-            const starLength = starsArr.length;
-            rate = true;
-            starsArr.forEach((star) => {
-                star.addEventListener('click', () =>  {
-                    let i = starsArr.indexOf(star);  
-                    if (star.classList.contains("off")) {
-                        for (i; i >= 0; --i) {
-                            starsArr[i].classList.add("on");
-                            starsArr[i].classList.remove("off");
-                        }
-                    }
-                    else {           
-                        i+=1;        
-                        for (i; i < starLength; ++i) {
-                            starsArr[i].classList.add("off");
-                            starsArr[i].classList.remove("on");
-                        } 
-                    }  
-                }) 
-            })         
-        }             
+        // function starRating(starsArr) {
+        //     const starLength = starsArr.length;
+        //     rate = true;
+        //     starsArr.forEach((star) => {
+        //         star.addEventListener('click', () =>  {
+        //             let i = starsArr.indexOf(star);  
+        //             if (star.classList.contains("off")) {
+        //                 for (i; i >= 0; --i) {
+        //                     starsArr[i].classList.add("on");
+        //                     starsArr[i].classList.remove("off");
+        //                 }
+        //             }
+        //             else {           
+        //                 i+=1;        
+        //                 for (i; i < starLength; ++i) {
+        //                     starsArr[i].classList.add("off");
+        //                     starsArr[i].classList.remove("on");
+        //                 } 
+        //             }  
+        //         }) 
+        //     })         
+        // }             
 
         // MinRatingStars creation and eventListener
-        const starsArray = [];
-        createStars(starsArray);
-        starRating(starsArray);
+        // const starsArray = [];
+        // createStars(starsArray);
+        // starRating(starsArray);
+
+        createStars(this.minStarsArray);
+
+        this.minStarsArray.forEach(star => {
+            star.addEventListener('click', () => {
+                let i = this.minStarsArray.indexOf(star);
+                let clickedStar = i + 1;
+                if(star.classList.contains('off')) {
+                    for (i; i >= 0; i--) {
+                        this.minStarsArray[i].classList.add('on');
+                        this.minStarsArray[i].classList.remove('off');
+                    }
+                } else {
+                    i+=1;
+                    for (i; i < this.minStarsArray.length; ++i) {
+                        this.minStarsArray[i].classList.add('off')
+                        this.minStarsArray[i].classList.remove('on')
+                    }
+                }
+                this.filters.minRatingFilter = clickedStar;
+                this.filters.byRating = true;
+                this.rerender()
+            })
+        })
         
         // Label "to" between stars
         const filterStarLabel = document.createElement('li');
@@ -156,10 +182,33 @@ export class ChallengeGrid {
         filterStarLabel.style.padding = "0.5rem";
         filterRatingList.appendChild(filterStarLabel);
 
+        createStars(this.maxStarsArray);
+        
+        this.maxStarsArray.forEach(star => {
+            star.addEventListener('click', () => {
+                let i = this.maxStarsArray.indexOf(star);
+                let clickedStar = i + 1;
+                if(star.classList.contains('off')) {
+                    for (i; i >= 0; i--) {
+                        this.maxStarsArray[i].classList.add('on');
+                        this.maxStarsArray[i].classList.remove('off');
+                    }
+                } else {
+                    i+=1;
+                    for (i; i < this.maxStarsArray.length; ++i) {
+                        this.maxStarsArray[i].classList.add('off')
+                        this.maxStarsArray[i].classList.remove('on')
+                    }
+                }
+                this.filters.maxRatingFilter = clickedStar;
+                this.filters.byRating = true;
+                this.rerender()
+            })
+        })
         // MaxRatingStars creation
-        const starsArray2 = [];
-        createStars(starsArray2);
-        starRating(starsArray2);
+        // const starsArray2 = [];
+        // createStars(starsArray2);
+        // starRating(starsArray2);
 
         // Tag creation
         const filterTag = document.createElement('div');
