@@ -157,13 +157,19 @@ export class ChallengeGrid {
             star.addEventListener('click', () => {
                 let i = this.minStarsArray.indexOf(star);
                 let clickedStar = i + 1;
+
+                // if(clickedStar === i + 1 && this.filters.minRatingFilter === i + 1) {
+                //     clickedStar = this.minStarsArray.indexOf(star);
+                //     console.log(this.minStarsArray.indexOf(star));
+                // }
+
                 if(star.classList.contains('off')) {
                     for (i; i >= 0; i--) {
                         this.minStarsArray[i].classList.add('on');
                         this.minStarsArray[i].classList.remove('off');
                     }
                 } else {
-                    i+=1;
+                    clickedStar--
                     for (i; i < this.minStarsArray.length; ++i) {
                         this.minStarsArray[i].classList.add('off')
                         this.minStarsArray[i].classList.remove('on')
