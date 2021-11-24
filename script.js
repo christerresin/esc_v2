@@ -12,20 +12,20 @@ modal.id = "myModal";
 body.append(modal);
 
 // create Modal content
-const div = document.createElement('div');
-div.className = "modal-content";
-modal.append(div);
+const div1 = document.createElement('div');
+div1.className = "modal-content";
+modal.append(div1);
 
 // create h1 in Modal
 const h1 = document.createElement('h1');
 h1.class = "modal1h1";
 h1.id = 'modal1h1';
-div.append(h1);
+div1.append(h1);
 
 // create p in Modal
 const p = document.createElement('p');
 p.textContent = "What date would you like to come?";
-div.append(p);
+div1.append(p);
 
 // create input in Modal
 const inp = document.createElement('input');
@@ -34,14 +34,14 @@ const br = document.createElement('br');
 inp.name = 'inpDate';
 inp.type = 'text';
 lab.textContent = 'Date';
-div.append(lab, br);
-div.append(inp);
+div1.append(lab, br);
+div1.append(inp);
 
 // Get the button that opens the modal
 const btnSearch = document.createElement("button");
 btnSearch.innerText = 'Search available times';
 btnSearch.className = 'btnSearch';
-div.append(btnSearch);
+div1.append(btnSearch);
 
 // }
 
@@ -108,9 +108,50 @@ btnSearch.onclick = function() {
         }).then(function(response) {
             if (response.ok) {
                 response.json().then(function(data) {
-                    const gatheredData = data.slots;
-                    console.log(gatheredData);
-                    return gatheredData; // Array of available times;
+                    const gatheredTimes = data.slots;
+                    console.log(gatheredTimes);
+                    // return gatheredTimes; // Array of available times;
+
+                    // call a function to switch the booking process to the next step
+                    bookingnextstep(gatheredTimes);
+
+                    function bookingnextstep(gatheredTimes) {
+                        // div1 "modal-content"
+                        div1.style.display = 'none';
+
+                        // const div2=document.createElement('div');
+
+                        const select = document.createElement('select');
+                        select.name = 'timeList';
+                        select.id = 'availableTimeList';
+                        const lab = document.createElement('label');
+                        lab.textContent = 'What time?';
+
+
+                        let option;
+
+                        /* 
+                        <label for="cars">Choose a car:</label>
+                        <select name="cars" id="cars">
+                          <optgroup label="Swedish Cars">
+                            <option value="volvo">Volvo</option>
+                            <option value="saab">Saab</option>
+                          </optgroup>
+                          <optgroup label="German Cars">
+                            <option value="mercedes">Mercedes</option>
+                            <option value="audi">Audi</option>
+                          </optgroup>
+                        </select> 
+                        */
+
+                        for (let i = 0; i < gatheredTimes.length; i++) {
+                            option = document.createElement('option');
+                            option.text = gatheredTimes[i].name;
+                            option.value = gatheredTimes[i].abbreviation;
+                            dropdown.add(option);
+                        }
+                    };
+
                 });
             };
         });
