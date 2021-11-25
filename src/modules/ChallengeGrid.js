@@ -42,11 +42,11 @@ export class ChallengeGrid {
 
         const filterButton = document.querySelector('.filter-cta');
         filterButton.addEventListener('click', () => 
-        {
-            filterButton.style.display = 'none'; 
-            filterBoard.style.display = "block";
-        }
-    );
+            {
+                filterButton.style.display = 'none'; 
+                filterBoard.style.display = "block";
+            }
+        );
 
         const filterBoard = document.querySelector('.filter-board');
         filterBoard.style.display = 'none';
@@ -66,7 +66,7 @@ export class ChallengeGrid {
         btnSpan.innerHTML = "&#10005;";
         xButton.appendChild(btnSpan);
         filterMenu.appendChild(xButton);
-        xButton.addEventListener('click',() => 
+        xButton.addEventListener('click', () => 
             {
                 filterButton.style.display = 'block';
                 filterBoard.style.display = "none";
@@ -94,8 +94,7 @@ export class ChallengeGrid {
             if (!this.filters.byOnline) {
                 this.filters.byOnline = true;
                 this.rerender()
-            }
-            else {
+            } else {
                 this.filters.byOnline = false;
                 this.rerender()
             }
@@ -116,8 +115,7 @@ export class ChallengeGrid {
             if (!this.filters.byOnsite) {
                 this.filters.byOnsite = true;
                 this.rerender()
-            }
-            else {
+            } else {
                 this.filters.byOnsite = false;
                 this.rerender()
             }
@@ -292,8 +290,6 @@ export class ChallengeGrid {
                 }
             });
         });
-
-
 
         const filterSearchText = document.createElement('div');
         filterSearchText.classList.add("filter-search-text");
