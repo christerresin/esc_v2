@@ -39,7 +39,6 @@ export class ChallengeGrid {
         })
 
         // FILTERBOX
-
         const filterButton = document.querySelector('.filter-cta');
         filterButton.addEventListener('click', () => 
             {
@@ -151,47 +150,12 @@ export class ChallengeGrid {
             } 
         }
 
-        // let rate = this.filters.byRating;
-
-        // function starRating(starsArr) {
-        //     const starLength = starsArr.length;
-        //     rate = true;
-        //     starsArr.forEach((star) => {
-        //         star.addEventListener('click', () =>  {
-        //             let i = starsArr.indexOf(star);  
-        //             if (star.classList.contains("off")) {
-        //                 for (i; i >= 0; --i) {
-        //                     starsArr[i].classList.add("on");
-        //                     starsArr[i].classList.remove("off");
-        //                 }
-        //             }
-        //             else {           
-        //                 i+=1;        
-        //                 for (i; i < starLength; ++i) {
-        //                     starsArr[i].classList.add("off");
-        //                     starsArr[i].classList.remove("on");
-        //                 } 
-        //             }  
-        //         }) 
-        //     })         
-        // }             
-
-        // MinRatingStars creation and eventListener
-        // const starsArray = [];
-        // createStars(starsArray);
-        // starRating(starsArray);
-
         createStars(this.minStarsArray);
 
         this.minStarsArray.forEach(star => {
             star.addEventListener('click', () => {
                 let i = this.minStarsArray.indexOf(star);
                 let clickedStar = i + 1;
-
-                // if(clickedStar === i + 1 && this.filters.minRatingFilter === i + 1) {
-                //     clickedStar = this.minStarsArray.indexOf(star);
-                //     console.log(this.minStarsArray.indexOf(star));
-                // }
 
                 if(star.classList.contains('off')) {
                     for (i; i >= 0; i--) {
@@ -205,6 +169,7 @@ export class ChallengeGrid {
                         this.minStarsArray[i].classList.remove('on')
                     }
                 }
+
                 this.filters.minRatingFilter = clickedStar;
                 this.filters.byRating = true;
                 this.rerender()
@@ -241,10 +206,6 @@ export class ChallengeGrid {
                 this.rerender()
             })
         })
-        // MaxRatingStars creation
-        // const starsArray2 = [];
-        // createStars(starsArray2);
-        // starRating(starsArray2);
 
         // Tag creation
         const filterTag = document.createElement('div');
@@ -321,7 +282,6 @@ export class ChallengeGrid {
         const challengeInstance = new Challenge(challengeData);
         const challengeItem = challengeInstance.render()
         this.container.appendChild(challengeItem)
-            
         })
     }
 }
