@@ -11,7 +11,7 @@ modal.className = "modal";
 modal.id = "myModal";
 body.append(modal);
 
-// create Modal content
+// create Modal content for step 1
 const div1 = document.createElement('div');
 div1.className = "modal-content";
 modal.append(div1);
@@ -33,7 +33,7 @@ const lab = document.createElement('label');
 const br = document.createElement('br');
 inp.name = 'inpDate';
 inp.type = 'text';
-lab.textContent = 'Date';
+lab.textContent = 'Date ';
 div1.append(lab, br);
 div1.append(inp);
 
@@ -42,6 +42,54 @@ const btnSearch = document.createElement("button");
 btnSearch.innerText = 'Search available times';
 btnSearch.className = 'btnSearch';
 div1.append(btnSearch);
+
+// create new div for the step 2 booking process
+const div2 = document.createElement('div');
+div2.className = "modal-content";
+div2.id = 'divstep2';
+modal.append(div2);
+
+// create h1 in Modal step 2
+const h11 = document.createElement('h1');
+h11.class = "modal2h1";
+h11.id = 'modal2h1';
+div2.append(h11);
+
+// create input for the name in Modal step 2
+const inp2 = document.createElement('input');
+const lab2 = document.createElement('label');
+inp2.name = 'inpName';
+inp2.type = 'text';
+lab2.textContent = 'Name';
+div2.append(lab2, br);
+div2.append(inp2);
+
+// create input for the email in Modal step 2
+const inp3 = document.createElement('input');
+const lab3 = document.createElement('label');
+inp3.name = 'inpEmail';
+inp3.type = 'text';
+lab3.textContent = 'E-mail';
+div2.append(lab3, br);
+div2.append(inp3);
+
+// create select element for the available times in Modal step 2
+const selectTime = document.createElement('select');
+selectTime.name = 'timeList';
+selectTime.id = 'availableTimeList';
+const lab4 = document.createElement('label');
+lab4.textContent = 'What time?';
+div2.append(lab4, br);
+div2.append(selectTime);
+
+// create select element for the participants in Modal step 2
+const selectPart = document.createElement('select');
+selectPart.name = 'participantsList';
+selectPart.id = 'availableParticipantsList';
+const lab5 = document.createElement('label');
+lab5.textContent = 'How many participants?';
+div2.append(lab5, br);
+div2.append(selectPart);
 
 // }
 
@@ -100,7 +148,6 @@ btnSearch.onclick = function() {
     // }
 
     async function searchAvailableTimes(reqDate) {
-        // console.log('https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=' + reqDate);
         const response = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=' + reqDate, {
             method: 'GET',
             mode: 'cors',
@@ -116,47 +163,28 @@ btnSearch.onclick = function() {
                     bookingnextstep(gatheredTimes);
 
                     function bookingnextstep(gatheredTimes) {
-                        // div1 "modal-content"
-                        div1.style.display = 'none';
+                        // forming the title header for step 2
+                        const m2h1 = document.getElementById("modal2h1");
+                        m2h1.textContent = 'Book room "' + h1title + '" (step 2)';
 
-                        // const div2=document.createElement('div');
-
-                        const select = document.createElement('select');
-                        select.name = 'timeList';
-                        select.id = 'availableTimeList';
-                        const lab = document.createElement('label');
-                        lab.textContent = 'What time?';
-
-
+                        // adding available time options to the time list 
                         let option;
-
-                        /* 
-                        <label for="cars">Choose a car:</label>
-                        <select name="cars" id="cars">
-                          <optgroup label="Swedish Cars">
-                            <option value="volvo">Volvo</option>
-                            <option value="saab">Saab</option>
-                          </optgroup>
-                          <optgroup label="German Cars">
-                            <option value="mercedes">Mercedes</option>
-                            <option value="audi">Audi</option>
-                          </optgroup>
-                        </select> 
-                        */
-
                         for (let i = 0; i < gatheredTimes.length; i++) {
                             option = document.createElement('option');
-                            option.text = gatheredTimes[i].name;
-                            option.value = gatheredTimes[i].abbreviation;
-                            dropdown.add(option);
-                        }
+                            option.text = gatheredTimes[i];
+                            option.value = gatheredTimes[i];
+                            selectTime.add(option);
+                        };
+
+                        // changing from step 1 to step 2
+                        div1.style.display = 'none';
+                        div2.style.display = 'block';
                     };
 
                 });
             };
         });
     };
-    setTimeout(console.log(availableTimes), 5000);
 }
 
 // function retrievebookingdata(reqDate) {
@@ -230,7 +258,7 @@ btnSearch.onclick = function() {
 // }
 
 /*
-    let dropdown = document.getElementById('locality-dropdown');
+  let dropdown = document.getElementById('locality-dropdown');
 dropdown.length = 0;
 
 let defaultOption = document.createElement('option');
@@ -241,30 +269,30 @@ dropdown.selectedIndex = 0;
 
 const url = 'https://api.myjson.com/bins/7xq2x';
 
-    fetch(url)  
-      .then(  
-        function(response) {  
-          if (response.status !== 200) {  
-            console.warn('Looks like there was a problem. Status Code: ', 
-              response.status);  
-            return;  
-          }
-    
-          // Examine the text in the response  
-          response.json().then(function(data) {  
-            let option;
-        
-            for (let i = 0; i < data.length; i++) {
-              option = document.createElement('option');
-              option.text = data[i].name;
-              option.value = data[i].abbreviation;
-              dropdown.add(option);
-            }    
-          });  
-        }  
-      )  
-      .catch(function(err) {  
-        console.error('Fetch Error -', err);  
-      });
+  fetch(url)  
+    .then(  
+      function(response) {  
+        if (response.status !== 200) {  
+          console.warn('Looks like there was a problem. Status Code: ', 
+            response.status);  
+          return;  
+        }
+  
+        // Examine the text in the response  
+        response.json().then(function(data) {  
+          let option;
+      
+          for (let i = 0; i < data.length; i++) {
+            option = document.createElement('option');
+            option.text = data[i].name;
+            option.value = data[i].abbreviation;
+            dropdown.add(option);
+          }    
+        });  
+      }  
+    )  
+    .catch(function(err) {  
+      console.error('Fetch Error -', err);  
+    });
 
-      */
+    */
