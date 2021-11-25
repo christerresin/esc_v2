@@ -70,7 +70,7 @@ div2.append(inp2);
 const inp3 = document.createElement('input');
 const lab3 = document.createElement('label');
 inp3.name = 'inpEmail';
-inp3.type = 'text';
+inp3.type = 'email';
 lab3.textContent = 'E-mail';
 div2.append(lab3);
 div2.append(inp3);
@@ -129,6 +129,11 @@ inp.onfocus = function() {
 }
 
 function setbookingdate() {
+    if (inp.value == "") {
+        alert("Error, no selected date.");
+        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+        // stop the process here until the date is selected
+    }
     return inp.value;
 }
 
@@ -136,19 +141,12 @@ inp.onblur = function() {
     this.type = 'text';
 }
 
-
-
 // Clicking on the search botton function
 
 btnSearch.onclick = function() {
 
     const reqDate = setbookingdate();
     console.log(reqDate);
-    if (reqDate == "") {
-        alert("Error, no selected date.");
-        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
-        // stop the process here until the date is selected
-    }
 
     const availableTimes = searchAvailableTimes(reqDate);
     // if (availableTimes.booking.date != reqDate) {
@@ -165,44 +163,135 @@ btnSearch.onclick = function() {
                 response.json().then(function(data) {
                     const gatheredTimes = data.slots;
                     console.log(gatheredTimes);
-                    // return gatheredTimes; // Array of available times;
 
                     // call a function to switch the booking process to the next step
                     bookingnextstep(gatheredTimes);
-
-                    function bookingnextstep(gatheredTimes) {
-                        // forming the title header for step 2
-                        const m2h1 = document.getElementById("modal2h1");
-                        m2h1.textContent = 'Book room "' + h1title + '" (step 2)';
-
-                        // adding available time options to the time list 
-                        let option;
-                        for (let i = 0; i < gatheredTimes.length; i++) {
-                            option = document.createElement('option');
-                            option.text = gatheredTimes[i];
-                            option.value = gatheredTimes[i];
-                            selectTime.add(option);
-                        };
-
-                        // adding available participants to the participants list
-                        let option2
-                        for (let i = minParticipants; i <= maxparticipants; i++) {
-                            option2 = document.createElement('option');
-                            option2.text = i + ' participants';
-                            option2.value = i;
-                            selectPart.add(option2);
-                        };
-
-                        // changing from step 1 to step 2
-                        div1.style.display = 'none';
-                        div2.style.display = 'block';
-                    };
 
                 });
             };
         });
     };
 }
+
+function bookingnextstep(gatheredTimes) {
+    // console.log(gatheredTimes);
+    // forming the title header for step 2
+    const m2h1 = document.getElementById("modal2h1");
+    m2h1.textContent = 'Book room "' + h1title + '" (step 2)';
+
+    // adding available time options to the time list 
+    let option;
+    for (let i = 0; i < gatheredTimes.length; i++) {
+        option = document.createElement('option');
+        option.text = gatheredTimes[i];
+        option.value = gatheredTimes[i];
+        selectTime.add(option);
+    };
+
+    // adding available participants to the participants list
+    let option2
+    for (let i = minParticipants; i <= maxparticipants; i++) {
+        option2 = document.createElement('option');
+        option2.text = i + ' participants';
+        option2.value = i;
+        selectPart.add(option2);
+    };
+
+    // changing from step 1 to step 2
+    div1.style.display = 'none';
+    div2.style.display = 'block';
+};
+
+function setParticipantName() {
+    if (inp2.value == "") {
+        alert("Error, no entered participant name.");
+        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+        // stop the process here until the date is selected
+    }
+    return inp2.value;
+}
+
+
+function setEmail() {
+    var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
+    if (inp3.value == "") {
+        alert("Error, no entered e-mail.");
+        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+        // stop the process here until the date is selected
+    } else if (!inp3.value.match(pattern)) {
+        alert("Error, the entered email is invalid.");
+        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+        // stop the process here until the date is selected
+    } else {
+        return inp3.value;
+    }
+
+}
+
+function setBookingTime() {
+    if (selectTime.value == "") {
+        alert("Error, no selected time.");
+        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+        // stop the process here until the date is selected
+    }
+    return selectTime.value;
+}
+
+function setParticipantsNumber() {
+    if (selectPart.value == "") {
+        alert("Error, no selected participants number.");
+        // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+        // stop the process here until the date is selected
+    }
+    return selectPart.value;
+}
+
+// Clicking on the submit botton function
+
+btnSubmit.onclick = function() {
+    // set booking date
+    const reqDate = setbookingdate();
+    console.log(reqDate);
+
+    // set participant name
+    const reqName = setParticipantName();
+    console.log(reqName);
+
+    // set participant email
+    const reqEmail = setEmail();
+    console.log(reqEmail);
+
+    // set time period
+    const reqTime = setBookingTime();
+    console.log(reqTime);
+
+    // set number of participants
+    const reqPart = setParticipantsNumber();
+    console.log(reqPart);
+    postbookingdata();
+
+    // build the post object to the server
+    async function postbookingdata() {
+        const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
+            method: 'POST',
+            mode: 'cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: reqName,
+                email: reqEmail,
+                date: reqDate,
+                time: reqTime,
+                participants: reqPart,
+            }),
+        });
+        const bookingstatus = await res.json();
+        console.log(bookingstatus);
+
+    }
+
+};
+
+
 
 // function retrievebookingdata(reqDate) {
 //     if (loadindex == undefined)
