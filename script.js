@@ -7,19 +7,22 @@ const maxparticipants = 7; // max participants as should impot from the challeng
 
 // function createModal(h1title, minParticipants, maxparticipants) {
 
-// TODO WHATS LEFT DO -- LINA WHERE ARE YOU
+// TODO WHATS LEFT DO
 // - ADD CLASS NAME TO BOOKING BUTTON
 // - INTEGRATE INTO MAIN BRANCH -- THAT IS, ADD THE .JS SEPARATELY -- SEPARATE FUNCTIONS. CLASSES AND MAKE THE CODE READABLE IS SECONDARY
 // - THE BOOKING BUTTON IS ROOM SPECIFIC AND THUS SENDS ROOM TITLE AS WELL AS PARTICIPANTS (arguments with class name, like calling function -> send set value for arguments (min max title room))
 // - FIX WHEN SELECTING ROOMS ONE AFTER ANOTHER -- CLEAR "HISTORY" -- CANCEL EVERYTHING THAT'S HAPPENED -- ADD CLEARING FUNCTIONALITY TO THE BOOKING BUTTON EVENTLISTENER ('INNERHTML = ""?')
-// - DO THIRD PAGE (from Anders modals?)
 // - STYLE
-
-// IN PROGRESS:
-// 
 
 // OPTIONAL:
 // - DATE - MIN MAX
+
+// IN PROGRESS:
+
+
+// DONE:
+// - DO THIRD PAGE (from Anders modals?)
+
 
 // create the Modal
 const modal = document.createElement('dialog');
@@ -66,10 +69,10 @@ div2.id = 'divstep2';
 modal.append(div2);
 
 // create h1 in Modal step 2
-const h11 = document.createElement('h1');
-h11.class = "modal2h1";
-h11.id = 'modal2h1';
-div2.append(h11);
+const h1_1 = document.createElement('h1');
+h1_1.class = "modal2h1";
+h1_1.id = 'modal2h1';
+div2.append(h1_1);
 
 // create input for the name in Modal step 2
 const inp2 = document.createElement('input');
@@ -113,8 +116,30 @@ btnSubmit.innerText = 'Submit booking';
 btnSubmit.className = 'btnSubmit';
 div2.append(btnSubmit);
 
-// }
+// create new div in Modal for the step 3 booking process
 
+const div3 = document.createElement('div');
+div3.className = "modal-content";
+div3.id = 'divstep3';
+modal.append(div3);
+
+// create h1 in Modal step 3
+const h1_2 = document.createElement('h1');
+h1_2.class = "modal3h1";
+h1_2.textContent = 'Thank you!';
+div3.append(h1_2);
+
+
+
+const modal3link = document.createElement('a');
+div3.append(modal3link);
+modal3link.setAttribute('href', '');
+modal3link.textContent = 'Back to challenges';
+
+// clicking on the leaving link on Modal step 3
+modal3link.onclick = function() {
+    body.removeChild(modal);
+}
 
 // When the user clicks the button, open the modal 
 btn.onclick = function popup1() {
@@ -302,6 +327,9 @@ btnSubmit.onclick = function() {
         console.log(bookingstatus);
 
     }
+
+    div2.style.display = 'none';
+    div3.style.display = 'block';
 
 };
 

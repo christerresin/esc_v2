@@ -38,6 +38,13 @@ body {
 }
 
 
+/* the initail display condition for the Modal step 3 */
+
+#divstep3 {
+    display: none;
+}
+
+
 /* Modal Content */
 
 .modal-content {
