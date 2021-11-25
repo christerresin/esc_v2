@@ -30,12 +30,11 @@ body {
     /* Black w/ opacity */
 }
 
+
+/* the initail display condition for the Modal step 2 */
+
 #divstep2 {
     display: none;
-}
-
-#divstep2 * {
-    display: inherit;
 }
 
 
@@ -48,6 +47,10 @@ body {
     border: 1px solid #888;
     width: 80%;
     height: 80%;
+}
+
+.modal-content * {
+    display: inherit;
 }
 
 
@@ -71,6 +74,15 @@ body {
 /* The search button */
 
 .btnSearch {
+    position: absolute;
+    right: 15%;
+    bottom: 22%;
+}
+
+
+/* The submit button */
+
+.btnSubmit {
     position: absolute;
     right: 15%;
     bottom: 22%;

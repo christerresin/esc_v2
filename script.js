@@ -2,6 +2,8 @@
 const btn = document.getElementById("modalBtn"); // Exist on the challenge room card
 const body = document.querySelector('body'); // remove it inside createModal function lateron when link it to the base code
 const h1title = "Title of room"; // import from the challenge room and remove the declaration
+const minParticipants = 2; // min participants as should impot from the challenge room object
+const maxparticipants = 7; // max participants as should impot from the challenge room object
 
 // function createModal(h1title, minParticipants, maxparticipants) {
 
@@ -16,34 +18,34 @@ const div1 = document.createElement('div');
 div1.className = "modal-content";
 modal.append(div1);
 
-// create h1 in Modal
+// create h1 in Modal step 1
 const h1 = document.createElement('h1');
 h1.class = "modal1h1";
 h1.id = 'modal1h1';
 div1.append(h1);
 
-// create p in Modal
+// create p in Modal step 1
 const p = document.createElement('p');
 p.textContent = "What date would you like to come?";
 div1.append(p);
 
-// create input in Modal
+// create the date input in Modal step 1
 const inp = document.createElement('input');
 const lab = document.createElement('label');
 const br = document.createElement('br');
 inp.name = 'inpDate';
 inp.type = 'text';
-lab.textContent = 'Date ';
-div1.append(lab, br);
+lab.textContent = 'Date';
+div1.append(lab);
 div1.append(inp);
 
-// Get the button that opens the modal
+// create search times button in Modal step 1
 const btnSearch = document.createElement("button");
 btnSearch.innerText = 'Search available times';
 btnSearch.className = 'btnSearch';
 div1.append(btnSearch);
 
-// create new div for the step 2 booking process
+// create new div in Modal for the step 2 booking process
 const div2 = document.createElement('div');
 div2.className = "modal-content";
 div2.id = 'divstep2';
@@ -61,7 +63,7 @@ const lab2 = document.createElement('label');
 inp2.name = 'inpName';
 inp2.type = 'text';
 lab2.textContent = 'Name';
-div2.append(lab2, br);
+div2.append(lab2);
 div2.append(inp2);
 
 // create input for the email in Modal step 2
@@ -70,7 +72,7 @@ const lab3 = document.createElement('label');
 inp3.name = 'inpEmail';
 inp3.type = 'text';
 lab3.textContent = 'E-mail';
-div2.append(lab3, br);
+div2.append(lab3);
 div2.append(inp3);
 
 // create select element for the available times in Modal step 2
@@ -79,7 +81,7 @@ selectTime.name = 'timeList';
 selectTime.id = 'availableTimeList';
 const lab4 = document.createElement('label');
 lab4.textContent = 'What time?';
-div2.append(lab4, br);
+div2.append(lab4);
 div2.append(selectTime);
 
 // create select element for the participants in Modal step 2
@@ -88,8 +90,14 @@ selectPart.name = 'participantsList';
 selectPart.id = 'availableParticipantsList';
 const lab5 = document.createElement('label');
 lab5.textContent = 'How many participants?';
-div2.append(lab5, br);
+div2.append(lab5);
 div2.append(selectPart);
+
+// create submit booking button in Modal step 2
+const btnSubmit = document.createElement("button");
+btnSubmit.innerText = 'Submit booking';
+btnSubmit.className = 'btnSubmit';
+div2.append(btnSubmit);
 
 // }
 
@@ -174,6 +182,15 @@ btnSearch.onclick = function() {
                             option.text = gatheredTimes[i];
                             option.value = gatheredTimes[i];
                             selectTime.add(option);
+                        };
+
+                        // adding available participants to the participants list
+                        let option2
+                        for (let i = minParticipants; i <= maxparticipants; i++) {
+                            option2 = document.createElement('option');
+                            option2.text = i + ' participants';
+                            option2.value = i;
+                            selectPart.add(option2);
                         };
 
                         // changing from step 1 to step 2
