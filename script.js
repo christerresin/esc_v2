@@ -7,6 +7,20 @@ const maxparticipants = 7; // max participants as should impot from the challeng
 
 // function createModal(h1title, minParticipants, maxparticipants) {
 
+// TODO WHATS LEFT DO -- LINA WHERE ARE YOU
+// - ADD CLASS NAME TO BOOKING BUTTON
+// - INTEGRATE INTO MAIN BRANCH -- THAT IS, ADD THE .JS SEPARATELY -- SEPARATE FUNCTIONS. CLASSES AND MAKE THE CODE READABLE IS SECONDARY
+// - THE BOOKING BUTTON IS ROOM SPECIFIC AND THUS SENDS ROOM TITLE AS WELL AS PARTICIPANTS (arguments with class name, like calling function -> send set value for arguments (min max title room))
+// - FIX WHEN SELECTING ROOMS ONE AFTER ANOTHER -- CLEAR "HISTORY" -- CANCEL EVERYTHING THAT'S HAPPENED -- ADD CLEARING FUNCTIONALITY TO THE BOOKING BUTTON EVENTLISTENER ('INNERHTML = ""?')
+// - DO THIRD PAGE (from Anders modals?)
+// - STYLE
+
+// IN PROGRESS:
+// 
+
+// OPTIONAL:
+// - DATE - MIN MAX
+
 // create the Modal
 const modal = document.createElement('dialog');
 modal.className = "modal";
