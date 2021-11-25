@@ -268,10 +268,10 @@ btnSubmit.onclick = function() {
     // set number of participants
     const reqPart = setParticipantsNumber();
     console.log(reqPart);
-    postbookingdata();
+    postbookingdata(reqName, reqEmail, reqDate, reqTime, reqPart);
 
     // build the post object to the server
-    async function postbookingdata() {
+    async function postbookingdata(reqName, reqEmail, reqDate, reqTime, reqPart) {
         const res = await fetch('https://lernia-sjj-assignments.vercel.app/api/booking/reservations', {
             method: 'POST',
             mode: 'cors',
@@ -281,7 +281,7 @@ btnSubmit.onclick = function() {
                 email: reqEmail,
                 date: reqDate,
                 time: reqTime,
-                participants: reqPart,
+                participants: parseInt(reqPart),
             }),
         });
         const bookingstatus = await res.json();
