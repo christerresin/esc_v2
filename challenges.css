@@ -12,6 +12,11 @@ img {
   max-width: 100%;
 }
 
+.index {
+  color: white;
+  text-decoration: none;
+}
+
 .header {
   background-color: #011827;
   color: white;
@@ -200,6 +205,7 @@ img {
   margin: 1rem;
   overflow: hidden;
   max-width: 85vw;
+  justify-content:space-between
 }
 .challenges-item > *:not(img) {
   margin: 0 1rem;
@@ -251,6 +257,7 @@ img {
   color: white;
   margin: 1rem;
   align-self: flex-end;
+  /*margin-bottom: 10px;*/
 }
 .challenges-item .challenge-cta:hover {
   background-color: #cb1509;
