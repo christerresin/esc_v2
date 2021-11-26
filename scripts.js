@@ -1,4 +1,4 @@
-import modalFunc from './modal.js'
+import modalFunc from './src/modules/modal.js'
 class Challenge {
     constructor(data) {
         this.title = data.title;
@@ -89,7 +89,7 @@ const load = async () => {
 
 const render = async () => {
     const data = await load();
-    ratingsArray = [];
+    const ratingsArray = [];
     data.forEach(challenge => {
         if(challenge.rating >= 5) {
             ratingsArray.push(challenge);
