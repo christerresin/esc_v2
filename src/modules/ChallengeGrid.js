@@ -173,8 +173,8 @@ export class ChallengeGrid {
                 this.filters.minRatingFilter = clickedStar;
                 this.filters.byRating = true;
                 this.rerender();
-            })
-        })
+            });
+        });
         
         // Label "to" between stars
         const filterStarLabel = document.createElement('li');
