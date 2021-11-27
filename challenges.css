@@ -312,6 +312,14 @@ img {
   }
 }
 
+.no-challenges {
+  grid-column: 2;
+  padding-top: 10rem;
+  padding-bottom: 5rem;
+
+  font-size: 2rem;
+}
+
 .footer {
   background-color: #011827;
   color: white;

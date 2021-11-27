@@ -280,6 +280,12 @@ export class ChallengeGrid {
 
         const filterInstance = new Filter(this.filters);
         const challengeArray = filterInstance.filterArray(this.challengeItems)
+        if(challengeArray.length === 0) {
+            const noChallenges = document.createElement('div');
+            noChallenges.innerHTML = 'No matching challenges';
+            noChallenges.classList.add('no-challenges');
+            this.container.appendChild(noChallenges);
+        }
         challengeArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);
         const challengeItem = challengeInstance.render();
