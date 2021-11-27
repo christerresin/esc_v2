@@ -457,6 +457,7 @@ img {
 
 .filter-by-tag-item label {
   margin-top: 1rem;
+  margin-right: 0.2rem;
   padding: 0.2rem 0.5rem 0.2rem 0.5rem;
   border: solid lightgray 2px;
   color: lightslategray;
