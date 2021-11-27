@@ -20,7 +20,6 @@
 // Change labels to explicit: https://css-tricks.com/html-inputs-and-labels-a-love-story/
 // Styling
 
-
 // *=========| PLAN 2021-11-25: |==========*
 // Regarding POST Check Richards lecture (use json.stringify?) + his post on Slack + https://stackoverflow.com/a/29823632
 // Read up on posting input values. Wrap everything in form-element and use submit on button?
@@ -29,7 +28,6 @@
 //
 // Optional: fix bookingModalDateInput to type=date with the right date format and min max dates: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/date
 // *=======================================*
-
 
 // this code block w/ openButton is to be replaced w/ booking-buttons on challenges page + landing page
 
@@ -66,7 +64,7 @@ bookingModalDateInput.setAttribute("placeholder", "YYYY-mm-dd");
 bookingModalDateInput.id = "inputDate";
 
 let bookingModalSearchButton = document.createElement("button");
-// Existing CSS-class w/ button styling?
+// Use already existing button styling?
 bookingModalContent1.appendChild(bookingModalSearchButton);
 bookingModalSearchButton.innerHTML = "Search available times";
 
@@ -110,7 +108,7 @@ let bookingModalPartiInput = document.createElement("input");
 bookingModalPartiLabel.appendChild(bookingModalPartiInput);
 
 let bookingModalSubmitButton = document.createElement("button");
-// I guess we should use an already existing button styling?
+// Use already existing button styling
 bookingModalContent2.appendChild(bookingModalSubmitButton);
 bookingModalSubmitButton.innerHTML = "Submit booking";
 
@@ -131,7 +129,7 @@ bookingModalLink.innerHTML = "Back to challenges";
 
 let inputDate = document.getElementById("inputDate");
 
-// function to fetch times from API
+// function to fetch times <- API
 let timesData = async () => {
   const apiUrl = `https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=${inputDate.value}`;
 
@@ -145,6 +143,27 @@ let timesData = async () => {
     console.log(error);
   }
 };
+
+// Richards / Ammars function to post booking data -> back-end / API
+async function bookingData(reqName, reqEmail, reqDate, reqTime, reqPart) {
+  const res = await fetch(
+    "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
+    {
+      method: "POST",
+      mode: "cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: reqName,
+        email: reqEmail,
+        date: reqDate,
+        time: reqTime,
+        participants: parseInt(reqPart),
+      }),
+    }
+  );
+  const bookingstatus = await res.json();
+  console.log(bookingstatus);
+}
 
 // change "bookingModalOpenButton" with whatever class/es booking button from landing page + challenges page has
 bookingModalOpenButton.addEventListener("click", () => {
@@ -161,11 +180,11 @@ const addDatesToSelect = (timeArray) => {
     const option = document.createElement("option");
     option.value = item;
     option.textContent = item;
-    console.log(option.value);
     document.getElementById("selectTime").appendChild(option);
   });
 };
 
+// SAME FUNCTIONALITY AS ABOVE FOREACH BUR W/ FOR LOOP (TO UNDERSTAND FUNCTIONALITY / DIFFERENCES):
 //   for (i = 0; i < timeArray.length; i++) {
 //     const option = document.createElement("option");
 //       option.value = timeArray[i];
@@ -173,12 +192,14 @@ const addDatesToSelect = (timeArray) => {
 //   }
 
 bookingModalSearchButton.addEventListener("click", () => {
+  // console.log(bookingModalDateInput);
   timesData();
   bookingModalContent1.style.display = "none";
   bookingModalContent2.style.display = "flex";
 });
 
 bookingModalSubmitButton.addEventListener("click", () => {
+  bookingData();
   bookingModalContent2.style.display = "none";
   bookingModalContent3.style.display = "flex";
 });
