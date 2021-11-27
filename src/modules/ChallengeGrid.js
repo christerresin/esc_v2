@@ -148,7 +148,7 @@ export class ChallengeGrid {
                 filterRatingList.appendChild(starsArr[i]); 
                 starsArr.push();  
             } 
-        }
+        };
 
         createStars(this.minStarsArray);
 
@@ -168,7 +168,7 @@ export class ChallengeGrid {
                         this.minStarsArray[i].classList.add('off');
                         this.minStarsArray[i].classList.remove('on');
                     }
-                }
+                };
 
                 this.filters.minRatingFilter = clickedStar;
                 this.filters.byRating = true;
@@ -201,7 +201,7 @@ export class ChallengeGrid {
                         this.maxStarsArray[i].classList.add('off');
                         this.maxStarsArray[i].classList.remove('on');
                     }
-                }
+                };
 
                 this.filters.maxRatingFilter = clickedStar;
                 this.filters.byRating = true;
@@ -280,12 +280,12 @@ export class ChallengeGrid {
 
         const filterInstance = new Filter(this.filters);
         const challengeArray = filterInstance.filterArray(this.challengeItems)
-        if(challengeArray.length === 0) {
+        if(challengeArray.length === 0 || challengeArray === null) {
             const noChallenges = document.createElement('div');
             noChallenges.innerHTML = 'No matching challenges';
             noChallenges.classList.add('no-challenges');
             this.container.appendChild(noChallenges);
-        }
+        };
         challengeArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);
         const challengeItem = challengeInstance.render();

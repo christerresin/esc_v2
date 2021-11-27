@@ -381,7 +381,7 @@ img {
   border: 2px solid #8acfe5;
   color: #8acfe5;
   box-sizing: border-box;
-  width: fit-content;
+  width: 300px;
 }
 
 .filter-board {
@@ -399,7 +399,7 @@ img {
 }
 
 .our-challenges h2 {
-  font-size: 1.7rem;
+  font-size: 2rem;
   font-weight: normal;
   text-align: center;
   margin: 0 0 1rem;
