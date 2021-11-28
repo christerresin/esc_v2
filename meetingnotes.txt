@@ -1,0 +1,84 @@
+Sammanfattningsvis så har vi haft möten kl 09 vid behov. Vi har stämt av läget, men efterhand har vi helt enkelt stämt av vid tillfälle på Discord och uppdaterat varann om läget dvs vad vi gör på projektet.
+
+
+Exempel på anteckningar vi gjort:
+
+Mötesanteckningar 2021-11-09 resp 08
+Kan bli så mycket här i Figma om vi ska ha alla anteckningar...
+
+Vi har mest försökt få pejl på läget och varann. Utgått
+från den planeringsuppgift vi fått. Senare, tisdag, även projektuppgiften.
+
+Testat på mob coding då Christer visade hur han tänker
+avseende filtrering.
+
+Använt figma för att ha ett gemensamt friare arbetsutrymme.
+
+Kanbanflow.
+
+Christer börjar på Moment: Ladda challenge-data från API.
+
+Anders och Marta på modals.
+
+Samtliga försöker få reda på mer om filtrering,
+avvaktar med vidare uppdelning.
+
+Inlämningsuppgift färdigställd efter dessa möten. Kanbanflow.
+
+
+Möte 2021-11-09
+
+Dela upp filtreringen i fyra delar dvs
+rating, etc.
+
+Filtrerad array samma som för DOM API
+
+Filter gräver i arrayen utifrån object-egenskaper / attributes exempelvis keyword “coding”,
+hvhmhh
+
+Det blir en ny “filtrerad” array som visas för användarenhvh
+
+Christer gör Ladda challenge-data mock-ups
+/ local API -- även DOM-API
+
+---
+
+Apply sorting according to certain objects
+
+Ammar göra samma som Christer
+
+Filter-delen -- layout -- börja läsa på hur göra?
+
+Booking modals (Anders?)
+
+
+Möte 2021-11-10
+
+Vi går igenom de tre frågorna
+
+Marta har hittat filterin- funktion i JS, dvs
+att använda funktionen som kallas “filter” för att
+filtrera en array.
+
+Moment 1, att bygga Our challenges-sida / DOM via JS och importerad array
+är Christer på god väg med.
+
+Ammar kollat shadow dom.
+
+Anders fixat med kanban och kollat upp filtering på w3schools
+
+Ingen som direkt sitter fast i nuläget.
+
+Vi bestämmer att vi testar att mob-koda imorgon tors kl 09-12.
+
+Länkar från mötet:
+
+https://www.geeksforgeeks.org/how-to-filter-object-array-based-on-attributes/
+
+https://developers.google.com/web/updates/2019/02/constructable-stylesheets
+
+https://developers.google.com/web/fundamentals/web-components/shadowdom
+
+https://www.w3schools.com/jsref/jsref_filter.asp
+
+https://www.w3schools.com/howto/howto_js_filter_lists.asp
