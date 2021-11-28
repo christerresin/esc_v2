@@ -1,6 +1,6 @@
 export class DataRetriever {
     constructor() {
-        this.challenges = null
+        this.challenges = null;
     }
     async load() {
         const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
@@ -8,9 +8,9 @@ export class DataRetriever {
             try {
                 const response = await fetch(url);
                 const data = await response.json();
-                this.challenges = data.challenges
+                this.challenges = data.challenges;
             } catch (error) {
-                console.log(error)
+                console.log(error);
             }    
         }
 

@@ -36,17 +36,16 @@ export class ChallengeGrid {
         const challengeItem = challengeInstance.render();
         this.container.appendChild(challengeItem);
         this.challengeItems.push(challengeData);
-        })
+        });
 
         // FILTERBOX
-
         const filterButton = document.querySelector('.filter-cta');
         filterButton.addEventListener('click', () => 
-        {
-            filterButton.style.display = 'none'; 
-            filterBoard.style.display = "block";
-        }
-    );
+            {
+                filterButton.style.display = 'none'; 
+                filterBoard.style.display = "block";
+            }
+        );
 
         const filterBoard = document.querySelector('.filter-board');
         filterBoard.style.display = 'none';
@@ -66,7 +65,7 @@ export class ChallengeGrid {
         btnSpan.innerHTML = "&#10005;";
         xButton.appendChild(btnSpan);
         filterMenu.appendChild(xButton);
-        xButton.addEventListener('click',() => 
+        xButton.addEventListener('click', () => 
             {
                 filterButton.style.display = 'block';
                 filterBoard.style.display = "none";
@@ -93,17 +92,16 @@ export class ChallengeGrid {
         filterListPoint1.addEventListener('change', () => {
             if (!this.filters.byOnline) {
                 this.filters.byOnline = true;
-                this.rerender()
-            }
-            else {
+                this.rerender();
+            } else {
                 this.filters.byOnline = false;
-                this.rerender()
+                this.rerender();
             }
         });
 
         const filterTypeCheck1 = document.createElement('input');
         filterTypeCheck1.type = "checkbox";
-        filterTypeCheck1.checked = true
+        filterTypeCheck1.checked = true;
         filterListPoint1.appendChild(filterTypeCheck1);
 
         const filterTypeText1 = document.createElement('label');
@@ -115,17 +113,16 @@ export class ChallengeGrid {
         filterListPoint2.addEventListener('change', () => {
             if (!this.filters.byOnsite) {
                 this.filters.byOnsite = true;
-                this.rerender()
-            }
-            else {
+                this.rerender();
+            } else {
                 this.filters.byOnsite = false;
-                this.rerender()
+                this.rerender();
             }
         });
 
         const filterTypeCheck2 = document.createElement('input');
         filterTypeCheck2.type = "checkbox";
-        filterTypeCheck2.checked = true
+        filterTypeCheck2.checked = true;
         filterListPoint2.appendChild(filterTypeCheck2);
 
         const filterTypeText2 = document.createElement('label');
@@ -151,37 +148,7 @@ export class ChallengeGrid {
                 filterRatingList.appendChild(starsArr[i]); 
                 starsArr.push();  
             } 
-        }
-
-        // let rate = this.filters.byRating;
-
-        // function starRating(starsArr) {
-        //     const starLength = starsArr.length;
-        //     rate = true;
-        //     starsArr.forEach((star) => {
-        //         star.addEventListener('click', () =>  {
-        //             let i = starsArr.indexOf(star);  
-        //             if (star.classList.contains("off")) {
-        //                 for (i; i >= 0; --i) {
-        //                     starsArr[i].classList.add("on");
-        //                     starsArr[i].classList.remove("off");
-        //                 }
-        //             }
-        //             else {           
-        //                 i+=1;        
-        //                 for (i; i < starLength; ++i) {
-        //                     starsArr[i].classList.add("off");
-        //                     starsArr[i].classList.remove("on");
-        //                 } 
-        //             }  
-        //         }) 
-        //     })         
-        // }             
-
-        // MinRatingStars creation and eventListener
-        // const starsArray = [];
-        // createStars(starsArray);
-        // starRating(starsArray);
+        };
 
         createStars(this.minStarsArray);
 
@@ -190,28 +157,24 @@ export class ChallengeGrid {
                 let i = this.minStarsArray.indexOf(star);
                 let clickedStar = i + 1;
 
-                // if(clickedStar === i + 1 && this.filters.minRatingFilter === i + 1) {
-                //     clickedStar = this.minStarsArray.indexOf(star);
-                //     console.log(this.minStarsArray.indexOf(star));
-                // }
-
                 if(star.classList.contains('off')) {
                     for (i; i >= 0; i--) {
                         this.minStarsArray[i].classList.add('on');
                         this.minStarsArray[i].classList.remove('off');
                     }
                 } else {
-                    clickedStar--
+                    clickedStar--;
                     for (i; i < this.minStarsArray.length; ++i) {
-                        this.minStarsArray[i].classList.add('off')
-                        this.minStarsArray[i].classList.remove('on')
+                        this.minStarsArray[i].classList.add('off');
+                        this.minStarsArray[i].classList.remove('on');
                     }
-                }
+                };
+
                 this.filters.minRatingFilter = clickedStar;
                 this.filters.byRating = true;
-                this.rerender()
-            })
-        })
+                this.rerender();
+            });
+        });
         
         // Label "to" between stars
         const filterStarLabel = document.createElement('li');
@@ -226,27 +189,25 @@ export class ChallengeGrid {
             star.addEventListener('click', () => {
                 let i = this.maxStarsArray.indexOf(star);
                 let clickedStar = i + 1;
+
                 if(star.classList.contains('off')) {
                     for (i; i >= 0; i--) {
                         this.maxStarsArray[i].classList.add('on');
                         this.maxStarsArray[i].classList.remove('off');
                     }
                 } else {
-                    i+=1;
+                    clickedStar--;
                     for (i; i < this.maxStarsArray.length; ++i) {
-                        this.maxStarsArray[i].classList.add('off')
-                        this.maxStarsArray[i].classList.remove('on')
+                        this.maxStarsArray[i].classList.add('off');
+                        this.maxStarsArray[i].classList.remove('on');
                     }
-                }
+                };
+
                 this.filters.maxRatingFilter = clickedStar;
                 this.filters.byRating = true;
-                this.rerender()
-            })
-        })
-        // MaxRatingStars creation
-        // const starsArray2 = [];
-        // createStars(starsArray2);
-        // starRating(starsArray2);
+                this.rerender();
+            });
+        });
 
         // Tag creation
         const filterTag = document.createElement('div');
@@ -287,13 +248,11 @@ export class ChallengeGrid {
                         this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
                         this.filters.labelsFilters.length > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
                         
-                        this.rerender()
+                        this.rerender();
                     })
                 }
             });
         });
-
-
 
         const filterSearchText = document.createElement('div');
         filterSearchText.classList.add("filter-search-text");
@@ -310,7 +269,7 @@ export class ChallengeGrid {
         searchText.addEventListener('keyup', () => {
             this.filters.byText = true;
             this.filters.textFilter = searchText.value;
-            this.rerender()
+            this.rerender();
         });
         filterSearchText.appendChild(searchText);
     }
@@ -321,11 +280,16 @@ export class ChallengeGrid {
 
         const filterInstance = new Filter(this.filters);
         const challengeArray = filterInstance.filterArray(this.challengeItems)
+        if(challengeArray.length === 0 || challengeArray === null) {
+            const noChallenges = document.createElement('div');
+            noChallenges.innerHTML = 'No matching challenges';
+            noChallenges.classList.add('no-challenges');
+            this.container.appendChild(noChallenges);
+        };
         challengeArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);
-        const challengeItem = challengeInstance.render()
-        this.container.appendChild(challengeItem)
-            
-        })
+        const challengeItem = challengeInstance.render();
+        this.container.appendChild(challengeItem);
+        });
     }
 }
