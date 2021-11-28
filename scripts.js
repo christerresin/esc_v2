@@ -1,3 +1,4 @@
+import modalFunc from './src/modules/modal.js'
 class Challenge {
     constructor(data) {
         this.title = data.title;
@@ -33,7 +34,6 @@ class Challenge {
             challengeRatingStar.classList.add('challenge-rating-star');
             challengeRatingStar.classList.add('on');
             challengeRating.appendChild(challengeRatingStar);
-    
         };
 
         for(let i = Math.floor(this.rating); i < 5; i++) {
@@ -55,6 +55,10 @@ class Challenge {
         challengeCta.classList.add('challenge-cta');
         challengeCta.innerHTML = "Book the room";
 
+        challengeCta.addEventListener('click', () => {
+            modalFunc(this.title, this.minParticipants, this.maxParticipants);
+        });
+
         // Render/append on site
         challengesItem.appendChild(challengesPicture);
         challengesItem.appendChild(challengeTitle);
@@ -67,6 +71,14 @@ class Challenge {
         return challengesItem;
     }
 }
+
+//document.querySelector('.index').href = "index.html";
+document.querySelector('.play-online').href = "challenges.html";
+document.querySelector('.play-onsite').href = "challenges.html";
+document.querySelector('.hero-cta-online').href = "challenges.html";
+document.querySelector('.hero-cta-onsite').href = "challenges.html";
+document.querySelector('.challenges-cta-online').href = "challenges.html";
+document.querySelector('.challenges-cta-onsite').href = "challenges.html";
 
 const load = async () => {
     const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
@@ -83,7 +95,7 @@ const load = async () => {
 
 const render = async () => {
     const data = await load();
-    ratingsArray = [];
+    const ratingsArray = [];
     data.forEach(challenge => {
         if(challenge.rating >= 5) {
             ratingsArray.push(challenge);

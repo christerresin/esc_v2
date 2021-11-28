@@ -1,3 +1,4 @@
+import modalFunc from './modal.js'
 export class Challenge {
     constructor(data) {
         this.title = data.title;
@@ -54,6 +55,10 @@ export class Challenge {
         let challengeCta = document.createElement('a');
         challengeCta.classList.add('challenge-cta');
         challengeCta.innerHTML = "Book the room";
+
+        challengeCta.addEventListener('click', () => {
+            modalFunc(this.title, this.minParticipants, this.maxParticipants);
+        });
 
         // Render/append on site
         challengesItem.appendChild(challengesPicture);
