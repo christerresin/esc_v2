@@ -407,6 +407,7 @@ body {
   box-shadow: 0 0 1rem rgba(182, 189, 181, 0.5);
   margin: 1rem;
   overflow: hidden;
+  justify-content:space-between;
   max-width: 85vw;
 }
 .challenges-item > *:not(img) {
