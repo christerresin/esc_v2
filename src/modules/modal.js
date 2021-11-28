@@ -165,7 +165,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
   // clicking on the leaving link on Modal step 3
   modal3link.onclick = function () {
-    body.removeChild(modal);
+    document.body.removeChild(modal);
   };
 
   // When the user clicks the button, open the modal
@@ -189,10 +189,6 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     }
     return inp.value;
   }
-
-  inp.onblur = function () {
-    this.type = "text";
-  };
 
   // Clicking on the search botton function
   btnSearch.onclick = function () {
