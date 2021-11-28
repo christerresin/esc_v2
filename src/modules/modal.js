@@ -160,7 +160,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
   const modal3link = document.createElement("a");
   div3.append(modal3link);
-  modal3link.setAttribute("href", "");
+  modal3link.setAttribute("href", "#");
   modal3link.textContent = "Back to challenges";
 
   // clicking on the leaving link on Modal step 3
