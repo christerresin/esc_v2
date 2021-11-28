@@ -1,57 +1,31 @@
 export default function modalFunc(h1title, minParticipants, maxParticipants) {
   // Get the button that opens the modal
-  //const btn = document.querySelector(".challenge-cta"); // Exist on the challenge room card
   const body = document.querySelector("body"); // remove it inside createModal function lateron when link it to the base code
-//   const h1title = "Title of room"; // import from the challenge room and remove the declaration
-//   const minParticipants = 2; // min participants as should impot from the challenge room object
-//   const maxparticipants = 7; // max participants as should impot from the challenge room object
 
-//====== FOR challengeCta in ...what other file? =====
-// challengeCta.addEventListener('click', () => {
-//   modalFunc(this.title, this.minParticipants, this.maxParticipants) { // use for loop to fill in participants between min - max
-                  
-//      }
-//    });
+  //===TODO==================================
+  // - STYLE
+  // - Get everything working on GitHub Pages
 
-// export default modalFunc(title, min, max) => {
-//   const title = title
-// }
-//====================================================
+  // OPTIONAL:
+  // buttons online and on-site -- should they link to challenges?
+  // - DATE - MIN MAX
+  // Stop "set"-processes after alert?
 
+  // IN PROGRESS:
+  //
 
-// === NOTES FROM MORNING DISCUSSION ===
-// function createModal(h1title, minParticipants, maxparticipants) {}
-// COPY FUNCTIONS RELATED TO CHALLENGE FETCH AND RENDER TO DEBUG. DO A MOCK-UP.
-// KEEP ON WORKING ON ISOLATED SOLLUTION -- DUMMY DATA / OBJECT.
-// PUT IN ON MAIN. FUNCTION. STORE DATASET ON BUTTON. EVENTLISTENER GIVE IT BACK TO THE FUNCTION WHEN IT'S CLICKED.
-// eventlistener -> point to button / datasets on button;
-// read attributes and pass on to function (eg data.title -> title of room), function(min, max)
-// and so on when using it from the button
-// dev tools to see data, console.log?
-// ==============================
+  // DONE:
+  // - DO THIRD PAGE (from Anders modals?)
+  // - CLEAR MODAL AFTER CLOSE
+  // - CONNECTING MODAL FROM DIFFERENT REPO TO MAIN GITHUB
+  // - ADD CLASS NAME TO BOOKING BUTTON -- DONE? BUTTON WORKING? SEE "const btn" above
+  // - INTEGRATE INTO MAIN BRANCH -- THAT IS, ADD THE .JS SEPARATELY -- SEPARATE FUNCTIONS. CLASSES AND MAKE THE CODE READABLE IS SECONDARY
+  // - THE BOOKING BUTTON IS ROOM SPECIFIC AND THUS SENDS ROOM TITLE AS WELL AS PARTICIPANTS (arguments with class name, like calling function -> send set value for arguments (min maxtitle room))
+  // - copy style.css -> main.css
+  // - CHECK GITLOG -- HISTORY IS CLEARED ON THIS BRANCH?
+  //========================================================
 
-//===TODO==================================
-// - ADD CLASS NAME TO BOOKING BUTTON -- DONE? BUTTON WORKING? SEE "const btn" above
-// - INTEGRATE INTO MAIN BRANCH -- THAT IS, ADD THE .JS SEPARATELY -- SEPARATE FUNCTIONS. CLASSES AND MAKE THE CODE READABLE IS SECONDARY
-// - THE BOOKING BUTTON IS ROOM SPECIFIC AND THUS SENDS ROOM TITLE AS WELL AS PARTICIPANTS (arguments with class name, like calling function -> send set value for arguments (min maxtitle room))
-// - copy style.css -> main.css
-// - CHECK GITLOG -- HISTORY IS CLEARED ON THIS BRANCH?
-// - STYLE
-
-// OPTIONAL:
-// buttons online and on-site -- should they link to challenges?
-// - DATE - MIN MAX
-
-// IN PROGRESS:
-// 
-
-// DONE:
-// - DO THIRD PAGE (from Anders modals?)
-// - CLEAR MODAL AFTER CLOSE
-// - CONNECTING MODAL FROM DIFFERENT REPO TO MAIN GITHUB
-//========================================================
-
-//  create the Modal
+  //  create the Modal
   const modal = document.createElement("dialog");
   modal.className = "modal";
   modal.id = "myModal";
@@ -79,10 +53,44 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   const lab = document.createElement("label");
   const br = document.createElement("br");
   inp.name = "inpDate";
-  inp.type = "text";
+  inp.id = "date";
+  inp.type = "date";
+  inp.name = "date";
   lab.textContent = "Date";
   div1.append(lab);
   div1.append(inp);
+
+  // Set input options to min = today, max = 1 year from now
+  const d = new Date();
+  d.setYear(d.getFullYear() + 1);
+  date.max = d.toISOString().split("T")[0]; //this simply converts it to the correct format
+  
+  const c = new Date();
+  date.min = c.toISOString().split("T")[0];
+
+// Same thing but doesn't change date min max and not done with "future" variable (max in one year)
+//   let today = new Date();
+//   let dd = today.getDate();
+//   let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
+//   let yyyy = today.getFullYear();
+//   TODO Add future variable with one year ahead
+//   let future = Date();
+//   console.log(future);
+  
+//   if (dd < 10) {
+//     dd = "0" + dd;
+//   }
+//   if (mm < 10) {
+//     mm = "0" + mm;
+//   }
+
+//   today = yyyy + "-" + mm + "-" + dd;
+//   document.getElementById("datefield").setAttribute("min", today);
+
+// changing to date isnt' needed anymore as it's set as default
+  // inp.onfocus = function () {
+  //   this.type = "date";
+  // };
 
   // create search times button in Modal step 1
   const btnSearch = document.createElement("button");
@@ -145,7 +153,6 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   div2.append(btnSubmit);
 
   // create new div in Modal for the step 3 booking process
-
   const div3 = document.createElement("div");
   div3.className = "modal-content";
   div3.id = "divstep3";
@@ -168,14 +175,10 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   };
 
   // When the user clicks the button, open the modal
-  //  btn.onclick = function popup1() {
-    // the room title as import from the land page
 
-    const m1h1 = document.getElementById("modal1h1");
+  const m1h1 = document.getElementById("modal1h1");
 
-    m1h1.textContent = 'Book room "' + h1title + '" (step 1)';
-   
-  //};
+  m1h1.textContent = 'Book room "' + h1title + '" (step 1)';
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
@@ -185,16 +188,9 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     }
   };
 
-  inp.onfocus = function () {
-    this.type = "date";
-    // const reqDate = this.value;
-    // console.log(this.value);
-  };
-
   function setbookingdate() {
     if (inp.value == "") {
       alert("Error, no selected date.");
-      // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
       // stop the process here until the date is selected
     }
     return inp.value;
@@ -205,7 +201,6 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   };
 
   // Clicking on the search botton function
-
   btnSearch.onclick = function () {
     const reqDate = setbookingdate();
     console.log(reqDate);
@@ -239,7 +234,6 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   };
 
   function bookingnextstep(gatheredTimes) {
-    // console.log(gatheredTimes);
     // forming the title header for step 2
     const m2h1 = document.getElementById("modal2h1");
     m2h1.textContent = 'Book room "' + h1title + '" (step 2)';
@@ -270,21 +264,18 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   function setParticipantName() {
     if (inp2.value == "") {
       alert("Error, no entered participant name.");
-      // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
       // stop the process here until the date is selected
     }
     return inp2.value;
   }
 
-   function setEmail() {
-     var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
-     if (inp3.value == "") {
+  function setEmail() {
+    var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
+    if (inp3.value == "") {
       alert("Error, no entered e-mail.");
-      // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
       // stop the process here until the date is selected
     } else if (!inp3.value.match(pattern)) {
       alert("Error, the entered email is invalid.");
-      // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
       // stop the process here until the date is selected
     } else {
       return inp3.value;
@@ -310,7 +301,6 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   }
 
   // Clicking on the submit botton function
-
   btnSubmit.onclick = function () {
     // set booking date
     const reqDate = setbookingdate();
@@ -474,4 +464,3 @@ const url = 'https://api.myjson.com/bins/7xq2x';
 
     */
 }
-
