@@ -28,7 +28,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   const modal = document.createElement("dialog");
   modal.className = "modal";
   modal.id = "myModal";
-  body.append(modal);
+  document.body.appendChild(modal);
   modal.style.display = "block";
 
   // create Modal content for step 1
@@ -178,7 +178,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   window.onclick = function (event) {
     if (event.target == modal) {
       //modal.style.display = "none";
-      body.removeChild(modal);
+      document.body.removeChild(modal);
     }
   };
 
