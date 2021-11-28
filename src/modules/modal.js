@@ -37,14 +37,14 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   modal.append(div1);
 
   // create h1 in Modal step 1
-  const h1 = document.createElement("h1");
-  h1.class = "modal1h1";
-  h1.id = "modal1h1";
-  h1.innerHTML = 'Book room "' + h1title + '" (step 1)';
-  div1.append(h1);
+  const h1_1 = document.createElement("h1");
+  h1_1.class = "modal1h1";
+  h1_1.id = "modal1h1";
+  h1_1.innerHTML = 'Book room "' + h1title + '" (step 1)';
+  div1.append(h1_1);
 
   // create p in Modal step 1
-  const p = document.createElement("div");
+  const p = document.createElement("p");
   p.textContent = "What date would you like to come?";
   p.classList.add('modal-content-text')
   div1.append(p);
@@ -73,7 +73,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   const btnSearch = document.createElement("button");
   btnSearch.innerText = "Search available times";
   btnSearch.className = "btnSearch btnModal";
-   div1.append(btnSearch);
+  div1.append(btnSearch);
 
   // create new div in Modal for the step 2 booking process
   const div2 = document.createElement("div");
@@ -82,10 +82,10 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   modal.append(div2);
 
   // create h1 in Modal step 2
-  const h1_1 = document.createElement("h1");
-  h1_1.class = "modal2h1";
-  h1_1.id = "modal2h1";
-  div2.append(h1_1);
+  const h1_2 = document.createElement("h1");
+  h1_2.class = "modal2h1";
+  h1_2.id = "modal2h1";
+  div2.append(h1_2);
 
   // create input for the name in Modal step 2
   const inp2 = document.createElement("input");
@@ -136,10 +136,10 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   modal.append(div3);
 
   // create h1 in Modal step 3
-  const h1_2 = document.createElement("h1");
-  h1_2.class = "modal3h1";
-  h1_2.textContent = "Thank you!";
-  div3.append(h1_2);
+  const h1_3 = document.createElement("h1");
+  h1_3.class = "modal3h1";
+  h1_3.textContent = "Thank you!";
+  div3.append(h1_3);
 
   const modal3link = document.createElement("a");
   div3.append(modal3link);
@@ -151,6 +151,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   inp.className = 'modal-content-text';
   inp2.className = 'modal-content-text';
   inp3.className = 'modal-content-text';
+  lab.className = 'modal-content-text';
   lab2.className = 'modal-content-text';
   lab3.className = 'modal-content-text';
   lab4.className = 'modal-content-text';
@@ -338,6 +339,6 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     }
 
     div2.style.display = "none";
-    div3.style.display = "block";
+    div3.style.display = "flex";
   };
 }
