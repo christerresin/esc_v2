@@ -1,11 +1,8 @@
 export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
   //===TODO==================================
-  // - Merge with main (pull request)
-  // - Fix removeChild that resets on Back to challenges
-  // - STYLE
-  // - Get everything working on GitHub Pages
-
+    // - STYLE
+  
   // OPTIONAL:
   // Stop "set"-processes after alert -- i.e. don't let user go to modal page 3
 
@@ -22,6 +19,9 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   // - copy style.css -> main.css
   // - CHECK GITLOG -- HISTORY IS CLEARED ON THIS BRANCH?
   // - DATE - MIN MAX
+  // - Merge with main (pull request)
+  // - Fix removeChild that resets on Back to challenges
+  // - Get everything working on GitHub Pages
   //========================================================
 
   //  create the Modal
@@ -89,7 +89,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   // create search times button in Modal step 1
   const btnSearch = document.createElement("button");
   btnSearch.innerText = "Search available times";
-  btnSearch.className = "btnSearch";
+  btnSearch.className = "btnSearch btnModal";
   div1.append(btnSearch);
 
   // create new div in Modal for the step 2 booking process
@@ -143,7 +143,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   // create submit booking button in Modal step 2
   const btnSubmit = document.createElement("button");
   btnSubmit.innerText = "Submit booking";
-  btnSubmit.className = "btnSubmit";
+  btnSubmit.className = "btnSubmit btnModal";
   div2.append(btnSubmit);
 
   // create new div in Modal for the step 3 booking process

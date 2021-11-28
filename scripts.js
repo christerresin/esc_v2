@@ -112,7 +112,7 @@ const render = async () => {
         } 
     });
     ratingsArray.splice(3)
-    const container = document.querySelector('.challenges-list');
+    const container = document.querySelector('.challenges-list-index');
     ratingsArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);
         const challengeItem = challengeInstance.render()

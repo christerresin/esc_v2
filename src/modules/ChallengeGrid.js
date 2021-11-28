@@ -228,7 +228,7 @@ export class ChallengeGrid {
                 if(!this.labelsArray.includes(label)) {
                     this.labelsArray.push(label);
                     const filterTagItem = document.createElement('label');
-                    filterTagItem.innerHTML = label;
+                    filterTagItem.innerHTML = label[0].toUpperCase() + label.slice(1);
                     filterTagItem.style.backgroundColor = 'white';
                     filterTagLabels.appendChild(filterTagItem);
                     filterTagItem.addEventListener('click', (event) => {
@@ -243,7 +243,7 @@ export class ChallengeGrid {
                             filterTagItem.style.borderColor = "lightgray";
                         }
 
-                        const value = event.target.innerText;
+                        const value = event.target.innerText.toLowerCase();
                         const index = this.filters.labelsFilters.indexOf(value);
                         this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
                         this.filters.labelsFilters.length > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
