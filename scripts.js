@@ -86,13 +86,12 @@ const load = async () => {
         try {
             const response = await fetch(url);
             const data = await response.json();
-            const challenges = data.challenges
+            const challenges = data.challenges;
             return challenges;
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }    
-
-}
+};
 
 const render = async () => {
     const data = await load();
@@ -101,25 +100,25 @@ const render = async () => {
         if(challenge.rating >= 5) {
             ratingsArray.push(challenge);
         } 
-    })
+    });
     data.forEach(challenge => {
         if (challenge.rating < 5 && challenge.rating >= 4.5) {
             ratingsArray.push(challenge);
         } 
-    })
+    });
     data.forEach(challenge => {
         if (challenge.rating < 4.5 && challenge.rating >= 4) {
             ratingsArray.push(challenge);
         } 
-    })
+    });
     ratingsArray.splice(3)
     const container = document.querySelector('.challenges-list');
     ratingsArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);
         const challengeItem = challengeInstance.render()
         container.appendChild(challengeItem);
-    })
-}
+    });
+};
 
 document.querySelector('.main-nav-toggle').addEventListener('click', () => {
     document.querySelector('.main-nav').classList.toggle('open');

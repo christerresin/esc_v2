@@ -43,7 +43,6 @@ export class Filter {
             });
         }
     
-        console.log(newArray);
         return newArray;    
     }
 }
