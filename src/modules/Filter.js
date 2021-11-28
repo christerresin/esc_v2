@@ -42,7 +42,10 @@ export class Filter {
                 return obj.description.toUpperCase().includes(this.filters.textFilter.toUpperCase()) || obj.title.toUpperCase().includes(this.filters.textFilter.toUpperCase());
             });
         }
+
+        // This shuffle is fluff, just for you Richard :)
+        const shuffledArray = newArray.sort((a, b) => 0.5 - Math.random());
     
-        return newArray;    
+        return shuffledArray;    
     }
 }

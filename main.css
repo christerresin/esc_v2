@@ -766,15 +766,8 @@ img {
 }
 
 /* MODAL STYLING */
-/* body {
-  font-family: Arial, Helvetica, sans-serif;
-  width: 100%;
-  height: 100%;
-} */
-
 
 /* The Modal (background) */
-
 .modal {
   display: none;
   /* Hidden by default */
@@ -798,38 +791,44 @@ img {
   /* Black w/ opacity */
 }
 
-
-/* the initail display condition for the Modal step 2 */
-
+/* Initial display condition for the Modal step 2 */
 #divstep2 {
   display: none;
 }
 
-
-/* the initail display condition for the Modal step 3 */
+/* Initial display condition for the Modal step 3 */
 
 #divstep3 {
   display: none;
 }
 
-
 /* Modal Content */
-
 .modal-content {
+  display: flex;
+  flex-direction: column;
   background-color: #fefefe;
-  margin: auto;
   padding: 20px;
+  margin: 8% auto;
   border: 1px solid #888;
-  width: 80%;
-  height: 80%;
+  width: 40vw;
+  height: 60vh;
 }
 
 .modal-content * {
-  display: inherit;
+  padding: 20px;
+  font-size: 1.2rem;
+  /* flex-grow: 1; */
 }
 
+.modal-content h1 {
+  font-size: 1.6rem;
+}
 
 /* The Close Button */
+.modal-content-text {
+  font-size: 1.2rem;
+  width:fit-content;
+}
 
 .close {
   color: #aaaaaa;
@@ -847,25 +846,21 @@ img {
 
 
 /* The search button */
-
 .btnSearch {
-  position: absolute;
-  right: 15%;
-  bottom: 22%;
+  align-self: flex-end;
+  /* margin-top: 25%; */
 }
 
-
 /* The submit button */
-
 .btnSubmit {
   position: absolute;
-  right: 15%;
-  bottom: 22%;
+  right: 30%;
+  bottom: 24%;
 }
 
 .btnModal {
-  display: block;
-  margin: 0.5rem;
+  /* display: block; */
+  /* margin: 0.5rem; */
   background-color: #e3170a;
   padding: 1rem 3rem;
   border-radius: 0.3rem;
@@ -874,4 +869,8 @@ img {
   font-weight: bold;
   transition: background-color 0.2s;
   color: white;
+}
+
+.challenges-link {
+  font-size: 1.2rem;
 }

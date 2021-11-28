@@ -1,9 +1,11 @@
 import modalFunc from './modal.js'
+
 export class Challenge {
     constructor(data) {
         this.title = data.title;
         this.rating = data.rating;
         this.image = data.image;
+        this.type = data.type;
         this.description = data.description;
         this.minParticipants = data.minParticipants;
         this.maxParticipants = data.maxParticipants;
@@ -46,7 +48,7 @@ export class Challenge {
 
         let challengeSize = document.createElement('small');
         challengeSize.classList.add('challenge-size');
-        challengeSize.innerHTML = `${this.minParticipants}-${this.maxParticipants} participants`;
+        challengeSize.innerHTML = this.type === 'onsite' ? `${this.minParticipants}-${this.maxParticipants} participants` : `${this.minParticipants}-${this.maxParticipants} participants (networked)`;
 
         let challengeDescription = document.createElement('p');
         challengeDescription.classList.add('challenge-description');
@@ -54,7 +56,7 @@ export class Challenge {
 
         let challengeCta = document.createElement('a');
         challengeCta.classList.add('challenge-cta');
-        challengeCta.innerHTML = "Book the room";
+        challengeCta.innerText = this.type === 'onsite' ? "Book the room" : "Take challenge online";
 
         challengeCta.addEventListener('click', () => {
             modalFunc(this.title, this.minParticipants, this.maxParticipants);

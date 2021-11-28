@@ -40,11 +40,13 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   const h1 = document.createElement("h1");
   h1.class = "modal1h1";
   h1.id = "modal1h1";
+  h1.innerHTML = 'Book room "' + h1title + '" (step 1)';
   div1.append(h1);
 
   // create p in Modal step 1
-  const p = document.createElement("p");
+  const p = document.createElement("div");
   p.textContent = "What date would you like to come?";
+  p.classList.add('modal-content-text')
   div1.append(p);
 
   // create the date input in Modal step 1
@@ -67,30 +69,11 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   const c = new Date();
   date.min = c.toISOString().split("T")[0];
 
-// Same thing but doesn't change date min max and not done with "future" variable (max in one year)
-//   let today = new Date();
-//   let dd = today.getDate();
-//   let mm = today.getMonth() + 1; //January is 0 so need to add 1 to make it 1!
-//   let yyyy = today.getFullYear();
-//   TODO Add future variable with one year ahead
-//   let future = Date();
-//   console.log(future);
-  
-//   if (dd < 10) {
-//     dd = "0" + dd;
-//   }
-//   if (mm < 10) {
-//     mm = "0" + mm;
-//   }
-
-//   today = yyyy + "-" + mm + "-" + dd;
-//   document.getElementById("datefield").setAttribute("min", today);
-
   // create search times button in Modal step 1
   const btnSearch = document.createElement("button");
   btnSearch.innerText = "Search available times";
   btnSearch.className = "btnSearch btnModal";
-  div1.append(btnSearch);
+   div1.append(btnSearch);
 
   // create new div in Modal for the step 2 booking process
   const div2 = document.createElement("div");
@@ -160,8 +143,19 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
   const modal3link = document.createElement("a");
   div3.append(modal3link);
+  modal3link.classList.add('challenges-link');
   modal3link.setAttribute("href", "#");
   modal3link.textContent = "Back to challenges";
+
+  // Add same class to modal content items to style them
+  inp.className = 'modal-content-text';
+  inp2.className = 'modal-content-text';
+  inp3.className = 'modal-content-text';
+  lab2.className = 'modal-content-text';
+  lab3.className = 'modal-content-text';
+  lab4.className = 'modal-content-text';
+  lab5.className = 'modal-content-text';
+
 
   // clicking on the leaving link on Modal step 3
   modal3link.onclick = function () {
@@ -170,9 +164,9 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
   // When the user clicks the button, open the modal
 
-  const m1h1 = document.getElementById("modal1h1");
+  // const m1h1 = document.getElementById("modal1h1");
 
-  m1h1.textContent = 'Book room "' + h1title + '" (step 1)';
+  // m1h1.textContent = 'Book room "' + h1title + '" (step 1)';
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
@@ -182,46 +176,53 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     }
   };
 
-  function setbookingdate() {
-    if (inp.value == "") {
-      alert("Error, no selected date.");
-      // stop the process here until the date is selected
-    }
+  function setBookingDate() {
+    // if (inp.value == "") {
+    //   alert("Error, no selected date.");
+    //   // stop the process here until the date is selected
+    // }
     return inp.value;
   }
 
   // Clicking on the search botton function
   btnSearch.onclick = function () {
-    const reqDate = setbookingdate();
+    const reqDate = setBookingDate();
+    if (inp.value == "") {
+      alert("Error, no selected date.");
+      // stop the process here until the date is selected
+      
+    }else    {
 
-    const availableTimes = searchAvailableTimes(reqDate);
-    // if (availableTimes.booking.date != reqDate) {
-    // alert('No matching available date, please choose again.\nThe available date is ' + availableTimes.booking.date)
-    // }
+        const availableTimes = searchAvailableTimes(reqDate);
+        // if (availableTimes.booking.date != reqDate) {
+        // alert('No matching available date, please choose again.\nThe available date is ' + availableTimes.booking.date)
+        // }
 
-    async function searchAvailableTimes(reqDate) {
-      const response = await fetch(
-        "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=" +
-          reqDate,
-        {
-          method: "GET",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-        }
-      ).then(function (response) {
-        if (response.ok) {
-          response.json().then(function (data) {
-            const gatheredTimes = data.slots;
+        async function searchAvailableTimes(reqDate) {
+          const response = await fetch(
+            "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=" +
+              reqDate,
+            {
+              method: "GET",
+              mode: "cors",
+              headers: { "Content-Type": "application/json" },
+            }
+          ).then(function (response) {
+            if (response.ok) {
+              response.json().then(function (data) {
+                const gatheredTimes = data.slots;
 
-            // call a function to switch the booking process to the next step
-            bookingnextstep(gatheredTimes);
+                // call a function to switch the booking process to the next step
+                bookingNextStep(gatheredTimes);
+              });
+            }
           });
-        }
-      });
+        };
     }
+  
   };
 
-  function bookingnextstep(gatheredTimes) {
+  function bookingNextStep(gatheredTimes) {
     // forming the title header for step 2
     const m2h1 = document.getElementById("modal2h1");
     m2h1.textContent = 'Book room "' + h1title + '" (step 2)';
@@ -246,12 +247,13 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
     // changing from step 1 to step 2
     div1.style.display = "none";
-    div2.style.display = "block";
+    div2.style.display = "flex";
   }
 
   function setParticipantName() {
     if (inp2.value == "") {
       alert("Error, no entered participant name.");
+      // TODO
       // stop the process here until the date is selected
     }
     return inp2.value;
@@ -261,6 +263,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
     if (inp3.value == "") {
       alert("Error, no entered e-mail.");
+      // TODO
       // stop the process here until the date is selected
     } else if (!inp3.value.match(pattern)) {
       alert("Error, the entered email is invalid.");
@@ -273,7 +276,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   function setBookingTime() {
     if (selectTime.value == "") {
       alert("Error, no selected time.");
-      // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+      // TODO
       // stop the process here until the date is selected
     }
     return selectTime.value;
@@ -282,20 +285,21 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   function setParticipantsNumber() {
     if (selectPart.value == "") {
       alert("Error, no selected participants number.");
-      // TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO TODO
+      // TODO
       // stop the process here until the date is selected
     }
     return selectPart.value;
   }
 
   // Clicking on the submit botton function
-  btnSubmit.onclick = function () {
+  btnSubmit.onclick = function (event) {
+
     // set booking date
-    const reqDate = setbookingdate();
+    const reqDate = setBookingDate();
  
     // set participant name
     const reqName = setParticipantName();
-
+    
     // set participant email
     const reqEmail = setEmail();
 
@@ -304,10 +308,10 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
     // set number of participants
     const reqPart = setParticipantsNumber();
-    postbookingdata(reqName, reqEmail, reqDate, reqTime, reqPart);
+    postBookingData(reqName, reqEmail, reqDate, reqTime, reqPart);
 
     // build the post object to the server
-    async function postbookingdata(
+    async function postBookingData(
       reqName,
       reqEmail,
       reqDate,
