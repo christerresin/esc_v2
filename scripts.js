@@ -9,7 +9,6 @@ class Challenge {
         this.maxParticipants = data.maxParticipants;
     }
 
-    
     render() {
         // Create elements for challenge card
         let challengesItem = document.createElement('li');
@@ -35,7 +34,6 @@ class Challenge {
             challengeRatingStar.classList.add('challenge-rating-star');
             challengeRatingStar.classList.add('on');
             challengeRating.appendChild(challengeRatingStar);
-    
         };
 
         for(let i = Math.floor(this.rating); i < 5; i++) {
@@ -81,7 +79,6 @@ document.querySelector('.hero-cta-online').href = "challenges.html";
 document.querySelector('.hero-cta-onsite').href = "challenges.html";
 document.querySelector('.challenges-cta-online').href = "challenges.html";
 document.querySelector('.challenges-cta-onsite').href = "challenges.html";
-
 
 const load = async () => {
     const url = 'https://lernia-sjj-assignments.vercel.app/api/challenges';
