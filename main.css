@@ -621,6 +621,10 @@ img {
   width: 300px;
 }
 
+.filter-cta:hover {
+  background-color: rgb(245, 239, 239);
+}
+
 .filter-board {
   padding: 1rem;
   padding-top: 2rem;
@@ -651,6 +655,11 @@ img {
   margin: -2.7rem auto;
   background-color: white;
   padding-top: 0.1rem;
+}
+
+.x-button-style p:hover {
+  cursor: pointer;
+  color: lightslategray;
 }
 
 .filter-box-title {
