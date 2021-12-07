@@ -23,9 +23,9 @@ export class ChallengeGrid {
         this.maxStarsArray = [];
         this.sorting = {
             byHighRating: false,
-            byLowRating: true,
+            byLowRating: false,
             byCharA: false,
-            byCharZ: false
+            byCharZ: true
         }
     }
 
@@ -288,7 +288,6 @@ export class ChallengeGrid {
         const filterInstance = new Filter(this.filters);
         const sortInstance = new Sort(this.sorting);
         const challengeArray = sortInstance.sortArray(filterInstance.filterArray(this.challengeItems));
-        // const sortedChallengeArray = sortInstance.sortArray(challengeArray);
         if(challengeArray.length === 0 || challengeArray === null) {
             const noChallenges = document.createElement('div');
             noChallenges.innerHTML = 'No matching challenges';

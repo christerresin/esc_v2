@@ -89,7 +89,7 @@ export class Sort {
                 }
                 return 0;
             }
-            return array.sort(compare);
+            return sortedArray.sort(compare);
         }
         // Sort challenges by first chars in title z-to-a
         if (this.sortByObj.byCharZ === true) {
@@ -102,7 +102,7 @@ export class Sort {
                 }
                 return 0;
             }
-            return array.sort(compare);
+            return sortedArray.sort(compare);
         }
 
         return sortedArray;
