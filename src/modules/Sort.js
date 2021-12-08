@@ -27,8 +27,6 @@ export class Sort {
         if (this.sortByObj.byHighRating === true) {
             function compare(a, b) {
                 if (a.rating < b.rating) {
-                    console.log(a.rating)
-                    console.log(b.rating)
                     return 1;
                 }
                 if (a.rating > b.rating) {
