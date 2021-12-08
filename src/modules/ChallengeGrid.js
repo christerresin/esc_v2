@@ -23,9 +23,9 @@ export class ChallengeGrid {
         this.maxStarsArray = [];
         this.sorting = {
             byHighRating: false,
-            byLowRating: false,
+            byLowRating: true,
             byCharA: false,
-            byCharZ: true
+            byCharZ: false
         }
     }
 

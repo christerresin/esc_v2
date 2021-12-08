@@ -10,73 +10,33 @@ export class Sort {
 
     sortArray(array) {
         let sortedArray = array;
-        // sort challenges by ratin high-to-low
-        if (this.sortByObj.byHighRating === true) {
-            sortedArray = [];
-            array.forEach(challenge => {
-                if(challenge.rating >= 5) {
-                    sortedArray.push(challenge);
-                }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating < 5 && challenge.rating >= 4) {
-                    sortedArray.push(challenge);
-                }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating < 4 && challenge.rating >= 3) {
-                    sortedArray.push(challenge);
-                }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating < 3 && challenge.rating >= 2) {
-                    sortedArray.push(challenge);
-                }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating < 2 && challenge.rating >= 1) {
-                    sortedArray.push(challenge);
-                }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating < 1 && challenge.rating >= 0) {
-                    sortedArray.push(challenge);
-                }
-            });
-        }
         // Sort challenges on rating low-to-high
         if (this.sortByObj.byLowRating === true) {
-            sortedArray = [];
-            array.forEach(challenge => {
-                if (challenge.rating >= 0 && challenge.rating <= 1) {
-                    sortedArray.push(challenge);
+            function compare(a, b) {
+                if (a.rating < b.rating) {
+                    return -1;
                 }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating > 1 && challenge.rating <= 2) {
-                    sortedArray.push(challenge);
+                if (a.rating > b.rating) {
+                    return 1;
                 }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating > 2 && challenge.rating <= 3) {
-                    sortedArray.push(challenge);
+                return 0;
+            }
+            return sortedArray.sort(compare);
+        }
+        // Sort challenges on rating high-to-low
+        if (this.sortByObj.byHighRating === true) {
+            function compare(a, b) {
+                if (a.rating < b.rating) {
+                    console.log(a.rating)
+                    console.log(b.rating)
+                    return 1;
                 }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating > 3 && challenge.rating <= 4) {
-                    sortedArray.push(challenge);
+                if (a.rating > b.rating) {
+                    return -1;
                 }
-            });
-            array.forEach(challenge => {
-                if (challenge.rating > 4 && challenge.rating < 5) {
-                    sortedArray.push(challenge);
-                }
-            });
-            array.forEach(challenge => {
-                if(challenge.rating >= 5) {
-                    sortedArray.push(challenge);
-                }
-            });
+                return 0;
+            }
+            return sortedArray.sort(compare);
         }
         // Sort challenges by first chars in title a-to-z
         if (this.sortByObj.byCharA === true) {
