@@ -147,7 +147,8 @@ img {
   font-weight: bold;
 }
 .main-nav a:hover {
-  color: #8acfe5;
+  color: #8acfe6;
+  cursor:pointer;
 }
 
 @keyframes main-nav_open {
@@ -202,7 +203,8 @@ img {
   transition: background-color 0.2s;
 }
 .hero-cta-onsite:hover {
-  background-color: #75c6e0;
+  background-color: #75c6e1;
+  cursor: pointer;
 }
 .hero-cta-online {
   font-weight: bold;
@@ -229,7 +231,8 @@ img {
     color: white;
   }
   .hero-cta-online:hover {
-    background-color: #cb1509;
+    background-color: #cb1508;
+    cursor:pointer;
   }
 }
 @media screen and (min-width: 960px) {
@@ -380,7 +383,8 @@ img {
   align-self: flex-end;
 }
 .challenges-item .challenge-cta:hover {
-  background-color: #cb1509;
+  background-color: #cb1508;
+  cursor: pointer;
 }
 @media screen and (min-width: 960px) {
   .challenges-item {
@@ -409,7 +413,8 @@ img {
   transition: background-color 0.2s;
 }
 .challenges-cta-onsite:hover {
-  background-color: #75c6e0;
+  background-color: #75c6e1;
+  cursor: pointer;
 }
 .challenges-cta-online {
   font-weight: bold;
@@ -436,7 +441,8 @@ img {
     color: white;
   }
   .challenges-cta-online:hover {
-    background-color: #cb1509;
+    background-color: #cb1508;
+    cursor: pointer;
   }
 }
 
@@ -484,7 +490,8 @@ img {
   color: #8acfe5;
 }
 .story-cta:hover {
-  background-color: #00090e;
+  background-color: #00090d;
+  cursor: pointer;
 }
 
 .usp-item {
@@ -522,7 +529,8 @@ img {
   margin: 0;
 }
 .usp-item .usp-cta a:hover {
-  background-color: #cb1509;
+  background-color: #cb1508;
+  cursor: pointer;
 }
 @media screen and (min-width: 960px) {
   .usp-item {
@@ -582,7 +590,8 @@ img {
   transition: color 0.2s;
 }
 .footer a:hover {
-  color: #8acfe5;
+  color: #8acfe6;
+  cursor: pointer;
 }
 @media screen and (min-width: 960px) {
   .footer {
@@ -623,6 +632,7 @@ img {
 
 .filter-cta:hover {
   background-color: rgb(245, 239, 239);
+  cursor: pointer;
 }
 
 .filter-board {
@@ -655,11 +665,12 @@ img {
   margin: -2.7rem auto;
   background-color: white;
   padding-top: 0.1rem;
+  color: lightslategray
 }
 
 .x-button-style p:hover {
   cursor: pointer;
-  color: lightslategray;
+  color: #000000;
 }
 
 .filter-box-title {
@@ -860,7 +871,7 @@ img {
 
 .close:hover,
 .close:focus {
-  color: #000;
+  color: #000000;
   text-decoration: none;
   cursor: pointer;
 }
