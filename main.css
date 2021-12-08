@@ -891,7 +891,6 @@ img {
 }
 
 .placeholder-img {
-  width: auto;
   height: 40vh;
 }
 @media screen and (min-width: 960px) {
