@@ -621,9 +621,6 @@ img {
   width: 300px;
 }
 
-.filter-cta:hover {
-  background-color: rgb(245, 239, 239);
-}
 
 .filter-board {
   padding: 1rem;
@@ -655,11 +652,6 @@ img {
   margin: -2.7rem auto;
   background-color: white;
   padding-top: 0.1rem;
-}
-
-.x-button-style p:hover {
-  cursor: pointer;
-  color: lightslategray;
 }
 
 .filter-box-title {
@@ -896,4 +888,32 @@ img {
 #divstep3 {
   justify-content: center;
   align-items: center;
+}
+
+.the-story {
+  border: solid #021928;
+  padding-bottom: 2rem;
+}
+
+.the-story-title {
+  text-align: center;
+  margin: 0 auto;
+  padding: 3rem;
+  font-size: 2rem;
+}
+
+.company-story p {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.5rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.check-out-challenges {
+  margin-top: 3rem;
+  font-size: 2rem;
+  text-align: center;
 }
