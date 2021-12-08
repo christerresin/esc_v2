@@ -267,9 +267,9 @@ export class ChallengeGrid {
         searchText.classList.add('filter-search-input');
         searchText.placeholder = "Start typing to filter";
         searchText.addEventListener('keyup', () => {
-            this.filters.byText = true;
+            this.filters.byText = searchText.value.length >= 3;
             this.filters.textFilter = searchText.value;
-            this.rerender();
+            this.rerender();   
         });
         filterSearchText.appendChild(searchText);
     }
