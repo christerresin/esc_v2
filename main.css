@@ -922,7 +922,7 @@ img {
 
 .motto {
   text-align: center;
-  padding: 5rem 5rem 0 5rem;
+  padding: 2rem;
   background-color: #021928;
   margin-top: 3rem;
   color: white;
@@ -930,11 +930,12 @@ img {
 
 .motto p {
   text-align: center;
-  width: 40vw;
-  height: 30vh;
-  margin: 0 auto;
+  margin: 1rem auto 1rem auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 30vw;
   font-size: 1.5rem;
-}
+} 
 
 .try-us {
   margin-bottom: -5rem;
@@ -978,7 +979,7 @@ img {
   display: block;
   cursor: pointer;
   margin: 0.5rem;
-  background-color: #75c6e0;
+  background-color:#8acfe6; 
   padding: 1rem 3rem;
   border-radius: 0.3rem;
   color: black;
@@ -990,7 +991,7 @@ img {
 }
 
 .contact-me-cta:hover {
-  background-color: #8acfe6;
+  background-color: #75c6e0;
 }
 
 .check-out-challenges {
