@@ -18,7 +18,7 @@ img {
 }
 
 .header {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 1rem;
 }
@@ -82,7 +82,7 @@ img {
 }
 .main-nav .main-menu {
   z-index: 1;
-  background-color: #011827;
+  background-color: #021928;
 }
 @media screen and (max-width: 960px) {
   .main-nav.open {
@@ -128,7 +128,7 @@ img {
 }
 @media screen and (min-width: 960px) {
   .main-nav {
-    background-color: #011827;
+    background-color: #021928;
   }
   .main-nav .main-nav-toggle {
     display: none;
@@ -471,7 +471,7 @@ img {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   text-align: center;
   font-size: 1.7rem;
@@ -490,7 +490,7 @@ img {
 .story-cta {
   display: block;
   margin: 0.5rem;
-  background-color: #011827;
+  background-color: #021928;
   padding: 1rem 3rem;
   border-radius: 0.3rem;
   color: black;
@@ -579,7 +579,7 @@ img {
 }
 
 .footer {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 5rem 0;
 }
@@ -649,6 +649,7 @@ img {
   width: 300px;
 }
 
+
 .filter-board {
   padding: 1rem;
   padding-top: 2rem;
@@ -659,7 +660,7 @@ img {
   width: 60vw;
   margin: 0 auto; */
   border: solid lightgray;
-  color: #011827;
+  color: #021928;
   padding: 0 0.5rem 1rem 1rem;
 }
 
@@ -915,4 +916,117 @@ img {
 #divstep3 {
   justify-content: center;
   align-items: center;
+}
+
+.placeholder-img {
+  height: 40vh;
+  background-image: url('images/dummypic.png');
+  background-size: cover;
+  height: 40vh;
+}
+@media screen and (min-width: 960px) {
+  .placeholder-img {
+    height: 45vw;
+  }
+}
+
+.the-story {
+  padding-bottom: 2rem;
+}
+
+.the-story-title {
+  text-align: center;
+  margin: 0 auto;
+  padding: 3rem;
+  font-size: 2rem;
+}
+
+.company-story p {
+  margin: 0 auto;
+  text-align: center;
+  font-size: 1.5rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+.motto {
+  text-align: center;
+  padding: 2rem;
+  background-color: #021928;
+  margin-top: 3rem;
+  color: white;
+}
+
+.motto p {
+  text-align: center;
+  margin: 1rem auto 1rem auto;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  width: 30vw;
+  font-size: 1.5rem;
+} 
+
+.try-us {
+  margin-bottom: auto;
+}
+
+.meet-us h2 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.8rem;
+  padding: 3rem;
+}
+
+.story-title {
+  font-size: 1.8rem;
+  font-weight: normal;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  text-align: center;
+}
+
+.person-content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.company-position {
+  padding: 0.5rem;
+  text-align: center;
+  align-self: center;
+}
+
+.story-description {
+  text-align: left;
+  padding-bottom: 2rem;
+  padding-top: 0.5rem;
+}
+
+.contact-me-cta {
+  display: block;
+  cursor: pointer;
+  margin: 0.5rem;
+  background-color:#8acfe6; 
+  padding: 1rem 3rem;
+  border-radius: 0.3rem;
+  color: black;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  align-self: center;
+}
+
+.contact-me-cta:hover {
+  background-color: #75c6e0;
+}
+
+.check-out-challenges {
+  margin-top: 3rem;
+  font-size: 2rem;
+  text-align: center;
 }

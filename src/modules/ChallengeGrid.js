@@ -326,4 +326,4 @@ export class ChallengeGrid {
         this.container.appendChild(challengeItem);
         });
     }
-}
+};
