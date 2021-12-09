@@ -911,6 +911,9 @@ img {
 
 .placeholder-img {
   height: 40vh;
+  background-image: url('images/dummypic.png');
+  background-size: cover;
+  height: 40vh;
 }
 @media screen and (min-width: 960px) {
   .placeholder-img {
