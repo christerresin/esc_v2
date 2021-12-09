@@ -28,7 +28,7 @@ img {
   height: 80px;
   line-height: 1em;
   font-size: 1.6rem;
-  background-image: url("images/logo.png");
+  background-image: url('images/logo.png');
   background-size: 120px;
   background-repeat: no-repeat;
 }
@@ -58,7 +58,7 @@ img {
   background-color: white;
 }
 .main-nav .main-nav-toggle::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.7rem;
   display: block;
@@ -70,7 +70,7 @@ img {
   transition: opacity 0.5s;
 }
 .main-nav .main-nav-toggle::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 1.4rem;
   display: block;
@@ -173,7 +173,7 @@ img {
   }
 }
 .hero-image {
-  background-image: url("images/hero.png");
+  background-image: url('images/hero.png');
   background-size: cover;
   height: 40vh;
 }
@@ -312,7 +312,22 @@ img {
   .challenges-list-index {
     width: auto;
     justify-content: center;
-  }  
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .challenges-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: auto;
+    margin-left: 8rem;
+    margin-right: 8rem;
+    justify-items: center; /* items in challenges.css */
+  }
+  .challenges-list-index {
+    width: auto;
+    justify-content: center;
+  }
 }
 
 .challenges-item {
@@ -323,9 +338,9 @@ img {
   box-shadow: 0 0 1rem rgba(182, 189, 181, 0.5);
   margin: 1rem;
   overflow: hidden;
-  justify-content:space-between;
+  justify-content: space-between;
   max-width: 85vw;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 .challenges-item > *:not(img) {
   margin: 0 1rem;
@@ -352,12 +367,12 @@ img {
   width: 1rem;
   height: 1rem;
   margin: 0 0.4rem 0 0;
-  background-image: url("images/star-on.png");
+  background-image: url('images/star-on.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
 .challenges-item .challenge-rating .challenge-rating-star.off {
-  background-image: url("images/star-off.png");
+  background-image: url('images/star-off.png');
 }
 .challenges-item .challenge-description {
   margin-top: 1rem;
@@ -881,7 +896,7 @@ img {
 
 .challenges-link {
   font-size: 1.2rem;
-  padding-top: 2rem; 
+  padding-top: 2rem;
 }
 
 #divstep3 {
