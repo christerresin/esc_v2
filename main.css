@@ -630,6 +630,7 @@ img {
   flex-direction: row;
   justify-content: flex-end;
   width: 77%;
+  height: 1.5rem;
   margin: 1rem auto 1rem auto;
 }
 
@@ -648,7 +649,6 @@ img {
   box-sizing: border-box;
   width: 300px;
 }
-
 
 .filter-board {
   padding: 1rem;
@@ -966,7 +966,7 @@ img {
   padding-bottom: 1rem;
   width: 30vw;
   font-size: 1.5rem;
-} 
+}
 
 .try-us {
   margin-bottom: auto;
@@ -1010,7 +1010,7 @@ img {
   display: block;
   cursor: pointer;
   margin: 0.5rem;
-  background-color:#8acfe6; 
+  background-color: #8acfe6;
   padding: 1rem 3rem;
   border-radius: 0.3rem;
   color: black;
