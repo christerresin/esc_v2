@@ -15,10 +15,17 @@ export class Challenge {
         // Create elements for challenge card
         let challengesItem = document.createElement('li');
         challengesItem.classList.add('challenges-item');
-        
-        let challengesPicture = document.createElement('img')
+
+        let challengesPicture = document.createElement('div')
         challengesPicture.classList.add('challenge-picture');
-        challengesPicture.src=this.image;
+        challengesPicture.style.backgroundImage = `url(${this.image})`;
+
+        let challengesIconContainer = document.createElement('div');
+        challengesIconContainer.classList.add('challenges-icon');
+
+        let challengesIcon = document.createElement('i');
+        challengesIcon.className = this.type == 'online' ? 'icon fa-solid fa-laptop' : 'icon fa-solid fa-house';
+
 
         let challengeTitle = document.createElement('h3');
         challengeTitle.classList.add('challenge-title');
@@ -36,7 +43,7 @@ export class Challenge {
             challengeRatingStar.classList.add('challenge-rating-star');
             challengeRatingStar.classList.add('on');
             challengeRating.appendChild(challengeRatingStar);
-    
+
         };
 
         for(let i = Math.floor(this.rating); i < 5; i++) {
@@ -64,6 +71,8 @@ export class Challenge {
 
         // Render/append on site
         challengesItem.appendChild(challengesPicture);
+        // challengesItem.appendChild(challengesIconContainer);
+        challengesPicture.appendChild(challengesIcon);
         challengesItem.appendChild(challengeTitle);
         challengesItem.appendChild(challengeMeta)
         challengeMeta.appendChild(challengeRating);
