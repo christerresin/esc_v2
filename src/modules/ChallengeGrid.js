@@ -279,6 +279,27 @@ export class ChallengeGrid {
             this.rerender();
         });
         filterSearchText.appendChild(searchText);
+
+        const sortDropDownContainer = document.querySelector('.sort-container');
+        const sortDropDown = document.createElement('select');
+        const sortOptions = [{title: 'Title: A-Z', sort: 'byCharA'}, {title: 'Title: Z-A', sort: 'byCharZ'}, {title: 'Rating: High-Low', sort: 'byHighRating'}, {title: 'Rating: Low-High', sort: 'byLowRating'}];
+        sortOptions.forEach(opt => {
+            const option = document.createElement('option');
+            option.text = opt.title;
+            option.value = opt.sort;
+            sortDropDown.add(option)
+        })
+        sortDropDown.addEventListener('change', (event) => {
+            let sortOptionSelected = event.target.value;
+            let noSorting = (sortObj) => {
+                Object.keys(sortObj).forEach(function(key){ sortObj[key] = 'false'});
+                return sortObj;
+            }
+            noSorting(this.sorting)
+            this.sorting[sortOptionSelected] = true;
+            this.rerender()
+        })
+        sortDropDownContainer.appendChild(sortDropDown)
     }
 
     rerender() {
