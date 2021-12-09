@@ -336,8 +336,8 @@ img {
   justify-content: start;
   align-items: flex-end;
   margin: 0;
-  width: 22.5rem;
-  height: 13.5rem;
+  max-width: 363px;
+  height: 219px;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -624,6 +624,14 @@ img {
     grid-column: 10/12;
   }
 }
+.sort-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  width: 77%;
+  margin: 1rem auto 1rem auto;
+}
+
 .filter-cta {
   display: block;
   margin: 0 auto;

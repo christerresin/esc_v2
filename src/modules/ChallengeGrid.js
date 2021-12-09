@@ -282,6 +282,11 @@ export class ChallengeGrid {
 
         const sortDropDownContainer = document.querySelector('.sort-container');
         const sortDropDown = document.createElement('select');
+        const sortPlaceholder = document.createElement('option');
+        sortPlaceholder.text = 'Sort'
+        sortPlaceholder.value = '';
+        sortPlaceholder.selected = true;
+        sortDropDown.add(sortPlaceholder);
         const sortOptions = [{title: 'Title: A-Z', sort: 'byCharA'}, {title: 'Title: Z-A', sort: 'byCharZ'}, {title: 'Rating: High-Low', sort: 'byHighRating'}, {title: 'Rating: Low-High', sort: 'byLowRating'}];
         sortOptions.forEach(opt => {
             const option = document.createElement('option');
