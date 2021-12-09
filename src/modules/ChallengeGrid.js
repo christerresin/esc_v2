@@ -156,23 +156,25 @@ export class ChallengeGrid {
             star.addEventListener('click', () => {
                 let i = this.minStarsArray.indexOf(star);
                 let clickedStar = i + 1;
+                
+                if(clickedStar < this.filters.maxRatingFilter){
+                    if(star.classList.contains('off')) {
+                        for (i; i >= 0; i--) {
+                            this.minStarsArray[i].classList.add('on');
+                            this.minStarsArray[i].classList.remove('off');
+                        }
+                    } else {
+                        clickedStar--;
+                        for (i; i < this.minStarsArray.length; ++i) {
+                            this.minStarsArray[i].classList.add('off');
+                            this.minStarsArray[i].classList.remove('on');
+                        }
+                    };
 
-                if(star.classList.contains('off')) {
-                    for (i; i >= 0; i--) {
-                        this.minStarsArray[i].classList.add('on');
-                        this.minStarsArray[i].classList.remove('off');
-                    }
-                } else {
-                    clickedStar--;
-                    for (i; i < this.minStarsArray.length; ++i) {
-                        this.minStarsArray[i].classList.add('off');
-                        this.minStarsArray[i].classList.remove('on');
-                    }
-                };
-
-                this.filters.minRatingFilter = clickedStar;
-                this.filters.byRating = true;
-                this.rerender();
+                    this.filters.minRatingFilter = clickedStar;
+                    this.filters.byRating = true;
+                    this.rerender();
+                }
             });
         });
         
@@ -190,22 +192,25 @@ export class ChallengeGrid {
                 let i = this.maxStarsArray.indexOf(star);
                 let clickedStar = i + 1;
 
-                if(star.classList.contains('off')) {
-                    for (i; i >= 0; i--) {
-                        this.maxStarsArray[i].classList.add('on');
-                        this.maxStarsArray[i].classList.remove('off');
-                    }
-                } else {
-                    clickedStar--;
-                    for (i; i < this.maxStarsArray.length; ++i) {
-                        this.maxStarsArray[i].classList.add('off');
-                        this.maxStarsArray[i].classList.remove('on');
-                    }
-                };
+                if(clickedStar >= this.filters.minRatingFilter){
 
-                this.filters.maxRatingFilter = clickedStar;
-                this.filters.byRating = true;
-                this.rerender();
+                    if(star.classList.contains('off')) {
+                        for (i; i >= 0; i--) {
+                            this.maxStarsArray[i].classList.add('on');
+                            this.maxStarsArray[i].classList.remove('off');
+                        }
+                    } else {
+                        clickedStar--;
+                        for (i; i < this.maxStarsArray.length; ++i) {
+                            this.maxStarsArray[i].classList.add('off');
+                            this.maxStarsArray[i].classList.remove('on');
+                        }
+                    };
+
+                    this.filters.maxRatingFilter = clickedStar;
+                    this.filters.byRating = true;
+                    this.rerender();
+                }
             });
         });
 
