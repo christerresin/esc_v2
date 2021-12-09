@@ -24,7 +24,7 @@ export class ChallengeGrid {
 
     async run() {
         this.challenges = await this.retriever.load();
-       
+
         this.render();
     }
 
@@ -40,20 +40,20 @@ export class ChallengeGrid {
 
         // FILTERBOX
         const filterButton = document.querySelector('.filter-cta');
-        filterButton.addEventListener('click', () => 
+        filterButton.addEventListener('click', () =>
             {
-                filterButton.style.display = 'none'; 
+                filterButton.style.display = 'none';
                 filterBoard.style.display = "block";
             }
         );
 
         const filterBoard = document.querySelector('.filter-board');
         filterBoard.style.display = 'none';
-        
+
         const filterMenu  = document.createElement('div');
         filterMenu.classList.add("filter-menu");
         filterBoard.appendChild(filterMenu);
-        
+
         const filterBoxTitle = document.createElement('h3');
         filterBoxTitle.classList.add("filter-box-title");
         filterMenu.appendChild(filterBoxTitle);
@@ -65,7 +65,7 @@ export class ChallengeGrid {
         btnSpan.innerHTML = "&#10005;";
         xButton.appendChild(btnSpan);
         filterMenu.appendChild(xButton);
-        xButton.addEventListener('click', () => 
+        xButton.addEventListener('click', () =>
             {
                 filterButton.style.display = 'block';
                 filterBoard.style.display = "none";
@@ -128,7 +128,7 @@ export class ChallengeGrid {
         const filterTypeText2 = document.createElement('label');
         filterTypeText2.innerHTML = "&nbspInclude on-site challenges";
         filterListPoint2.appendChild(filterTypeText2);
-        
+
         const filterRating = document.createElement('div');
         filterRating.classList.add("filter-by-rating");
         filtersToChoose.appendChild(filterRating);
@@ -145,9 +145,9 @@ export class ChallengeGrid {
                 starsArr[i] = document.createElement('li');
                 starsArr[i].classList.add("filter-rating-star");
                 starsArr[i].classList.add("off");
-                filterRatingList.appendChild(starsArr[i]); 
-                starsArr.push();  
-            } 
+                filterRatingList.appendChild(starsArr[i]);
+                starsArr.push();
+            }
         };
 
         createStars(this.minStarsArray);
@@ -175,7 +175,7 @@ export class ChallengeGrid {
                 this.rerender();
             });
         });
-        
+
         // Label "to" between stars
         const filterStarLabel = document.createElement('li');
         filterStarLabel.innerHTML = "&nbspto&nbsp";
@@ -184,7 +184,7 @@ export class ChallengeGrid {
         filterRatingList.appendChild(filterStarLabel);
 
         createStars(this.maxStarsArray);
-        
+
         this.maxStarsArray.forEach(star => {
             star.addEventListener('click', () => {
                 let i = this.maxStarsArray.indexOf(star);
@@ -236,7 +236,7 @@ export class ChallengeGrid {
                         if (filterTagItem.style.backgroundColor == "white") {
                             filterTagItem.style.backgroundColor = "lightslategray";
                             filterTagItem.style.color = "white";
-                            filterTagItem.style.borderColor = "lightslategray";                          
+                            filterTagItem.style.borderColor = "lightslategray";
                         } else {
                             filterTagItem.style.backgroundColor = "white";
                             filterTagItem.style.color = "gray";
@@ -247,7 +247,7 @@ export class ChallengeGrid {
                         const index = this.filters.labelsFilters.indexOf(value);
                         this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
                         this.filters.labelsFilters.length > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
-                        
+
                         this.rerender();
                     })
                 }
@@ -292,4 +292,4 @@ export class ChallengeGrid {
         this.container.appendChild(challengeItem);
         });
     }
-}
+};
