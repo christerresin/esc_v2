@@ -18,7 +18,7 @@ img {
 }
 
 .header {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 1rem;
 }
@@ -28,7 +28,7 @@ img {
   height: 80px;
   line-height: 1em;
   font-size: 1.6rem;
-  background-image: url("images/logo.png");
+  background-image: url('images/logo.png');
   background-size: 120px;
   background-repeat: no-repeat;
 }
@@ -58,7 +58,7 @@ img {
   background-color: white;
 }
 .main-nav .main-nav-toggle::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.7rem;
   display: block;
@@ -70,7 +70,7 @@ img {
   transition: opacity 0.5s;
 }
 .main-nav .main-nav-toggle::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 1.4rem;
   display: block;
@@ -82,7 +82,7 @@ img {
 }
 .main-nav .main-menu {
   z-index: 1;
-  background-color: #011827;
+  background-color: #021928;
 }
 @media screen and (max-width: 960px) {
   .main-nav.open {
@@ -128,7 +128,7 @@ img {
 }
 @media screen and (min-width: 960px) {
   .main-nav {
-    background-color: #011827;
+    background-color: #021928;
   }
   .main-nav .main-nav-toggle {
     display: none;
@@ -173,7 +173,7 @@ img {
   }
 }
 .hero-image {
-  background-image: url("images/hero.png");
+  background-image: url('images/hero.png');
   background-size: cover;
   height: 40vh;
 }
@@ -312,7 +312,7 @@ img {
   .challenges-list-index {
     width: auto;
     justify-content: center;
-  }  
+  }
 }
 
 .challenges-item {
@@ -323,12 +323,31 @@ img {
   box-shadow: 0 0 1rem rgba(182, 189, 181, 0.5);
   margin: 1rem;
   overflow: hidden;
-  justify-content:space-between;
+  justify-content: space-between;
   max-width: 85vw;
-  justify-content:space-between;
+  justify-content: space-between;
 }
 .challenges-item > *:not(img) {
   margin: 0 1rem;
+}
+.challenges-item .challenge-picture {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-end;
+  margin: 0;
+  width: 22.5rem;
+  height: 13.5rem;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.challenges-item .challenge-picture .icon {
+  margin-top: 0.7rem;
+  margin-right: 0.7rem;
+  font-size: 1.5rem;
+  z-index: 1;
+  color: #8acfe5;
 }
 .challenges-item .challenge-title {
   font-size: 1.8rem;
@@ -352,12 +371,12 @@ img {
   width: 1rem;
   height: 1rem;
   margin: 0 0.4rem 0 0;
-  background-image: url("images/star-on.png");
+  background-image: url('images/star-on.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
 .challenges-item .challenge-rating .challenge-rating-star.off {
-  background-image: url("images/star-off.png");
+  background-image: url('images/star-off.png');
 }
 .challenges-item .challenge-description {
   margin-top: 1rem;
@@ -451,7 +470,7 @@ img {
   padding: 1rem;
   display: flex;
   flex-direction: column;
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   text-align: center;
   font-size: 1.7rem;
@@ -470,7 +489,7 @@ img {
 .story-cta {
   display: block;
   margin: 0.5rem;
-  background-color: #011827;
+  background-color: #021928;
   padding: 1rem 3rem;
   border-radius: 0.3rem;
   color: black;
@@ -559,7 +578,7 @@ img {
 }
 
 .footer {
-  background-color: #011827;
+  background-color: #021928;
   color: white;
   padding: 5rem 0;
 }
@@ -632,7 +651,7 @@ img {
   width: 60vw;
   margin: 0 auto; */
   border: solid lightgray;
-  color: #011827;
+  color: #021928;
   padding: 0 0.5rem 1rem 1rem;
 }
 
@@ -882,7 +901,7 @@ img {
 
 .challenges-link {
   font-size: 1.2rem;
-  padding-top: 2rem; 
+  padding-top: 2rem;
 }
 
 #divstep3 {
