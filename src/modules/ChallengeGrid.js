@@ -1,5 +1,6 @@
 import { Challenge } from './Challenge';
 import { Filter } from './Filter';
+import { Sort } from './Sort';
 
 export class ChallengeGrid {
     constructor(retriever, container) {
@@ -20,6 +21,12 @@ export class ChallengeGrid {
         this.labelsArray = [];
         this.minStarsArray = [];
         this.maxStarsArray = [];
+        this.sorting = {
+            byHighRating: false,
+            byLowRating: true,
+            byCharA: false,
+            byCharZ: false
+        }
     }
 
     async run() {
@@ -272,6 +279,32 @@ export class ChallengeGrid {
             this.rerender();
         });
         filterSearchText.appendChild(searchText);
+
+        const sortDropDownContainer = document.querySelector('.sort-container');
+        const sortDropDown = document.createElement('select');
+        const sortPlaceholder = document.createElement('option');
+        sortPlaceholder.text = 'Sort'
+        sortPlaceholder.value = '';
+        sortPlaceholder.selected = true;
+        sortDropDown.add(sortPlaceholder);
+        const sortOptions = [{title: 'Title: A-Z', sort: 'byCharA'}, {title: 'Title: Z-A', sort: 'byCharZ'}, {title: 'Rating: High-Low', sort: 'byHighRating'}, {title: 'Rating: Low-High', sort: 'byLowRating'}];
+        sortOptions.forEach(opt => {
+            const option = document.createElement('option');
+            option.text = opt.title;
+            option.value = opt.sort;
+            sortDropDown.add(option);
+        })
+        sortDropDown.addEventListener('change', (event) => {
+            let sortOptionSelected = event.target.value;
+            let noSorting = (sortObj) => {
+                Object.keys(sortObj).forEach(function(key){ sortObj[key] = 'false'});
+                return sortObj;
+            }
+            noSorting(this.sorting);
+            this.sorting[sortOptionSelected] = true;
+            this.rerender();
+        })
+        sortDropDownContainer.appendChild(sortDropDown);
     }
 
     rerender() {
@@ -279,7 +312,8 @@ export class ChallengeGrid {
         this.container.innerHTML = '';
 
         const filterInstance = new Filter(this.filters);
-        const challengeArray = filterInstance.filterArray(this.challengeItems)
+        const sortInstance = new Sort(this.sorting);
+        const challengeArray = sortInstance.sortArray(filterInstance.filterArray(this.challengeItems));
         if(challengeArray.length === 0 || challengeArray === null) {
             const noChallenges = document.createElement('div');
             noChallenges.innerHTML = 'No matching challenges';
