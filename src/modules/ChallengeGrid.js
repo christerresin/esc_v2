@@ -292,7 +292,7 @@ export class ChallengeGrid {
             const option = document.createElement('option');
             option.text = opt.title;
             option.value = opt.sort;
-            sortDropDown.add(option)
+            sortDropDown.add(option);
         })
         sortDropDown.addEventListener('change', (event) => {
             let sortOptionSelected = event.target.value;
@@ -300,11 +300,11 @@ export class ChallengeGrid {
                 Object.keys(sortObj).forEach(function(key){ sortObj[key] = 'false'});
                 return sortObj;
             }
-            noSorting(this.sorting)
+            noSorting(this.sorting);
             this.sorting[sortOptionSelected] = true;
-            this.rerender()
+            this.rerender();
         })
-        sortDropDownContainer.appendChild(sortDropDown)
+        sortDropDownContainer.appendChild(sortDropDown);
     }
 
     rerender() {

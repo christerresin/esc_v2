@@ -197,7 +197,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
       alert("Error, no selected date.");
       // stop the process here until the date is selected
 
-    }else if (Date.parse(inp.value) > Date.parse(lastDate)) {
+    } else if (Date.parse(inp.value) > Date.parse(lastDate)) {
       alert('Please select a new date, date over a year in the future')
     } else {
 
