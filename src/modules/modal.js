@@ -50,16 +50,16 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   div1.append(p);
 
   // create the date input in Modal step 1
-  const inp = document.createElement("input");
-  const lab = document.createElement("label");
+  const inp1 = document.createElement("input");
+  const lab1 = document.createElement("label");
   const br = document.createElement("br");
-  inp.name = "inpDate";
-  inp.id = "date";
-  inp.type = "date";
-  inp.name = "date";
-  lab.textContent = "Date";
-  div1.append(lab);
-  div1.append(inp);
+  inp1.name = "inpDate";
+  inp1.id = "date";
+  inp1.type = "date";
+  inp1.name = "date";
+  lab1.textContent = "Date";
+  div1.append(lab1);
+  div1.append(inp1);
 
   // Set input options to min = today, max = 1 year from now
   const d = new Date();
@@ -95,6 +95,15 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   lab2.textContent = "Name";
   div2.append(lab2);
   div2.append(inp2);
+
+  // create input for telephone number
+  const inp4 = document.createElement("input");
+  const lab6 = document.createElement("label");
+  inp4.name = "inpPhone";
+  inp4.type = "text";
+  lab6.textContent = "Phone Number";
+  div2.append(lab6);
+  div2.append(inp4);
 
   // create input for the email in Modal step 2
   const inp3 = document.createElement("input");
@@ -148,10 +157,10 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   modal3link.textContent = "Back to challenges";
 
   // Add same class to modal content items to style them
-  inp.className = 'modal-content-text';
+  inp1.className = 'modal-content-text';
   inp2.className = 'modal-content-text';
   inp3.className = 'modal-content-text';
-  lab.className = 'modal-content-text';
+  lab1.className = 'modal-content-text';
   lab2.className = 'modal-content-text';
   lab3.className = 'modal-content-text';
   lab4.className = 'modal-content-text';
@@ -182,13 +191,13 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     //   alert("Error, no selected date.");
     //   // stop the process here until the date is selected
     // }
-    return inp.value;
+    return inp1.value;
   }
 
   // Clicking on the search botton function
   btnSearch.onclick = function () {
     const reqDate = setBookingDate();
-    if (inp.value == "") {
+    if (inp1.value == "") {
       alert("Error, no selected date.");
       // stop the process here until the date is selected
       
@@ -260,6 +269,15 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     return inp2.value;
   }
 
+  function setPhoneNumber() {
+    if (inp4.value == "") {
+      alert("Error, no entered participant name.");
+      // TODO
+      // stop the process here until the date is selected
+    }
+    return inp4.value;
+  }
+
   function setEmail() {
     var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
     if (inp3.value == "") {
@@ -300,7 +318,9 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
  
     // set participant name
     const reqName = setParticipantName();
-    
+
+    const reqPhone = setPhoneNumber();
+        
     // set participant email
     const reqEmail = setEmail();
 
@@ -314,6 +334,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     // build the post object to the server
     async function postBookingData(
       reqName,
+      reqPhone,
       reqEmail,
       reqDate,
       reqTime,
@@ -327,6 +348,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: reqName,
+            phone: reqPhone,
             email: reqEmail,
             date: reqDate,
             time: reqTime,
