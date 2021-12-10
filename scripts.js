@@ -90,6 +90,7 @@ const load = async () => {
             return challenges;
         } catch (error) {
             console.log(error);
+            console.log("Challenges can't be loaded.");
         }
 };
 

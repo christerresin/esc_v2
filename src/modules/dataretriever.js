@@ -11,6 +11,7 @@ export class DataRetriever {
                 this.challenges = data.challenges;
             } catch (error) {
                 console.log(error);
+                console.log("Challenges can't be loaded.");
             }    
         }
 
