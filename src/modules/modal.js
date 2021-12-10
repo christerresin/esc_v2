@@ -316,36 +316,39 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
     // set number of participants
     const reqPart = setParticipantsNumber();
-    postBookingData(reqName, reqEmail, reqDate, reqTime, reqPart);
+    if (reqDate && reqName && reqEmail && reqTime && reqPart) {
 
-    // build the post object to the server
-    async function postBookingData(
-      reqName,
-      reqEmail,
-      reqDate,
-      reqTime,
-      reqPart
-    ) {
-      const res = await fetch(
-        "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
-        {
-          method: "POST",
-          mode: "cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name: reqName,
-            email: reqEmail,
-            date: reqDate,
-            time: reqTime,
-            participants: parseInt(reqPart),
-          }),
-        }
-      );
-      const bookingstatus = await res.json();
-      console.log(bookingstatus);
+      postBookingData(reqName, reqEmail, reqDate, reqTime, reqPart);
+
+      // build the post object to the server
+      async function postBookingData(
+        reqName,
+        reqEmail,
+        reqDate,
+        reqTime,
+        reqPart
+      ) {
+        const res = await fetch(
+          "https://lernia-sjj-assignments.vercel.app/api/booking/reservations",
+          {
+            method: "POST",
+            mode: "cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: reqName,
+              email: reqEmail,
+              date: reqDate,
+              time: reqTime,
+              participants: parseInt(reqPart),
+            }),
+          }
+        );
+        const bookingstatus = await res.json();
+        console.log(bookingstatus);
+      }
+
+      div2.style.display = "none";
+      div3.style.display = "flex";
     }
-
-    div2.style.display = "none";
-    div3.style.display = "flex";
   };
 }
