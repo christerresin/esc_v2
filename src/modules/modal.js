@@ -348,9 +348,9 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
       );
       const bookingstatus = await res.json();
       console.log(bookingstatus);
+      
+      div2.style.display = "none";
+      div3.style.display = "flex";
     }
-
-    div2.style.display = "none";
-    div3.style.display = "flex";
   };
 }
