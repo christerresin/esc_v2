@@ -157,7 +157,7 @@ export class ChallengeGrid {
                 let i = this.minStarsArray.indexOf(star);
                 let clickedStar = i + 1;
                 
-                if(clickedStar < this.filters.maxRatingFilter){
+                if(this.filters.maxRatingFilter >= clickedStar){
                     if(star.classList.contains('off')) {
                         for (i; i >= 0; i--) {
                             this.minStarsArray[i].classList.add('on');
@@ -192,7 +192,7 @@ export class ChallengeGrid {
                 let i = this.maxStarsArray.indexOf(star);
                 let clickedStar = i + 1;
 
-                if(clickedStar >= this.filters.minRatingFilter){
+                if(this.filters.minRatingFilter < clickedStar) {
 
                     if(star.classList.contains('off')) {
                         for (i; i >= 0; i--) {
