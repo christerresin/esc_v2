@@ -263,30 +263,23 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   function setParticipantName() {
     if (inp2.value == "") {
       alert("Error, no entered participant name.");
-      // TODO
-      // stop the process here until the date is selected
     }
     return inp2.value;
   }
 
+  // add function to check phone number
   function setPhoneNumber() {
     if (inp4.value == "") {
-      alert("Error, no entered participant name.");
-      // TODO
-      // stop the process here until the date is selected
+      alert("Error, no entered phone number.");
     }
-    return inp4.value;
   }
 
   function setEmail() {
     var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
     if (inp3.value == "") {
       alert("Error, no entered e-mail.");
-      // TODO
-      // stop the process here until the date is selected
     } else if (!inp3.value.match(pattern)) {
       alert("Error, the entered email is invalid.");
-      // stop the process here until the date is selected
     } else {
       return inp3.value;
     }
@@ -295,17 +288,13 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   function setBookingTime() {
     if (selectTime.value == "") {
       alert("Error, no selected time.");
-      // TODO
-      // stop the process here until the date is selected
-    }
+     }
     return selectTime.value;
   }
 
   function setParticipantsNumber() {
     if (selectPart.value == "") {
       alert("Error, no selected participants number.");
-      // TODO
-      // stop the process here until the date is selected
     }
     return selectPart.value;
   }
@@ -319,7 +308,8 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     // set participant name
     const reqName = setParticipantName();
 
-    const reqPhone = setPhoneNumber();
+    // set phone number
+    const reqPhone = inp4.value;
         
     // set participant email
     const reqEmail = setEmail();
@@ -329,7 +319,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
     // set number of participants
     const reqPart = setParticipantsNumber();
-    postBookingData(reqName, reqEmail, reqDate, reqTime, reqPart);
+    postBookingData(reqName, reqPhone, reqEmail, reqDate, reqTime, reqPart);
 
     // build the post object to the server
     async function postBookingData(
