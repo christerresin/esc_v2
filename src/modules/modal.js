@@ -2,12 +2,12 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
   //===TODO==================================
     // - STYLE
-  
+
   // OPTIONAL:
   // Stop "set"-processes after alert -- i.e. don't let user go to modal page 3
 
   // IN PROGRESS:
-  // 
+  //
 
   // DONE:
   // - DO THIRD PAGE (from Anders modals?)
@@ -65,7 +65,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   const d = new Date();
   d.setYear(d.getFullYear() + 1);
   date.max = d.toISOString().split("T")[0]; //this simply converts it to the correct format
-  
+
   const c = new Date();
   date.min = c.toISOString().split("T")[0];
 
@@ -188,11 +188,18 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   // Clicking on the search botton function
   btnSearch.onclick = function () {
     const reqDate = setBookingDate();
+    let date = new Date();
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const lastDate = `${year + 1}-${month}-${day}`
     if (inp.value == "") {
       alert("Error, no selected date.");
       // stop the process here until the date is selected
-      
-    }else    {
+
+    } else if (Date.parse(inp.value) > Date.parse(lastDate)) {
+      alert('Please select a new date, date over a year in the future')
+    } else {
 
         const availableTimes = searchAvailableTimes(reqDate);
         // if (availableTimes.booking.date != reqDate) {
@@ -220,7 +227,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
           });
         };
     }
-  
+
   };
 
   function bookingNextStep(gatheredTimes) {
@@ -297,10 +304,10 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
     // set booking date
     const reqDate = setBookingDate();
- 
+
     // set participant name
     const reqName = setParticipantName();
-    
+
     // set participant email
     const reqEmail = setEmail();
 
