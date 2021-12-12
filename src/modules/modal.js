@@ -1,4 +1,4 @@
-export default function modalFunc(h1title, minParticipants, maxParticipants) {
+export default function modalFunc(roomID,h1title, minParticipants, maxParticipants) {
 
   //===TODO==================================
     // - STYLE
@@ -201,14 +201,14 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
       alert('Please select a new date, date over a year in the future')
     } else {
 
-        const availableTimes = searchAvailableTimes(reqDate);
+        const availableTimes = searchAvailableTimes(roomID,reqDate);
         // if (availableTimes.booking.date != reqDate) {
         // alert('No matching available date, please choose again.\nThe available date is ' + availableTimes.booking.date)
         // }
 
-        async function searchAvailableTimes(reqDate) {
+        async function searchAvailableTimes(roomID,reqDate) {
           const response = await fetch(
-            "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?date=" +
+            "https://lernia-sjj-assignments.vercel.app/api/booking/available-times?challenge="+roomID+"&date=" +
               reqDate,
             {
               method: "GET",
@@ -219,6 +219,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
             if (response.ok) {
               response.json().then(function (data) {
                 const gatheredTimes = data.slots;
+                console.log(data);
 
                 // call a function to switch the booking process to the next step
                 bookingNextStep(gatheredTimes);
@@ -318,10 +319,11 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     const reqPart = setParticipantsNumber();
     if (reqDate && reqName && reqEmail && reqTime && reqPart) {
 
-      postBookingData(reqName, reqEmail, reqDate, reqTime, reqPart);
+      postBookingData(roomID,reqName, reqEmail, reqDate, reqTime, reqPart);
 
       // build the post object to the server
       async function postBookingData(
+        roomID,
         reqName,
         reqEmail,
         reqDate,
@@ -335,6 +337,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
             mode: "cors",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
+              challenge:parseInt(roomID),
               name: reqName,
               email: reqEmail,
               date: reqDate,

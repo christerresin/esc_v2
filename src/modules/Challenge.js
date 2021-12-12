@@ -2,6 +2,7 @@ import modalFunc from './modal.js'
 
 export class Challenge {
     constructor(data) {
+        this.id=data.id;
         this.title = data.title;
         this.rating = data.rating;
         this.image = data.image;
@@ -66,7 +67,7 @@ export class Challenge {
         challengeCta.innerText = this.type === 'onsite' ? "Book the room" : "Take challenge online";
 
         challengeCta.addEventListener('click', () => {
-            modalFunc(this.title, this.minParticipants, this.maxParticipants);
+            modalFunc(this.id,this.title, this.minParticipants, this.maxParticipants);
         });
 
         // Render/append on site
