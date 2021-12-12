@@ -9,7 +9,7 @@ export class DataRetriever {
         const response = await fetch(url);
         const data = await response.json();
         this.challenges = data.challenges;
-        console.log(this.challenges);
+        // console.log(this.challenges); // remove after test
       } catch (error) {
         console.log(error);
       }

@@ -219,7 +219,7 @@ export default function modalFunc(roomID,h1title, minParticipants, maxParticipan
             if (response.ok) {
               response.json().then(function (data) {
                 const gatheredTimes = data.slots;
-                console.log(data);
+                // console.log(data);// remove after test
 
                 // call a function to switch the booking process to the next step
                 bookingNextStep(gatheredTimes);
@@ -347,7 +347,7 @@ export default function modalFunc(roomID,h1title, minParticipants, maxParticipan
           }
         );
         const bookingstatus = await res.json();
-        console.log(bookingstatus);
+        // console.log(bookingstatus); // remove after test
       }
 
       div2.style.display = "none";
