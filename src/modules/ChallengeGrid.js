@@ -1,5 +1,6 @@
 import { Challenge } from './Challenge';
 import { Filter } from './Filter';
+import { Sort } from './Sort';
 
 export class ChallengeGrid {
     constructor(retriever, container) {
@@ -20,17 +21,25 @@ export class ChallengeGrid {
         this.labelsArray = [];
         this.minStarsArray = [];
         this.maxStarsArray = [];
+        this.sorting = {
+            byHighRating: false,
+            byLowRating: true,
+            byCharA: true,
+            byCharZ: false
+        }
     }
 
     async run() {
         this.challenges = await this.retriever.load();
-       
+
         this.render();
     }
 
     render() {
         const filterInstance = new Filter(this.filters);
-        const challengeArray = filterInstance.filterArray(this.challenges)
+        const sortInstance = new Sort(this.sorting);
+        const challengeArray = sortInstance.sortArray(filterInstance.filterArray(this.challenges));
+        // const challengeArray = filterInstance.filterArray(this.challenges)
         challengeArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);
         const challengeItem = challengeInstance.render();
@@ -40,20 +49,20 @@ export class ChallengeGrid {
 
         // FILTERBOX
         const filterButton = document.querySelector('.filter-cta');
-        filterButton.addEventListener('click', () => 
+        filterButton.addEventListener('click', () =>
             {
-                filterButton.style.display = 'none'; 
+                filterButton.style.display = 'none';
                 filterBoard.style.display = "block";
             }
         );
 
         const filterBoard = document.querySelector('.filter-board');
         filterBoard.style.display = 'none';
-        
+
         const filterMenu  = document.createElement('div');
         filterMenu.classList.add("filter-menu");
         filterBoard.appendChild(filterMenu);
-        
+
         const filterBoxTitle = document.createElement('h3');
         filterBoxTitle.classList.add("filter-box-title");
         filterMenu.appendChild(filterBoxTitle);
@@ -65,7 +74,7 @@ export class ChallengeGrid {
         btnSpan.innerHTML = "&#10005;";
         xButton.appendChild(btnSpan);
         filterMenu.appendChild(xButton);
-        xButton.addEventListener('click', () => 
+        xButton.addEventListener('click', () =>
             {
                 filterButton.style.display = 'block';
                 filterBoard.style.display = "none";
@@ -128,7 +137,7 @@ export class ChallengeGrid {
         const filterTypeText2 = document.createElement('label');
         filterTypeText2.innerHTML = "&nbspInclude on-site challenges";
         filterListPoint2.appendChild(filterTypeText2);
-        
+
         const filterRating = document.createElement('div');
         filterRating.classList.add("filter-by-rating");
         filtersToChoose.appendChild(filterRating);
@@ -145,9 +154,9 @@ export class ChallengeGrid {
                 starsArr[i] = document.createElement('li');
                 starsArr[i].classList.add("filter-rating-star");
                 starsArr[i].classList.add("off");
-                filterRatingList.appendChild(starsArr[i]); 
-                starsArr.push();  
-            } 
+                filterRatingList.appendChild(starsArr[i]);
+                starsArr.push();
+            }
         };
 
         createStars(this.minStarsArray);
@@ -175,7 +184,7 @@ export class ChallengeGrid {
                 this.rerender();
             });
         });
-        
+
         // Label "to" between stars
         const filterStarLabel = document.createElement('li');
         filterStarLabel.innerHTML = "&nbspto&nbsp";
@@ -184,8 +193,10 @@ export class ChallengeGrid {
         filterRatingList.appendChild(filterStarLabel);
 
         createStars(this.maxStarsArray);
-        
+
         this.maxStarsArray.forEach(star => {
+            star.classList.add('on');
+            star.classList.remove('off');
             star.addEventListener('click', () => {
                 let i = this.maxStarsArray.indexOf(star);
                 let clickedStar = i + 1;
@@ -208,7 +219,6 @@ export class ChallengeGrid {
                 this.rerender();
             });
         });
-
         // Tag creation
         const filterTag = document.createElement('div');
         filterTag.classList.add("filter-by-tag");
@@ -236,7 +246,7 @@ export class ChallengeGrid {
                         if (filterTagItem.style.backgroundColor == "white") {
                             filterTagItem.style.backgroundColor = "lightslategray";
                             filterTagItem.style.color = "white";
-                            filterTagItem.style.borderColor = "lightslategray";                          
+                            filterTagItem.style.borderColor = "lightslategray";
                         } else {
                             filterTagItem.style.backgroundColor = "white";
                             filterTagItem.style.color = "gray";
@@ -247,7 +257,7 @@ export class ChallengeGrid {
                         const index = this.filters.labelsFilters.indexOf(value);
                         this.filters.labelsFilters.includes(value) ? this.filters.labelsFilters.splice(index, 1) : this.filters.labelsFilters.push(value);
                         this.filters.labelsFilters.length > 0 ? this.filters.byLabel = true : this.filters.byLabel = false;
-                        
+
                         this.rerender();
                     })
                 }
@@ -266,12 +276,52 @@ export class ChallengeGrid {
         searchText.type = "text";
         searchText.classList.add('filter-search-input');
         searchText.placeholder = "Start typing to filter";
-        searchText.addEventListener('keyup', () => {
-            this.filters.byText = searchText.value.length >= 3; //this will set a boolean 
+        searchText.addEventListener('keyup', event => {
+
+            this.filters.byText = searchText.value.length >= 3;
             this.filters.textFilter = searchText.value;
             this.rerender();
+
+           /*  if (searchText.value.length < 3){
+                this.filters.byText = false;
+                this.rerender();
+
+            } else if(searchText.value.length >= 3){ //this will set a boolean 
+            this.filters.byText = true;
+            this.filters.textFilter = searchText.value;
+            this.rerender();
+
+            }else{
+                this.rerender(); }
+                 */
         });
         filterSearchText.appendChild(searchText);
+
+        const sortDropDownContainer = document.querySelector('.sort-container');
+        const sortDropDown = document.createElement('select');
+        // const sortPlaceholder = document.createElement('option');
+        // sortPlaceholder.text = 'Sort'
+        // sortPlaceholder.value = '';
+        // sortPlaceholder.selected = true;
+        // sortDropDown.add(sortPlaceholder);
+        const sortOptions = [{title: 'Title: A-Z', sort: 'byCharA'}, {title: 'Title: Z-A', sort: 'byCharZ'}, {title: 'Rating: High-Low', sort: 'byHighRating'}, {title: 'Rating: Low-High', sort: 'byLowRating'}];
+        sortOptions.forEach(opt => {
+            const option = document.createElement('option');
+            option.text = 'Sort by ' + opt.title;
+            option.value = opt.sort;
+            sortDropDown.add(option);
+        })
+        sortDropDown.addEventListener('change', (event) => {
+            let sortOptionSelected = event.target.value;
+            let noSorting = (sortObj) => {
+                Object.keys(sortObj).forEach(function(key){ sortObj[key] = 'false'});
+                return sortObj;
+            }
+            noSorting(this.sorting);
+            this.sorting[sortOptionSelected] = true;
+            this.rerender();
+        })
+        sortDropDownContainer.appendChild(sortDropDown);
     }
 
     rerender() {
@@ -279,7 +329,8 @@ export class ChallengeGrid {
         this.container.innerHTML = '';
 
         const filterInstance = new Filter(this.filters);
-        const challengeArray = filterInstance.filterArray(this.challengeItems)
+        const sortInstance = new Sort(this.sorting);
+        const challengeArray = sortInstance.sortArray(filterInstance.filterArray(this.challengeItems));
         if(challengeArray.length === 0 || challengeArray === null) {
             const noChallenges = document.createElement('div');
             noChallenges.innerHTML = 'No matching challenges';
@@ -292,4 +343,4 @@ export class ChallengeGrid {
         this.container.appendChild(challengeItem);
         });
     }
-}
+};
