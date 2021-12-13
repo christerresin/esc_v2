@@ -1066,6 +1066,7 @@ img {
   justify-content: space-evenly;
   align-items: center;
   width: 70rem;
+  height: 30rem;
   margin-left: auto;
   margin-right: auto;
   margin-top: 3rem;
@@ -1080,12 +1081,20 @@ img {
 }
 
 .contact-information ul {
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.4rem;
+}
+
+.contact-information ul li:first-child {
+  font-weight: 600;
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
 }
 
 .contact-form form {
@@ -1104,9 +1113,11 @@ img {
 }
 
 .contact-form .contact-form-message {
+  position: relative;
   height: 10rem;
   width: 20rem;
   border-radius: 0.5rem;
+  border: 1px solid;
   padding-left: 5px;
   padding-top: 10px;
 }
@@ -1128,4 +1139,12 @@ img {
   height: 1rem;
   text-align: center;
   align-self: flex-end;
+}
+
+.message-counter {
+  position: relative;
+  font-size: 0.8rem;
+  text-align: right;
+  margin-top: -25px;
+  margin-right: 15px;
 }
