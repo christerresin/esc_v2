@@ -44,8 +44,8 @@ export class Filter {
         }
 
         // This shuffle is fluff, just for you Richard :)
-        const shuffledArray = newArray.sort((a, b) => 0.5 - Math.random());
-
-        return shuffledArray;
+       // const shuffledArray = newArray.sort((a, b) => 0.5 - Math.random());
+        //return shuffledArray;   
+        return newArray; //skipped sorting as is affecting the keyword filter
     }
 }

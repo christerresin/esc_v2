@@ -24,7 +24,7 @@ export class ChallengeGrid {
         this.sorting = {
             byHighRating: false,
             byLowRating: true,
-            byCharA: false,
+            byCharA: true,
             byCharZ: false
         }
     }
@@ -42,7 +42,9 @@ export class ChallengeGrid {
 
     render() {
         const filterInstance = new Filter(this.filters);
-        const challengeArray = filterInstance.filterArray(this.challenges)
+        const sortInstance = new Sort(this.sorting);
+        const challengeArray = sortInstance.sortArray(filterInstance.filterArray(this.challenges));
+        // const challengeArray = filterInstance.filterArray(this.challenges)
         challengeArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);
         const challengeItem = challengeInstance.render();
@@ -198,6 +200,8 @@ export class ChallengeGrid {
         createStars(this.maxStarsArray);
 
         this.maxStarsArray.forEach(star => {
+            star.classList.add('on');
+            star.classList.remove('off');
             star.addEventListener('click', () => {
                 let i = this.maxStarsArray.indexOf(star);
                 let clickedStar = i + 1;
@@ -220,7 +224,6 @@ export class ChallengeGrid {
                 this.rerender();
             });
         });
-
         // Tag creation
         const filterTag = document.createElement('div');
         filterTag.classList.add("filter-by-tag");
@@ -278,24 +281,38 @@ export class ChallengeGrid {
         searchText.type = "text";
         searchText.classList.add('filter-search-input');
         searchText.placeholder = "Start typing to filter";
-        searchText.addEventListener('keyup', () => {
+        searchText.addEventListener('keyup', event => {
+
+            this.filters.byText = searchText.value.length >= 3;
+            this.filters.textFilter = searchText.value;
+            this.rerender();
+
+           /*  if (searchText.value.length < 3){
+                this.filters.byText = false;
+                this.rerender();
+
+            } else if(searchText.value.length >= 3){ //this will set a boolean 
             this.filters.byText = true;
             this.filters.textFilter = searchText.value;
             this.rerender();
+
+            }else{
+                this.rerender(); }
+                 */
         });
         filterSearchText.appendChild(searchText);
 
         const sortDropDownContainer = document.querySelector('.sort-container');
         const sortDropDown = document.createElement('select');
-        const sortPlaceholder = document.createElement('option');
-        sortPlaceholder.text = 'Sort'
-        sortPlaceholder.value = '';
-        sortPlaceholder.selected = true;
-        sortDropDown.add(sortPlaceholder);
+        // const sortPlaceholder = document.createElement('option');
+        // sortPlaceholder.text = 'Sort'
+        // sortPlaceholder.value = '';
+        // sortPlaceholder.selected = true;
+        // sortDropDown.add(sortPlaceholder);
         const sortOptions = [{title: 'Title: A-Z', sort: 'byCharA'}, {title: 'Title: Z-A', sort: 'byCharZ'}, {title: 'Rating: High-Low', sort: 'byHighRating'}, {title: 'Rating: Low-High', sort: 'byLowRating'}];
         sortOptions.forEach(opt => {
             const option = document.createElement('option');
-            option.text = opt.title;
+            option.text = 'Sort by ' + opt.title;
             option.value = opt.sort;
             sortDropDown.add(option);
         })
