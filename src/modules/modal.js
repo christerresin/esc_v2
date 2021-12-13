@@ -187,7 +187,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   };
 
   function setBookingDate() {
-    // if (inp.value == "") {
+    // if (inp1.value == "") {
     //   alert("Error, no selected date.");
     //   // stop the process here until the date is selected
     // }
