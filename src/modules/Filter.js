@@ -5,7 +5,7 @@ export class Filter {
     filterArray(array) {
         let newArray = [];
         let filteredArray = [];
-        
+
         if (this.filters.byOnline) {
             filteredArray = array.filter(obj => {
                 return obj.type === 'online';
@@ -13,7 +13,7 @@ export class Filter {
             // Using spread to "create"/concat a new array with all values
             newArray = [...newArray, ...filteredArray];
         }
-    
+
         if (this.filters.byOnsite) {
             filteredArray = array.filter(obj => {
                 return obj.type === 'onsite';
@@ -21,13 +21,13 @@ export class Filter {
             // Using spread to "create"/concat a new array with all values
             newArray = [...newArray, ...filteredArray];
         }
-    
+
         if (this.filters.byLabel) {
             newArray = newArray.filter(obj => {
                 return this.filters.labelsFilters.every(label => obj.labels.includes(label));
             })
         }
-    
+
         if (this.filters.byRating) {
             newArray = newArray.filter(obj => {
                 if(obj.rating >= this.filters.minRatingFilter && obj.rating <= this.filters.maxRatingFilter) {
@@ -35,7 +35,7 @@ export class Filter {
                 }
             });
         }
-    
+
         if (this.filters.byText) {
             newArray = newArray.filter(obj => {
                 // returns obj with title or description that includes the value from textFilter
@@ -44,8 +44,8 @@ export class Filter {
         }
 
         // This shuffle is fluff, just for you Richard :)
-        const shuffledArray = newArray.sort((a, b) => 0.5 - Math.random());
-    
-        return shuffledArray;    
+       // const shuffledArray = newArray.sort((a, b) => 0.5 - Math.random());
+        //return shuffledArray;   
+        return newArray; //skipped sorting as is affecting the keyword filter
     }
 }

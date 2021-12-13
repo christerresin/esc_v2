@@ -13,7 +13,7 @@ class Challenge {
         // Create elements for challenge card
         let challengesItem = document.createElement('li');
         challengesItem.classList.add('challenges-item');
-        
+
         let challengesPicture = document.createElement('img')
         challengesPicture.classList.add('challenge-picture');
         challengesPicture.src=this.image;
@@ -90,28 +90,25 @@ const load = async () => {
             return challenges;
         } catch (error) {
             console.log(error);
-        }    
+        }
 };
 
 const render = async () => {
     const data = await load();
-    const ratingsArray = [];
-    data.forEach(challenge => {
-        if(challenge.rating >= 5) {
-            ratingsArray.push(challenge);
-        } 
-    });
-    data.forEach(challenge => {
-        if (challenge.rating < 5 && challenge.rating >= 4.5) {
-            ratingsArray.push(challenge);
-        } 
-    });
-    data.forEach(challenge => {
-        if (challenge.rating < 4.5 && challenge.rating >= 4) {
-            ratingsArray.push(challenge);
-        } 
-    });
+
+    function compare(a, b) {
+        if (a.rating < b.rating) {
+            return 1;
+        }
+        if (a.rating > b.rating) {
+            return -1;
+        }
+        return 0;
+    }
+
+    const ratingsArray = data.sort(compare);
     ratingsArray.splice(3)
+
     const container = document.querySelector('.challenges-list-index');
     ratingsArray.forEach(challengeData => {
         const challengeInstance = new Challenge(challengeData);

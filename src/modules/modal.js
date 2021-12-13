@@ -2,12 +2,12 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
   //===TODO==================================
     // - STYLE
-  
+
   // OPTIONAL:
   // Stop "set"-processes after alert -- i.e. don't let user go to modal page 3
 
   // IN PROGRESS:
-  // 
+  //
 
   // DONE:
   // - DO THIRD PAGE (from Anders modals?)
@@ -50,22 +50,22 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   div1.append(p);
 
   // create the date input in Modal step 1
-  const inp = document.createElement("input");
-  const lab = document.createElement("label");
+  const inp1 = document.createElement("input");
+  const lab1 = document.createElement("label");
   const br = document.createElement("br");
-  inp.name = "inpDate";
-  inp.id = "date";
-  inp.type = "date";
-  inp.name = "date";
-  lab.textContent = "Date";
-  div1.append(lab);
-  div1.append(inp);
+  inp1.name = "inpDate";
+  inp1.id = "date";
+  inp1.type = "date";
+  inp1.name = "date";
+  lab1.textContent = "Date";
+  div1.append(lab1);
+  div1.append(inp1);
 
   // Set input options to min = today, max = 1 year from now
   const d = new Date();
   d.setYear(d.getFullYear() + 1);
   date.max = d.toISOString().split("T")[0]; //this simply converts it to the correct format
-  
+
   const c = new Date();
   date.min = c.toISOString().split("T")[0];
 
@@ -95,6 +95,15 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   lab2.textContent = "Name";
   div2.append(lab2);
   div2.append(inp2);
+
+  // create input for telephone number
+  const inp4 = document.createElement("input");
+  const lab6 = document.createElement("label");
+  inp4.name = "inpPhone";
+  inp4.type = "text";
+  lab6.textContent = "Phone Number";
+  div2.append(lab6);
+  div2.append(inp4);
 
   // create input for the email in Modal step 2
   const inp3 = document.createElement("input");
@@ -148,10 +157,10 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   modal3link.textContent = "Back to challenges";
 
   // Add same class to modal content items to style them
-  inp.className = 'modal-content-text';
+  inp1.className = 'modal-content-text';
   inp2.className = 'modal-content-text';
   inp3.className = 'modal-content-text';
-  lab.className = 'modal-content-text';
+  lab1.className = 'modal-content-text';
   lab2.className = 'modal-content-text';
   lab3.className = 'modal-content-text';
   lab4.className = 'modal-content-text';
@@ -182,17 +191,24 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     //   alert("Error, no selected date.");
     //   // stop the process here until the date is selected
     // }
-    return inp.value;
+    return inp1.value;
   }
 
   // Clicking on the search botton function
   btnSearch.onclick = function () {
     const reqDate = setBookingDate();
-    if (inp.value == "") {
+    let date = new Date();
+    const year = date.getUTCFullYear();
+    const month = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const day = String(date.getUTCDate()).padStart(2, '0');
+    const lastDate = `${year + 1}-${month}-${day}`
+    if (inp1.value == "") {
       alert("Error, no selected date.");
       // stop the process here until the date is selected
-      
-    }else    {
+
+    } else if (Date.parse(inp1.value) > Date.parse(lastDate)) {
+      alert('Please select a new date, date over a year in the future')
+    } else {
 
         const availableTimes = searchAvailableTimes(reqDate);
         // if (availableTimes.booking.date != reqDate) {
@@ -220,7 +236,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
           });
         };
     }
-  
+
   };
 
   function bookingNextStep(gatheredTimes) {
@@ -254,21 +270,23 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   function setParticipantName() {
     if (inp2.value == "") {
       alert("Error, no entered participant name.");
-      // TODO
-      // stop the process here until the date is selected
     }
     return inp2.value;
+  }
+
+  // add function to check phone number
+  function setPhoneNumber() {
+    if (inp4.value == "") {
+      alert("Error, no entered phone number.");
+    }
   }
 
   function setEmail() {
     var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
     if (inp3.value == "") {
       alert("Error, no entered e-mail.");
-      // TODO
-      // stop the process here until the date is selected
     } else if (!inp3.value.match(pattern)) {
       alert("Error, the entered email is invalid.");
-      // stop the process here until the date is selected
     } else {
       return inp3.value;
     }
@@ -277,17 +295,13 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   function setBookingTime() {
     if (selectTime.value == "") {
       alert("Error, no selected time.");
-      // TODO
-      // stop the process here until the date is selected
-    }
+     }
     return selectTime.value;
   }
 
   function setParticipantsNumber() {
     if (selectPart.value == "") {
       alert("Error, no selected participants number.");
-      // TODO
-      // stop the process here until the date is selected
     }
     return selectPart.value;
   }
@@ -297,10 +311,13 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
     // set booking date
     const reqDate = setBookingDate();
- 
+
     // set participant name
     const reqName = setParticipantName();
-    
+
+    // set phone number
+    const reqPhone = inp4.value;
+        
     // set participant email
     const reqEmail = setEmail();
 
@@ -309,11 +326,12 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
 
     // set number of participants
     const reqPart = setParticipantsNumber();
-    postBookingData(reqName, reqEmail, reqDate, reqTime, reqPart);
+    postBookingData(reqName, reqPhone, reqEmail, reqDate, reqTime, reqPart);
 
     // build the post object to the server
     async function postBookingData(
       reqName,
+      reqPhone,
       reqEmail,
       reqDate,
       reqTime,
@@ -327,6 +345,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             name: reqName,
+            phone: reqPhone,
             email: reqEmail,
             date: reqDate,
             time: reqTime,
@@ -336,9 +355,9 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
       );
       const bookingstatus = await res.json();
       console.log(bookingstatus);
+      
+      div2.style.display = "none";
+      div3.style.display = "flex";
     }
-
-    div2.style.display = "none";
-    div3.style.display = "flex";
   };
 }
