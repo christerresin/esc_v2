@@ -61,7 +61,7 @@ export class Challenge {
         let challengeDescription = document.createElement('p');
         challengeDescription.classList.add('challenge-description');
         if (this.description.length>maxTextLength) {
-            challengeDescription.innerHTML = this.description.substring(0,maxTextLength)+" ...";
+            challengeDescription.innerHTML = this.description.substring(0,maxTextLength)+"...";
         } else {
             challengeDescription.innerHTML = this.description;
         }

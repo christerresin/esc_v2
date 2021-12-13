@@ -51,7 +51,7 @@ class Challenge {
         challengeDescription.classList.add('challenge-description');
         const maxTextLength=50; //specify the max lenth of displayed text
         if (this.description.length>maxTextLength) {
-            challengeDescription.innerHTML = this.description.substring(0,maxTextLength)+" ...";
+            challengeDescription.innerHTML = this.description.substring(0,maxTextLength)+"...";
         } else {
             challengeDescription.innerHTML = this.description;
         }
