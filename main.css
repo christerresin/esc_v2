@@ -28,7 +28,7 @@ img {
   height: 80px;
   line-height: 1em;
   font-size: 1.6rem;
-  background-image: url("images/logo.png");
+  background-image: url('images/logo.png');
   background-size: 120px;
   background-repeat: no-repeat;
 }
@@ -58,7 +58,7 @@ img {
   background-color: white;
 }
 .main-nav .main-nav-toggle::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 0.7rem;
   display: block;
@@ -70,7 +70,7 @@ img {
   transition: opacity 0.5s;
 }
 .main-nav .main-nav-toggle::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 1.4rem;
   display: block;
@@ -174,7 +174,7 @@ img {
   }
 }
 .hero-image {
-  background-image: url("images/hero.png");
+  background-image: url('images/hero.png');
   background-size: cover;
   height: 40vh;
 }
@@ -375,12 +375,12 @@ img {
   width: 1rem;
   height: 1rem;
   margin: 0 0.4rem 0 0;
-  background-image: url("images/star-on.png");
+  background-image: url('images/star-on.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
 .challenges-item .challenge-rating .challenge-rating-star.off {
-  background-image: url("images/star-off.png");
+  background-image: url('images/star-off.png');
 }
 .challenges-item .challenge-description {
   margin-top: 1rem;
@@ -786,11 +786,11 @@ img {
 }
 
 .filter-rating-star.on {
-  background-image: url("images/star-on.png");
+  background-image: url('images/star-on.png');
 }
 
 .filter-rating-star.off {
-  background-image: url("images/star-off.png");
+  background-image: url('images/star-off.png');
 }
 
 .filter-search-text {
@@ -940,7 +940,7 @@ img {
 
 .placeholder-img {
   height: 40vh;
-  background-image: url("images/dummypic.png");
+  background-image: url('images/dummypic.png');
   background-size: cover;
   height: 40vh;
 }
@@ -1052,4 +1052,80 @@ img {
 }
 .challenges-item:hover {
   box-shadow: 0 0 5rem rgba(182, 189, 181, 0.9);
+}
+
+/* CONTACT */
+.contact-us {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 70rem;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+}
+
+.contact-information {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.contact-information ul {
+  margin-bottom: 1rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form form input {
+  height: 2rem;
+  margin-bottom: 0.6rem;
+  width: 20rem;
+
+  border-radius: 0.5rem;
+  border: 1px solid;
+  padding-left: 5px;
+}
+
+.contact-form .contact-form-message {
+  height: 10rem;
+  width: 20rem;
+  border-radius: 0.5rem;
+  padding-left: 5px;
+  padding-top: 10px;
+}
+
+.contact-cta {
+  display: block;
+  cursor: pointer;
+  margin: 0.5rem;
+  background-color: #e3170a;
+  padding: 1rem 3rem;
+  border-radius: 0.3rem;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.2s;
+  color: white;
+  margin: 1rem 0;
+  width: 5rem;
+  height: 1rem;
+  text-align: center;
+  align-self: flex-end;
 }
