@@ -187,7 +187,7 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
   };
 
   function setBookingDate() {
-    // if (inp.value == "") {
+    // if (inp1.value == "") {
     //   alert("Error, no selected date.");
     //   // stop the process here until the date is selected
     // }
@@ -202,11 +202,11 @@ export default function modalFunc(h1title, minParticipants, maxParticipants) {
     const month = String(date.getUTCMonth() + 1).padStart(2, '0');
     const day = String(date.getUTCDate()).padStart(2, '0');
     const lastDate = `${year + 1}-${month}-${day}`
-    if (inp.value == "") {
+    if (inp1.value == "") {
       alert("Error, no selected date.");
       // stop the process here until the date is selected
 
-    } else if (Date.parse(inp.value) > Date.parse(lastDate)) {
+    } else if (Date.parse(inp1.value) > Date.parse(lastDate)) {
       alert('Please select a new date, date over a year in the future')
     } else {
 

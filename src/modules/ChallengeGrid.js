@@ -30,9 +30,14 @@ export class ChallengeGrid {
     }
 
     async run() {
+        // Branch 17: Add loading indicator shown for 500 msec as it's otherwise shown too fast to even notice
+        const loader = document.querySelector('#loader');
+        loader.style.display = 'block';
         this.challenges = await this.retriever.load();
-
-        this.render();
+        setTimeout(() => {
+            loader.style.display = 'none';
+            this.render();
+        }, 500);
     }
 
     render() {
