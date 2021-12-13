@@ -57,9 +57,15 @@ export class Challenge {
         challengeSize.classList.add('challenge-size');
         challengeSize.innerHTML = this.type === 'onsite' ? `${this.minParticipants}-${this.maxParticipants} participants` : `${this.minParticipants}-${this.maxParticipants} participants (networked)`;
 
+        const maxTextLength=50; //specify the max lenth of displayed text
         let challengeDescription = document.createElement('p');
         challengeDescription.classList.add('challenge-description');
-        challengeDescription.innerHTML = this.description
+        if (this.description.length>maxTextLength) {
+            challengeDescription.innerHTML = this.description.substring(0,maxTextLength)+"...";
+        } else {
+            challengeDescription.innerHTML = this.description;
+        }
+        
 
         let challengeCta = document.createElement('a');
         challengeCta.classList.add('challenge-cta');
