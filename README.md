@@ -1,1 +1,1 @@
-## Feature branch for adding phone number to booking.
+## Hacker Escape Rooms assignment project
