@@ -96,16 +96,16 @@ export default function modalFunc(roomID,h1title, minParticipants, maxParticipan
   div2.append(lab2);
   div2.append(inp2);
 
- // create input for telephone number
- const inp4 = document.createElement("input");
- const lab6 = document.createElement("label");
- inp4.name = "inpPhone";
- inp4.type = "text";
- lab6.textContent = "Phone Number";
- div2.append(lab6);
- div2.append(inp4);
+  // create input for telephone number
+  const inp4 = document.createElement("input");
+  const lab6 = document.createElement("label");
+  inp4.name = "inpPhone";
+  inp4.type = "text";
+  lab6.textContent = "Phone Number";
+  div2.append(lab6);
+  div2.append(inp4);
 
-   // create input for the email in Modal step 2
+  // create input for the email in Modal step 2
   const inp3 = document.createElement("input");
   const lab3 = document.createElement("label");
   inp3.name = "inpEmail";
@@ -275,12 +275,12 @@ export default function modalFunc(roomID,h1title, minParticipants, maxParticipan
     return inp2.value;
   }
 
- // add function to check phone number
- function setPhoneNumber() {
-  if (inp4.value == "") {
-    alert("Error, no entered phone number.");
+  // add function to check phone number
+  function setPhoneNumber() {
+    if (inp4.value == "") {
+      alert("Error, no entered phone number.");
+    }
   }
-}
 
   function setEmail() {
     var pattern = /^[^]+@[^]+\.[a-z]{2,3}$/;
@@ -296,7 +296,7 @@ export default function modalFunc(roomID,h1title, minParticipants, maxParticipan
   function setBookingTime() {
     if (selectTime.value == "") {
       alert("Error, no selected time.");
-    }
+     }
     return selectTime.value;
   }
 
